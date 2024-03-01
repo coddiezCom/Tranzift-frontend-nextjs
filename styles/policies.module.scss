@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Kay+Pho+Du:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&display=swap");
+.__container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 2em;
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2em 0;
+    > h1 {
+      font-size: 2em;
+      font-family: Agbalumo;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: 1em;
+    color: rgb(28, 28, 28);
+    h2 {
+      font-size: 1.4em;
+      font-family: "Kalam", cursive;
+    }
+    p {
+      font-family: "Kay Pho Du", serif;
+      strong {
+        font-family: "Kalam", cursive;
+        font-size: 1.1em;
+        font-weight: 600;
+        // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-left: 1em;
+      list-style: circle;
+    //   margin-top: -0.7rem;
+      li {
+      }
+    }
+    // FAQ
+    .FaqContainer{
+        display: flex;
+        flex-direction: column;
+        >ul{
+            padding: 0;
+            list-style: none;
+            gap: 0.5em;
+            >li{
+                display: flex;
+                flex-direction: column;
+                .question{
+                    font-size: 1.2em;
+                    font-weight: 600;
+                }
+                .answer{
+
+                }
+            }
+        }
+    }
+  }
+}

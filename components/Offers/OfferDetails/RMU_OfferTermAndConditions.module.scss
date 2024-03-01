@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .heading {
+    font-size: 1.5em;
+    padding: 0.5em;
+    border-bottom: 2px solid rgba(56, 56, 56, 0.2509803922);
+  }
+
+  ul {
+    padding: 0.5em 0.5em 0.5em 2.5em;
+
+    li {
+      margin: 0.5em 0;
+      list-style-type: disc;
+    }
+  }
+}

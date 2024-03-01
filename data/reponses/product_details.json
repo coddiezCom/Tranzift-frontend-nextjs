@@ -1,0 +1,142 @@
+{
+  "id": "24",
+  "sku": "GBV2PLEGC001",
+  "name": "Flipkart E-Gift Card base",
+  "description": "We live in a country that likes to celebrate its occasions by gifting. If Diwali isn't fast approaching then your anniversary surely is. We're forever bound by the challenge of 'how to top up last year's present?' \r\nThis is where Pantaloons Gift cards make an entry – gifting should be a joy for the receiver as much as for the shopper. You can gift them to your loved ones and be assured that they'll love treating themselves to their favourite things! Our gift cards are the perfect gift to give. Mission surprise and delight, completed.",
+  "price": {
+    "price": "RANGE",
+    "type": "RANGE",
+    "min": "100",
+    "max": "10000",
+    "denominations": ["100", "200", "300", "400", "500"],
+    "currency": { "code": "INR", "symbol": "₹", "numericCode": "356" },
+    "cpg": []
+  },
+  "kycEnabled": "0",
+  "additionalForm": null,
+  "metaInformation": {
+    "page": { "title": "Pantaloons E-Gift Card" },
+    "meta": {
+      "title": "Pantaloons E-Gift Card",
+      "keywords": "Pantaloons E-Gift Card",
+      "description": "Pantaloons E-Gift Card"
+    },
+    "canonical": { "url": null }
+  },
+  "type": "DIGITAL",
+  "schedulingEnabled": false,
+  "currency": "356",
+  "images": {
+    "thumbnail": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/thumbnail/24_microsite.jpg",
+    "mobile": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/mobile/24_microsite.jpg",
+    "base": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/image/24_microsite.jpg",
+    "small": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/small_image/24_microsite.jpg"
+  },
+  "tnc": {
+    "link": "https://woohooqa.app.link/e/6CjTB9artfb",
+    "content": "Amazon Gift Cards (\"GCs\") are issued by the Qwikcilver Solutions Private limited (\"Qwikcilver\"). Credit and Debit Cards issued outside India cannot be used to purchase Amazon.in Gift Cards.<br/>To add your GC to your Amazon Pay balance, visit www.amazon.in/addgiftcard<br/>Beneficiary can apply the 14 digit code (under scratch card) on amazon.in/addgiftcard and add the gift card balance in his/her Amazon.in account. This balance gets automatically applied at the time of next purchase. There is no cap on number of gift cards that can be added to an account.<br/>Amazon Pay balance is a sum of all balances associated with the GCs in your Amazon.in account.<br/>Amazon Pay balance are redeemable across all products on Amazon.in except apps, certain global store products and other Amazon.in gift cards.<br/>Amazon Pay balance must be used only towards the purchase of eligible products on amazon.in<br/>The GCs, including any unused Amazon Pay balance, expire one year from the date of issuance of the GC<br/>GCs cannot be transferred for value or redeemed for the cash.<br/>Qwikcilver, Amazon Seller Services Private Limited (Amazon) or their affiliates are not responsible if a GC is lost, stolen, destroyed or used without permission.<br/>For Complete terms and conditions, see www.amazon.in/giftcardtnc<br/>Amazon.in logo/trademark is an IP of Amazon or its affiliates and the Qwikcilver trademark/logo is an IP of Qwikcilver.<br/>To redeem your GC, visit www.amazon.in/addgiftcard<br/>E-Gift Cards are normally delivered instantly. But sometimes due to system issues, the delivery can be delayed up-to 24 - 48 hours.<br/>For detailed T&Cs of this E-Gift Card please refer www.woohoo.in/termsandconditions<br/>Certain merchants may provide you services only on the pre-condition that you allow us to hold balances in your Amazon Pay balance: Gift Card till the service completion by the merchant. However, your prior consent would be taken before holding such balances. In such cases, you agree and authorize us to: (i) hold your balance until service completion; and (ii) fail the transaction if your balance in the Amazon Pay Gift Card is less than the actual amount charged by the merchant at the end of the services.<br/>You may request for revalidation of any expired Gift Cards. Upon receipt of such request, the Gift Card may be revalidated after due verification and subject to applicable terms and conditions.<br/>No returns and no refunds on gift cards, e-gift cards and gift vouchers shipped by woohoo.in. Please check the refund policy at http://www.woohoo.in/faq for further details."
+  },
+  "categories": [
+    "5",
+    "7",
+    "22",
+    "23",
+    "25",
+    "28",
+    "45",
+    "50",
+    "51",
+    "52",
+    "54",
+    "83",
+    "108",
+    "118",
+    "121",
+    "154",
+    "165",
+    "188",
+    "271"
+  ],
+  "themes": [
+    {
+      "sku": "莎拉莎拉",
+      "price": "10.0000",
+      "image": "https://static-uat.woohoo.in/media/catalog/customoptions/莎拉莎拉_thumnail.jpeg",
+      "pdfImage": "https://static-uat.woohoo.in/media/catalog/customoptions/莎拉莎拉_pdf.jpeg",
+      "emailImage": "https://static-uat.woohoo.in/media/catalog/customoptions/莎拉莎拉_email.jpeg"
+    },
+    {
+      "sku": "best_wishes",
+      "price": "0.0000",
+      "image": "https://static-uat.woohoo.in/media/catalog/customoptions/best_wishes_thumnail.jpeg",
+      "pdfImage": "https://static-uat.woohoo.in/media/catalog/customoptions/best_wishes_pdf.jpeg",
+      "emailImage": "https://static-uat.woohoo.in/media/catalog/customoptions/best_wishes_email.jpeg"
+    },
+    {
+      "sku": "congo",
+      "price": "0.0000",
+      "image": "https://static-uat.woohoo.in/media/catalog/customoptions/congo_thumnail.jpeg",
+      "pdfImage": "https://static-uat.woohoo.in/media/catalog/customoptions/congo_pdf.jpeg",
+      "emailImage": "https://static-uat.woohoo.in/media/catalog/customoptions/congo_email.jpeg"
+    },
+    {
+      "sku": "thanku",
+      "price": "0.0000",
+      "image": "https://static-uat.woohoo.in/media/catalog/customoptions/thanku_thumnail.jpeg",
+      "pdfImage": "https://static-uat.woohoo.in/media/catalog/customoptions/thanku_pdf.jpeg",
+      "emailImage": "https://static-uat.woohoo.in/media/catalog/customoptions/thanku_email.jpeg"
+    },
+    {
+      "sku": "wedding",
+      "price": "0.0000",
+      "image": "https://static-uat.woohoo.in/media/catalog/customoptions/wedding_thumnail.jpeg",
+      "pdfImage": "https://static-uat.woohoo.in/media/catalog/customoptions/wedding_pdf.jpeg",
+      "emailImage": "https://static-uat.woohoo.in/media/catalog/customoptions/wedding_email.jpeg"
+    },
+    {
+      "sku": "valentine",
+      "price": "0.0000",
+      "image": "https://static-uat.woohoo.in/media/catalog/customoptions/valentine_thumnail.jpeg",
+      "pdfImage": "https://static-uat.woohoo.in/media/catalog/customoptions/valentine_pdf.jpeg",
+      "emailImage": "https://static-uat.woohoo.in/media/catalog/customoptions/valentine_email.jpeg"
+    }
+  ],
+  "customThemesAvailable": true,
+  "handlingCharges": [],
+  "reloadCardNumber": false,
+  "expiry": null,
+  "formatExpiry": null,
+  "discounts": [],
+  "relatedProducts": [],
+  "storeLocatorUrl": null,
+  "brandName": "Jabong",
+  "etaMessage": "",
+  "createdAt": "2015-09-08T23:03:59+00:00",
+  "updatedAt": "2023-08-05T03:49:50+00:00",
+  "cpg": {
+    "barcode": { "encoding": null },
+    "redemptionTerms": [],
+    "type": "clp",
+    "code": "Page Test eGift Card",
+    "erupi_purpose": null,
+    "erupi_payer_type": null,
+    "erupi_payee_type": null,
+    "erupi_recurrence_pattern": null,
+    "erupi_validity": null
+  },
+  "payout": {
+    "enabled": true,
+    "payment_methods": ["svc"],
+    "account_types": ["BANK_ACCOUNT", "UPI"],
+    "transaction_types": ["IMPS", "NEFT", "UPI"],
+    "maximum_beneficiaries": "1",
+    "validate_terms_and_condition": "",
+    "validation": {
+      "amount": "1",
+      "edit_beneficiary": true,
+      "convenience_charge": ""
+    }
+  },
+  "convenience_charges": [],
+  "allowedfulfillments": [{ "code": false }]
+}

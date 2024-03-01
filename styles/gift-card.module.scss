@@ -1,0 +1,615 @@
+.__giftCardContainer {
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid gray;
+  background-color: white;
+
+  .__GiftCardSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(85% - 1em);
+    margin: auto;
+    // padding: 1em 0;
+    padding: 1.2em;
+    .___CategoriesSelection {
+      // background-color: red;
+      > div {
+        > div {
+          &:last-of-type {
+            // background-color: #;
+            svg {
+              color: #fe3a5a;
+            }
+          }
+        }
+      }
+    }
+  }
+  .__giftCardsContainer {
+    width: calc(85% - 1em);
+    @media screen and (max-width: 1200px) {
+      width: calc(100%);
+    }
+  }
+  .__giftCards {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.2em 0em;
+    .__giftCard {
+      width: 25%;
+      padding: 1.2em;
+      @media screen and (max-width: 1300px) {
+        // width: 32%;
+        width: calc(33%);
+        .gift_card__name__nd_valid {
+          span {
+            font-size: 1em;
+          }
+        }
+      }
+      @media screen and (max-width: 968px) {
+        width: calc(50%);
+        .gift_card__name__nd_valid {
+          span {
+            font-size: 0.8em;
+          }
+        }
+      }
+      @media screen and (max-width: 480px) {
+        width: calc(100%);
+      }
+      &:last-of-type {
+        // margin-right: 48%;
+      }
+      .gift_card {
+        width: 100%;
+        // margin-right: 48%;
+        box-shadow: none;
+        &:hover {
+          box-shadow: 1px 1px 17px -2px hsla(0, 0%, 65.51%, 0.47);
+          border: 2px solid #0000001a;
+        }
+        &__imageContainer {
+          height: 80%;
+          position: relative;
+          .gift_card__discount {
+            position: absolute;
+            bottom: -2px;
+            left: -3px;
+            font-size: 10px;
+            color: #fff;
+            text-align: left;
+            &__img {
+              display: flex;
+              width: 8em;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+            &__text {
+              position: absolute;
+              top: 55%;
+              left: 5%;
+              text-align: center;
+              transform: rotate(45deg);
+              font-family: arial-narrow;
+              font-size: 1.2em;
+              font-weight: 700;
+            }
+          }
+          .gift_card__img {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.4em;
+          }
+        }
+        &__content {
+          height: 18%;
+          display: flex;
+          flex-direction: column;
+          padding: 0.5em 0;
+          // padding: 1em;
+          justify-content: space-between;
+          .gift_card__name__nd_valid {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: baseline;
+            font-size: 0.9em;
+            span {
+              &:nth-child(2) {
+                span {
+                  text-decoration: underline;
+                  color: #f1822d;
+                }
+                font-size: 0.5em;
+              }
+            }
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .paginationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+    width: 94%;
+    margin: 0.9em auto;
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 1024px) {
+  }
+  @media screen and (max-width: 968px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+  }
+  @media screen and (max-width: 320px) {
+  }
+}
+// GiftCardBanner
+.giftCardBanner {
+  position: relative;
+  &__img {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  &__content {
+    position: absolute;
+    top: 30%;
+    transform: translate(30%, 0%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    color: white;
+    > span {
+      text-align: center;
+      border-radius: 0.5em;
+      background: #423a3a96;
+      padding: 12px 10px;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    &__heading {
+      font-size: 2.2em;
+    }
+    &__subHeading {
+      font-size: 1.7em;
+      display: flex;
+      flex-direction: row;
+      gap: 0.2em;
+      > span {
+        &:first-of-type {
+          a {
+            transition: ease-in-out 1s;
+            &:hover {
+              color: #ff8eb5;
+              transition: ease-in-out 1s;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.GiftCardDetailed {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  .__cardDetail {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    gap: 0.1em;
+    .__name {
+      font-size: 2em;
+      margin: 0;
+    }
+    .__valid {
+      font-size: 1em;
+    }
+    .__imageContainer {
+      padding: 0.5em;
+      position: relative;
+      .__discount {
+        position: absolute;
+        color: #2e2e2e;
+        top: 0;
+        right: 0;
+        /* border: 1px solid #2e2e2e; */
+        padding: 0.1em 0.5em;
+        /* border: 2px solid #2e2e2e; */
+        box-shadow: 1px 1px 0px gray;
+        background: #fdfc26;
+        border-radius: 15px 0px 15px 0px;
+        color: #f31c09;
+      }
+      .__img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.4em;
+      }
+    }
+    .__validity {
+      font-size: 1em;
+      color: #f1822d;
+    }
+  }
+  .__cardForm {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    // gap: 0.9em;
+    justify-content: space-evenly;
+    .__denominationFixed {
+      display: flex;
+      // flex-wrap: wrap;
+      gap: 0.1em;
+      align-items: baseline;
+      font-size: 1em;
+      font-weight: 400;
+      .__denominationBtn {
+        margin: 0 0.5em 0.2em 0em;
+      }
+    }
+    .__denominationVary {
+      width: 100%;
+      .__denominationInput {
+        width: 100%;
+      }
+    }
+    .__quentity {
+      .__quentityInput {
+        width: 100%;
+        select {
+          min-width: 3.3em;
+        }
+      }
+    }
+    .__deliveryOptions {
+      label {
+        font-size: 1em;
+        color: #2e2e2e;
+      }
+      > div {
+        label {
+          > span {
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+    .OurTermNdConditions {
+      margin: 0;
+      display: none;
+      > div {
+        margin: 0;
+      }
+    }
+  }
+  .__offerContainer {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    ul {
+      padding: 0.9em 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      li {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5em;
+        > span {
+          &:first-of-type {
+            > span {
+              &:first-of-type {
+                display: flex;
+                width: 1.5em;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                }
+              }
+              > p {
+                &:last-of-type {
+                  font-size: 0.8em;
+                  color: #f1822d;
+                }
+                font-size: 0.6em;
+                width: max-content;
+                font-weight: 600;
+              }
+            }
+          }
+          p {
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+    > div,
+    > form {
+      width: 49% !important;
+    }
+    > div {
+      &:last-of-type {
+        width: 100% !important;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+    > div,
+    > form {
+      width: 100% !important;
+    }
+    > div {
+      &:last-of-type {
+        width: 100% !important;
+      }
+    }
+  }
+}
+.giftCardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(85% - 1em);
+  gap: 1em;
+  margin: 0.75em auto;
+  background-color: #f8f8f824;
+  .__header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    > div {
+      width: 100%;
+      padding: 0.5em 0;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #f1822d;
+      color: #f1822d;
+    }
+  }
+  .__card {
+    // width: 90%;
+    width: 100%;
+    padding: 0.5em 0;
+    .__moreAboutGiftCard {
+      .__moreInfo {
+      }
+      .__list {
+      }
+    }
+  }
+  .__cardDesc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > div {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    .__header > div,
+    .__card,
+    .__cardDesc > div {
+      width: 95%;
+    }
+  }
+}
+.CancellationModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  border: 2px solid gray;
+  overflow: scroll;
+  height: 80vh;
+  border-radius: 0.8em;
+  overflow-x: hidden;
+}
+// BuyForSelf
+.__buyForSelf {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .__heading {
+    font-size: 1.8em;
+    font-weight: 700;
+    text-align: center;
+  }
+  .__cards {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 30%;
+      .ImgContainer {
+        width: 5em;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      p {
+      }
+    }
+  }
+}
+
+// DeliveryMode
+.__deliveryModeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .__deliveryMode {
+    .__heading {
+      h3 {
+        font-size: 1em;
+        font-weight: 700;
+      }
+    }
+    .__content {
+    }
+  }
+  .__giftingDetails {
+    .__heading {
+      h3 {
+        font-size: 1em;
+        font-weight: 700;
+      }
+    }
+    .__form {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: space-between;
+      > div {
+        &:last-of-type {
+          width: 65%;
+          display: flex;
+          flex-direction: column;
+          align-items: baseline;
+          justify-content: flex-end;
+          > button {
+            padding: 0.3em 0.7em;
+            border-radius: 0.4em;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #1973e8;
+            border: 1px solid #1973e8;
+          }
+        }
+        width: 30%;
+        > div {
+          width: 100%;
+        }
+      }
+      .__reciver_name {
+      }
+      .__reciver_email {
+      }
+      .__reciver_number {
+      }
+      .__reciver_message {
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .__giftingDetails {
+      .__form {
+        > div {
+          &:last-of-type {
+            width: 100%;
+            > button {
+              width: 100%;
+              padding: 0.3em 0.7em;
+              border-radius: 0.4em;
+              font-weight: 700;
+              font-size: 1.1em;
+              color: #f1822d;
+              border: 1px solid #f1822d;
+            }
+          }
+          width: 48%;
+          > div {
+            width: 100%;
+          }
+        }
+        .__empty {
+          display: none;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .__giftingDetails {
+      .__form {
+        > div {
+          &:last-of-type {
+            width: 100%;
+            position: fixed;
+            bottom: 4.29em;
+            left: 0;
+            z-index: 999;
+            background: white;
+            > button {
+              width: 100%;
+              padding: 0.3em 0.7em;
+              border-radius: 0.4em;
+              font-weight: 700;
+              font-size: 1.1em;
+              color: #f1822d;
+              border: 1px solid #f1822d;
+            }
+          }
+          width: 48%;
+          > div {
+            width: 100%;
+          }
+        }
+        .__empty {
+          display: none;
+        }
+      }
+    }
+  }
+}
+// Card Desc
+.__cardDesc {
+  width: 100%;
+  .__tabsContainer {
+    .__tabsContainer {
+      .__tabs {
+        .__headerTab {
+        }
+      }
+    }
+    .__tabPanel {
+      > div {
+        padding: 1em 0;
+        > p > p {
+          display: flex;
+          flex-direction: column;
+          line-height: 2;
+          word-spacing: 1.8px;
+          font-size: 0.85em;
+        }
+      }
+    }
+  }
+}

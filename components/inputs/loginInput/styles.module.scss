@@ -1,0 +1,157 @@
+.__inputs {
+  max-width: 380px;
+  position: relative;
+  .input {
+    position: relative;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5em;
+      svg {
+        width: 25px;
+        height: 25px;
+        stroke: #6666669a;
+        fill: #6666669a;
+      }
+      input {
+        background: none;
+        outline: none;
+        border: none;
+        line-height: 1;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #333;
+        &::placeholder {
+          color: #aaa;
+          font-weight: 500;
+        }
+      }
+    }
+    .error__popup {
+      position: absolute;
+      top: -70px;
+      background: $error-color;
+      height: 60px;
+      width: 100%;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px;
+      span {
+        position: absolute;
+        bottom: -9px;
+        left: 1rem;
+        border-top: 10px solid $error-color;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+      }
+    }
+  }
+  .error {
+    background: $light-error-color !important;
+    margin-top: 5rem !important;
+    input {
+      color: #fff !important;
+      &::placeholder {
+        color: #fff !important;
+      }
+    }
+    svg {
+      fill: #fff !important;
+      stroke: #fff;
+    }
+  }
+  .error__popup {
+    position: absolute;
+    top: -70px;
+    background: $error-color;
+    height: 60px;
+    width: 100%;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px;
+    span {
+      position: absolute;
+      bottom: -9px;
+      left: 1rem;
+      border-top: 10px solid $error-color;
+      border-right: 10px solid transparent;
+      border-left: 10px solid transparent;
+    }
+  }
+}
+.style1 {
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+  .input {
+    height: 55px;
+    border-radius: 5px;
+    margin: unset;
+    > div {
+      svg {
+      }
+      input {
+        &::placeholder {
+        }
+      }
+    }
+  }
+  .error {
+    margin-top: 0rem !important;
+    input {
+      &::placeholder {
+      }
+    }
+    svg {
+    }
+  }
+  .error__popup {
+    top: unset;
+    transform: translate(1%, -11%);
+    z-index: 99;
+    border-color: #ed4337;
+    height: unset;
+    min-height: 2em;
+    width: 93%;
+    border-radius: 10px 11px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.6em 0.5em;
+    color: hsl(0 0% 28% / 1);
+    font-size: 0.8em;
+    font-weight: 700;
+    background: hsl(4 83% 88% / 1);
+    box-shadow: inset -2px -3px 11px 0px #ed4337;
+    font-family: sans-serif;
+    span {
+      position: absolute;
+      top: -9px;
+      z-index: 99;
+      bottom: unset;
+      left: 1rem;
+      border-top: none;
+      border-bottom: 10px solid hsl(4 83% 83% / 1);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+    }
+  }
+}

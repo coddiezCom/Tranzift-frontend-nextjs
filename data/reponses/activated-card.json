@@ -1,0 +1,77 @@
+{
+  "products": {
+    "GBV2PLEGC001": {
+      "sku": "GBV2PLEGC001",
+      "name": "Flipkart E-Gift Card base",
+      "balanceEnquiryInstruction": null,
+      "specialInstruction": "",
+      "images": {
+        "thumbnail": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/thumbnail/24_microsite.jpg",
+        "mobile": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/mobile/24_microsite.jpg",
+        "base": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/image/24_microsite.jpg",
+        "small": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/small_image/24_microsite.jpg"
+      },
+      "cardBehaviour": "QC"
+    }
+  },
+  "cards": [
+    {
+      "sku": "GBV2PLEGC001",
+      "productName": "Flipkart E-Gift Card base",
+      "labels": {
+        "cardNumber": "Card Number",
+        "cardPin": "PIN",
+        "activationCode": "",
+        "validity": "Validity"
+      },
+      "cardNumber": "2660",
+      "cardPin": null,
+      "activationCode": null,
+      "barcode": null,
+      "activationUrl": null,
+      "formats": [],
+      "amount": "100.00",
+      "validity": "2024-07-09T18:30:00+00:00",
+      "issuanceDate": "2024-01-12T10:37:48+00:00",
+      "cardId": 1858190,
+      "recipientDetails": {
+        "salutation": null,
+        "name": "Akash Singh ",
+        "firstname": "Akash Singh",
+        "lastname": "",
+        "email": "akas21901@gmail.com",
+        "mobileNumber": "+918130184926",
+        "status": "DELIVERED",
+        "failureReason": "Delivered",
+        "delivery": {
+          "mode": "ANY",
+          "status": {
+            "sms": { "status": "IN PROGRESS", "reason": "NA" },
+            "email": { "status": "DELIVERED", "reason": "DELIVERED" }
+          }
+        }
+      },
+      "theme": ""
+    }
+  ],
+  "currency": { "code": "INR", "numericCode": "356", "symbol": "₹" },
+  "deliveryMode": "ANY",
+  "delivery": {
+    "summary": {
+      "inProgress": 0,
+      "sent": 0,
+      "delivered": 1,
+      "failed": 0,
+      "email": {
+        "totalCount": 1,
+        "delivered": 1,
+        "failed": 0,
+        "inProgress": 0
+      },
+      "sms": { "totalCount": 1, "delivered": 0, "failed": 0, "inProgress": 1 },
+      "totalCardsCount": 1
+    },
+    "report": "https://static-uat.woohoo.in/index.php/carddetails/index/deliveryreport/token/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmRlcklkIjoiNTU1MDg3MDAyNiIsInN0b3JlSWQiOjM1LCJleHAiOjE3MDUwNjQ2OTN9.JtpPwFa1tmeMTfk9wECQDgn27yVahxYWvpmnShProLk"
+  },
+  "total_cards": 1
+}

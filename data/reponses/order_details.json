@@ -1,0 +1,143 @@
+{
+  "orderId": "5550870018",
+  "refno": "21901akas",
+  "status": "COMPLETE",
+  "statusLabel": "Complete",
+  "createdBy": "aashiyatechb2bapisandbox@woohoo.in",
+  "date": "2024-01-12T10:23:16+00:00",
+  "scheduledDate": "",
+  "extCustomerId": "Self",
+  "grandTotal": "100.00",
+  "subTotal": "100.00",
+  "discount": 0,
+  "conversionRate": "1.0000",
+  "baseGrandTotal": "100.00",
+  "baseSubTotal": "100.00",
+  "baseCurrency": { "code": "INR", "numericCode": "356", "symbol": "₹" },
+  "currencyConversionCharge": { "amount": 0, "label": null },
+  "packaging": {},
+  "corporateDiscount": { "label": "", "amount": "", "percentage": "" },
+  "totalQty": 1,
+  "handlingCharges": { "label": null, "amount": null },
+  "convenienceCharge": 0,
+  "tax": { "amount": "0.00", "label": "TDS" },
+  "orderTypeCode": null,
+  "products": [
+    {
+      "name": "Flipkart E-Gift Card base",
+      "type": "DIGITAL",
+      "qty": 1,
+      "price": "100.00",
+      "total": "100.00",
+      "discount": "0.00",
+      "corporateDiscount": { "label": "", "amount": "", "percentage": "" },
+      "image": {
+        "thumbnail": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/thumbnail/24_microsite.jpg",
+        "mobile": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/mobile/24_microsite.jpg",
+        "base": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/image/24_microsite.jpg",
+        "small": "https://gbdev.s3.amazonaws.com/uat/product/GBV2PLEGC001/d/small_image/24_microsite.jpg"
+      },
+      "currency": { "code": "INR", "numericCode": "356", "symbol": "₹" },
+      "mergedQty": 0
+    }
+  ],
+  "currency": { "code": "INR", "numericCode": "356", "symbol": "₹" },
+  "address": {
+    "salutation": null,
+    "name": "Akash Singh ",
+    "line1": "",
+    "line2": "",
+    "line3": "",
+    "line4": "",
+    "city": null,
+    "region": null,
+    "postcode": "110046",
+    "country": "India",
+    "telephone": "+918130184926",
+    "email": "akas21901@gmail.com",
+    "gstn": null,
+    "company": null
+  },
+  "billing": {
+    "salutation": null,
+    "name": "Akash Singh ",
+    "line1": "Falt No-1",
+    "line2": "",
+    "line3": "",
+    "line4": "",
+    "city": "New Delhi",
+    "region": "Delhi",
+    "postcode": "110046",
+    "country": "India",
+    "telephone": "+918130184926",
+    "email": "akas21901@gmail.com",
+    "gstn": null,
+    "company": null
+  },
+  "etaMessage": "",
+  "shipments": [{ "tracks": [] }],
+  "shipping": {
+    "method": { "code": "freeshipping", "label": "Free Shipping", "amount": 0 }
+  },
+  "payments": [
+    {
+      "code": "svc",
+      "name": "SVC",
+      "amount": "100.00",
+      "tds": null,
+      "poNumber": "akas21901"
+    }
+  ],
+  "orderType": "Individual Email/SMS",
+  "fullFilledBySeller": false,
+  "consolidatedEmailStatus": "In Progress",
+  "cardTypes": ["E-Gift Card"],
+  "isMreOrder": false,
+  "cancel": { "allowed": true, "allowedWithIn": 15 },
+  "bizApprove": {
+    "status": 0,
+    "actionDate": null,
+    "by": null,
+    "comment": null
+  },
+  "additionalTxnFields": { "remarks": "" },
+  "delivery": {
+    "summary": {
+      "email": {
+        "totalCount": 0,
+        "delivered": 0,
+        "failed": 0,
+        "inProgress": 0
+      },
+      "sms": { "totalCount": 0, "delivered": 0, "failed": 0, "inProgress": 0 },
+      "totalCardsCount": 0
+    }
+  },
+  "cards": {
+    "summary": {
+      "success": 1,
+      "inProgress": 0,
+      "failed": 0,
+      "totalCardsCount": 1
+    }
+  },
+  "orderHistory": [
+    {
+      "eventGroup": "order_status",
+      "eventStatus": "success",
+      "label": "Order Created"
+    },
+    {
+      "eventGroup": "card_status",
+      "eventStatus": "success",
+      "label": "Cards Activation"
+    },
+    {
+      "eventGroup": "order_status",
+      "eventStatus": "success",
+      "label": "Order Completed"
+    }
+  ],
+  "extensionParams": [],
+  "orderReceipt": "https://static-uat.woohoo.in/sales/index/orderreceipt/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDUwNTg0NzMsImF1ZCI6InNhbGVzLm9yZGVyLm9yZGVyUmVjZWlwdCIsImlzcyI6Indvb2hvbyIsIm9yZGVySWQiOiI1NTUwODcwMDE4Iiwic3RvcmVJZCI6MzUsImN1c3RvbWVySWQiOjI2MDN9.w8Ae3HL1x2DW7wR5a60GXqBMTIoSWY-pq5LC9P9icK4"
+}

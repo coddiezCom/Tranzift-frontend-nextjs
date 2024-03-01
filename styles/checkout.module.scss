@@ -1,0 +1,41 @@
+.__checkout {
+  &__wrapper {
+    width: 85%;
+    padding: 1em;
+    flex-wrap: wrap;
+    align-items: unset;
+    > div {
+      &:first-of-type {
+        width: 61%;
+      }
+      &:last-of-type {
+        width: 38%;
+      }
+    }
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+      padding: 0;
+    }
+    @media screen and (max-width: 1024px) {
+      > div {
+        &:first-of-type {
+          width: 100%;
+        }
+        &:last-of-type {
+          width: 100%;
+        }
+      }
+    }
+    @media screen and (max-width: 480px) {
+      > div {
+        padding: 0.5em !important;
+        &:first-of-type {
+          width: 100%;
+        }
+        &:last-of-type {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+// color
+$active-color: #6176fe;
+$box-shadow-title: 0px 1px 0px 0px #80808042;
+$box-shadow-list: -1px 1px 4px -2px #80808080;
+$list-text-color: #666;
+$redish-color: #e74c3c;
+$shadow-1: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+.sidebar {
+  min-height: 100vh;
+  &__close {
+    display: none;
+  }
+  &__container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: $shadow-1;
+    }
+  }
+  &__name {
+    margin-top: 5px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  ul {
+    margin-top: 1rem;
+    padding: 0;
+    width: 200px;
+    li {
+      margin-top: 1rem;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      b {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: $box-shadow-title;
+        padding: 0.2em 0.1em;
+      }
+      &:last-of-type {
+        b {
+          border-bottom: none;
+          box-shadow: none;
+        }
+      }
+      ul {
+        margin-top: 0;
+        padding-left: 1rem;
+        color: $list-text-color;
+        transition: all 0.3s;
+        li {
+          padding: 0.5em 0.5em;
+          font-size: 0.9em;
+          margin-top: 5px;
+          position: relative; /* Add position relative for pseudo-element positioning */
+          box-shadow: $box-shadow-list;
+          border-radius: 0.3em;
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%; /* Initially, the border is 5% wide */
+            height: 10%;
+            background-color: #229efc92;
+            background-image: linear-gradient(90deg, #229efcb8 0%, #58d9ddb8 65%);
+
+            transition: width 1s ease-in-out; /* Transition width for smooth effect */
+            z-index: -1; /* Push it behind the content */
+          }
+          &:hover::before {
+            width: 100%; /* Expand the border on hover */
+          }
+          &:hover {
+            transition: background-color 0.9s ease-in-out, color 0.9s ease-in-out; /* Add transition for background-color and text color */
+            background-color: #277efc26;
+            color: $active-color;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    &__close {
+      display: flex;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1em;
+      svg {
+        font-size: 1.3em;
+        font-weight: 900;
+        border-radius: 25%;
+        box-shadow: 0px 0px 31px -5px #808080a1;
+      }
+    }
+    &__overlay {
+      position: fixed;
+      background-color: rgb(0 36 42 / 9%);
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+  }
+  // @media screen and (max-width: 650px) {
+  //   ul {
+  //     width: 100%;
+  //   }
+  // }
+}
+.active {
+  font-weight: 600;
+  color: $active-color;
+}

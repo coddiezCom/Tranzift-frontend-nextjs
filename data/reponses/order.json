@@ -1,0 +1,68 @@
+{
+  "address": {
+    "firstname": "Akash Singh",
+    "country": "IN",
+    "postcode": 110046,
+    "email": "akas21901@gmail.com",
+    "telephone": "+918130184926"
+  },
+  "billing": {
+    "firstname": "Akash Singh",
+    "line1": "Falt No-1",
+    "city": "New Delhi",
+    "region": "Delhi",
+    "country": "IN",
+    "postcode": 110046,
+    "email": "akas21901@gmail.com",
+    "telephone": "+918130184926"
+  },
+  "payments": [
+    {
+      "code": "svc",
+      "amount": 100,
+      "poNumber": "akas21901"
+    }
+  ],
+  "products": [
+    {
+      "sku": "GBV2PLEGC001",
+      "price": 100,
+      "qty": 1,
+      "currency": "356",
+      "payout": {
+        "id": "a1",
+        "type": "BANK_ACCOUNT",
+        "ifscCode": "SBIN0030262",
+        "name": "Akash Singh",
+        "accountNumber": "1234567890123456",
+        "telephone": "+918130184926",
+        "transactionType": "IMPS",
+        "email": "akas21901@gmail.com"
+      }
+    }
+  ],
+  "refno": "21901akas",
+  "deliveryMode": "ANY",
+  "respnse": "-------------------starts--------------here",
+  "resposneBody": [],
+  "status": "success",
+  "order": {
+    "status": "PROCESSING",
+    "orderId": "5550870018",
+    "refno": "21901akas",
+    "cancel": {
+      "allowed": false
+    },
+    "currency": {
+      "code": "INR",
+      "numericCode": "356",
+      "symbol": "₹"
+    },
+    "payments": [
+      {
+        "code": "svc",
+        "balance": "9943138.00"
+      }
+    ]
+  }
+}

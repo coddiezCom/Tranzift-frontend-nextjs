@@ -1,0 +1,14 @@
+{
+  "cardNumber": "1206865025549198",
+  "balance": "100.00",
+  "expiry": "2024-07-10T00:00:00+00:00",
+  "status": "ACTIVATED",
+  "currency": {
+    "code": "INR",
+    "numericCode": "356",
+    "symbol": "₹",
+    "countryName": "INDIA",
+    "currencyName": "Indian Rupee"
+  },
+  "additionalTxnFields": { "responseCode": 0 }
+}

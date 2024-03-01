@@ -1,0 +1,81 @@
+.OfferList {
+  display: flex;
+  width: fit-content;
+  width: 25%;
+  padding: 8px;
+  ._Content {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 2px 0px gray;
+    display: flex;
+    .offerContent {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      .offerImgContainer {
+        > img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .details {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1em;
+        > span {
+          padding: 0.5em;
+          display: flex;
+          justify-content: flex-start;
+        }
+        .__content {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 0.5em;
+          margin: 0.4em 0;
+          justify-content: space-between;
+          .__title {
+            .offerTitleContainer {
+              .offerTitle {
+                font-size: 1.1em;
+                line-height: 1.1em;
+                font-weight: 600;
+              }
+            }
+          }
+          .validity {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3em;
+            .__heading {
+              font-size: 1em;
+              font-weight: 600;
+            }
+            .data {
+              font-size: 0.95em;
+            }
+          }
+        }
+        .ViewDetailContainer {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          .view_btn {
+            border: 2px solid #fd5c63;
+            padding: 0.4em 0.6em;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #fff;
+            background: #fd5c63;
+          }
+        }
+      }
+    }
+  }
+}

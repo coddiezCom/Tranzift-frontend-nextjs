@@ -1,0 +1,129 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  border: 1px solid #80808059;
+  border-radius: 0.5em;
+  overflow: hidden;
+  // .ImgContainer {
+  //   width: 100%;
+  //   img {
+  //     width: 100%;
+  //     height: 100%;
+  //   }
+  // }
+  .header {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    .packageDetails {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5em;
+      font-size: 0.8em;
+      font-weight: 400;
+      li {
+        &:last-of-type {
+          text-decoration: underline;
+          color: $custom_red;
+        }
+      }
+    }
+    .heading {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+    .locationContainer {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 0.3em;
+      .icon {
+      }
+      .location {
+      }
+    }
+    .RatingContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      .ratingCard {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 1.2em;
+        gap: 0.2em;
+        .rating {
+        }
+        .ratingType {
+        }
+      }
+      .priceContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .price {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.2em;
+          svg {
+            font-size: 0.8em;
+            font-weight: 400;
+          }
+        }
+        .priceDesc {
+        }
+      }
+    }
+  }
+}
+@keyframes zoomIn {
+  from {
+    width: 100%;
+    transform: scale(1);
+
+    overflow: hidden;
+  }
+  to {
+    width: 101%; /* or any desired value */
+    transform: scale(1.2); /* or any desired value */
+    overflow: hidden;
+  }
+}
+@keyframes zoomOut {
+  from {
+    width: 100%;
+    transform: scale(1.2);
+
+    overflow: hidden;
+  }
+  to {
+    width: 101%; /* or any desired value */
+    transform: scale(1); /* or any desired value */
+    overflow: hidden;
+  }
+}
+.ImgContainer {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  transition: all 2s ease;
+  :hover {
+    animation-name: zoomIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+}
+
+.ImgContainer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
