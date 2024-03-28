@@ -1,25 +1,15 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import styles from "@/styles/contactUs.module.scss";
-import Box from "@mui/material/Box";
-import FilledInput from "@mui/material/FilledInput";
-import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import { BannerWithoutSwiper } from "@/components/Banner";
+import styles from "../../styles/contactUs.module.scss";
+import { BannerWithoutSwiper } from "../../components/Banner";
 import { FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { SiIndeed } from "react-icons/si";
-import { SiYoutubetv } from "react-icons/si";
 import { CiMail } from "react-icons/ci";
-import { ImYoutube2 } from "react-icons/im";
 import { AiFillYoutube } from "react-icons/ai";
-import LoginInput from "@/components/inputs/loginInput";
-import CircledIconBtn from "@/components/buttons/circledIconBtn";
+import LoginInput from "../../components/inputs/loginInput";
+import CircledIconBtn from "../../components/buttons/circledIconBtn";
 import { Form, Formik } from "formik";
-import Image from "next/image";
 import Card from "@mui/material/Card";
 
 export const ContactUsForm = ({ heading }) => {
@@ -36,7 +26,6 @@ export const ContactUsForm = ({ heading }) => {
   const { name, email, phoneNumber, message, success, error } = user;
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
     setUser({ ...user, [name]: value });
   };
   const formValidation = Yup.object({

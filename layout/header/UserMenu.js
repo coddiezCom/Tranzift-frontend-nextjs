@@ -1,16 +1,36 @@
-import Link from "next/link";
 import styles from "./styles.module.scss";
-// import { signOut, signIn } from "next-auth/react";
-import Register from "@/components/Register";
-import { HiUserCircle } from "react-icons/hi2";
+// imports
 import { useRouter } from "next/router";
-import { FaUserCircle, FaClipboardList, FaEnvelope, FaMapMarkerAlt, FaSignOutAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { SetUserDetail } from "../../store/UserSlice";
+import Avatar from "react-avatar";
+// react-Icons
 import { FaUserCog } from "react-icons/fa";
-
-export default function UserMenu({ session, userDetail, visible }) {
+import { FaClipboardList, FaMapMarkerAlt, FaSignOutAlt } from "react-icons/fa";
+import { IoWallet } from "react-icons/io5";
+// Components
+import Register from "../../components/Register";
+import { setCookie, destroyCookie } from "nookies";
+export default function UserMenu({ userDetail, visible, toggleUserMenu }) {
   const router = useRouter();
+  const dispatch = useDispatch();
   const signOut = () => {
-    console.log("sign out");
+    // console.log("sign out");
+    dispatch(
+      SetUserDetail({
+        user_id: "",
+        user_name: "",
+        email_id: "",
+        token: "",
+        firstName: "",
+        lastName: "",
+        phone: "",
+      })
+    );
+    destroyCookie(null, "token", {
+      path: "/",
+    });
+    router.push("/");
   };
   const userMenuAfterLogin = [
     {
@@ -23,11 +43,11 @@ export default function UserMenu({ session, userDetail, visible }) {
       name: "My Orders",
       link: "/profile/orders",
     },
-    // {
-    //   icon: <FaEnvelope />,
-    //   name: "Message Center",
-    //   link: "/profile/messages",
-    // },
+    {
+      icon: <IoWallet />,
+      name: "Wallet",
+      link: "/profile/wallet",
+    },
     {
       icon: <FaMapMarkerAlt />,
       name: "Manage Address",
@@ -36,17 +56,14 @@ export default function UserMenu({ session, userDetail, visible }) {
     {
       icon: <FaSignOutAlt />,
       name: "Logout",
-      link: "/api/auth/signout",
     },
   ];
-  console.log(userDetail, "userDetail.token");
   return (
     <div className={styles.menu} style={{ display: visible ? "flex" : "none" }}>
       {!userDetail.token && <h4>Welcome to tranzift !</h4>}
       {userDetail.token ? (
         <div className={styles.flex}>
-          {/* <img src={session?.user?.image} alt="" className={styles.menu__img} /> */}
-          <HiUserCircle />
+          <Avatar name={userDetail?.firstName} size="40" round={true} />
           <div className={styles.col}>
             <span>Welcome </span>
             <h3>{userDetail?.firstName + " " + userDetail?.lastName}</h3>
@@ -55,15 +72,14 @@ export default function UserMenu({ session, userDetail, visible }) {
         </div>
       ) : (
         <div className={styles.flex}>
-          {/* <button className={styles.btn_primary}>Register</button> */}
-          <Register />
+          <Register toggleUserMenu={toggleUserMenu} />
         </div>
       )}
       {userDetail.token && (
         <ul>
           {userMenuAfterLogin.map((item, index) => {
             return (
-              <li key={index} onClick={() => router.push(item?.link)}>
+              <li key={index} onClick={() => (item.name == "Logout" ? signOut() : router.push(item?.link))}>
                 <span>{item?.icon}</span>
                 <span>{item?.name}</span>
               </li>

@@ -1,24 +1,18 @@
-// import { getSession } from "next-auth/react";
-import Head from "next/head";
-import Layout from "../../components/profile/layout";
-import * as Yup from "yup";
-import { Form, Formik } from "formik";
+// import react liabary
 import { useState } from "react";
+import Head from "next/head";
+import styles from "../../styles/profile.module.scss";
+import { useSelector } from "react-redux";
+import axios from "axios";
+// import components
+import Layout from "../../components/profile/layout";
 import CircledIconBtn from "../../components/buttons/circledIconBtn";
 import LoginInput from "../../components/inputs/loginInput";
-import styles from "../../styles/profile.module.scss";
-import axios from "axios";
+// import form validation
+import * as Yup from "yup";
+import { Form, Formik } from "formik";
 export default function Index({ tab }) {
-  const user = {
-    user: {
-      name: "jaspreet singh",
-      email: "jaspreetsingh09915@gmail.com",
-      image: "https://res.cloudinary.com/dmhcnhtng/image/upload/v1664642478/992490_b0iqzq.png",
-      id: "65562c67af87a191ad9f55ae",
-      role: "user",
-    },
-    expires: "2024-03-22T13:01:59.224Z",
-  };
+  const userData = useSelector((state) => state.userDetail);
   const [current_password, setCurrent_password] = useState("");
   const [password, setPassword] = useState("");
   const [conf_password, setConf_password] = useState("");
@@ -51,7 +45,7 @@ export default function Index({ tab }) {
     }
   };
   return (
-    <Layout session={user.user} tab={tab}>
+    <Layout session={userData} tab={tab}>
       <Head>
         <title>Profile - Security</title>
       </Head>

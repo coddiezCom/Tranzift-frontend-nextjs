@@ -1,27 +1,32 @@
+// import react liabary
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "@/components/cart/header";
-import styles from "@/styles/payment_status.module.scss";
-import apiHelper from "@/utils/apiHelper";
 import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/router";
+// import styles
+import styles from "../../styles/payment_status.module.scss";
+import { styled } from "@mui/material/styles";
+// import api helper
+import apiHelper from "../../utils/apiHelper";
+// import dayjs
 import dayjs from "dayjs";
+// import react icons
 import { FaPrint } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
+// import react-to-print
 import ReactToPrint from "react-to-print";
-import { styled } from "@mui/material/styles";
+// import MUI components
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import PropTypes from "prop-types";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
 const formatTransactionId = (txnId) => {
   const formattedTxnId = txnId.replace(/^(\w{3})(\d{4})(\d{4})(\d{4})(\d{4})$/, "$1-$2-$3-$4-$5");
   return formattedTxnId;
@@ -48,8 +53,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 function CircularProgressWithLabel(props) {
   return (
-    <Box sx={{ position: "relative", display: "inline-flex" }}>
-      <CircularProgress variant="determinate" {...props} />
+    <Box sx={{ position: "relative", display: "inline-flex", zIndex: 100 }}>
+      <CircularProgress color="success" variant="determinate" {...props} />
       <Box
         sx={{
           top: 0,
@@ -87,7 +92,7 @@ export function PaymentStatusCard({ paymentResponseData }) {
   const customerName = order_details?.customer_details?.customer_name;
 
   const componentRef = React.useRef();
-  console.log(componentRef.current, "ref");
+  // console.log(componentRef.current, "ref");
   function createData(name, value) {
     return { name, value };
   }
@@ -166,7 +171,7 @@ export function PaymentStatusCard({ paymentResponseData }) {
         </div>
         <div className="flex  gap-2 min-[400px] flex-row justify-end">
           <Link
-            className="flex-1 inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm gap-2 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 gap-2 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+            className="flex-1 inline-flex h-10 items-center justify-center rounded-md border   border-gray-200 bg-white px-8 text-sm font-medium shadow-sm gap-2 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 dark:border-gray-800   dark:bg-gray-950 dark:hover:bg-gray-800   dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
             href="/"
           >
             <AiFillHome />
@@ -187,9 +192,9 @@ export function PaymentStatusCard({ paymentResponseData }) {
   );
 }
 const PaymentStatus = ({ paymentOrder, error }) => {
-  console.log(paymentOrder, "paymentOrder");
   const [progress, setProgress] = useState(1);
   const [transactionData, setTransactionData] = useState("");
+  const [userAddress, setUserAddress] = useState("");
   const router = useRouter();
   const paymentResponseData = {
     order_id: paymentOrder?.orderDetails?.order_id,
@@ -200,20 +205,70 @@ const PaymentStatus = ({ paymentOrder, error }) => {
   };
   const dispatch = useDispatch();
   const userDetail = useSelector((state) => state.userDetail);
+  const giftCardDetail = useSelector((state) => state.giftCardDetail);
   const paymentOrderStatus = paymentOrder?.orderDetails?.order_status;
-
-  console.log(paymentOrder, paymentOrderStatus, "paymentOrderStatus");
+  useEffect(() => {
+    const fetchAddressDetail = async () => {
+      try {
+        const baseUrl = `address/get-all-address?associatedUser=${userDetail?.user_id}`;
+        const response = await apiHelper(
+          baseUrl,
+          {
+            associatedUser: userDetail?.user_id,
+          },
+          "GET"
+        );
+      } catch (error) {
+        console.log("Error fetching address:", error);
+      }
+    };
+    fetchAddressDetail();
+  }, [userDetail?.user_id]);
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
+        // console.log(paymentOrder);
+        // {
+        //   orderDetails: {
+        //     cart_details: null,
+        //     cf_order_id: '2171450296',
+        //     created_at: '2024-03-12T16:09:45+05:30',
+        //     customer_details: {
+        //       customer_id: '65e968b4de651fb93ff77dde',
+        //       customer_name: 'Jaspreet',
+        //       customer_email: 'jassi09912@gmail.com',
+        //       customer_phone: '8130184926',
+        //       customer_uid: null
+        //     },
+        //     entity: 'order',
+        //     order_amount: 100,
+        //     order_currency: 'INR',
+        //     order_expiry_time: '2024-04-11T16:09:45+05:30',
+        //     order_id: 'TXN5258331712032024',
+        //     order_meta: {
+        //       return_url:
+        //         'http://127.0.0.1:3000/payment_status?order_id=TXN5258331712032024',
+        //       notify_url: null,
+        //       payment_methods: null
+        //     },
+        //     order_note: null,
+        //     order_splits: [],
+        //     order_status: 'PAID',
+        //     order_tags: null,
+        //     payment_session_id:
+        //       'session_y2U2pAaTqV1HhKoa7fVcGs5Yt2PNlPA7TD43fGY3d1aiVw_h-P1kEEdx5w7UMbex-3hTTNO0KL-tLPbYvkMM7giMfI5MJn77qo9QJjsAt97K',
+        //     terminal_data: null
+        //   }
+        // }
         const baseUrl = "transaction/create-transaction";
         const trn = await apiHelper(baseUrl, {}, "POST", {
-          userName: userDetail.user_name,
-          cashFreeOrderId: paymentOrder.data.orderDetails.cf_order_id,
-          TXNID: paymentOrder.data.orderDetails.order_id,
-          TXNAmount: paymentOrder.data.orderDetails.order_amount,
-          Status: paymentOrder.data.orderDetails.order_status,
+          userEmail: userDetail.email_id,
+          cashFreeOrderId: paymentOrder?.orderDetails.cf_order_id,
+          TXNID: paymentOrder?.orderDetails?.order_id,
+          TXNAmount: paymentOrder?.orderDetails?.order_amount,
+          Status: paymentOrder?.orderDetails?.order_status,
         });
+
         setTransactionData(trn);
       } catch (error) {
         console.error("Error fetching transaction:", error);
@@ -234,10 +289,10 @@ const PaymentStatus = ({ paymentOrder, error }) => {
       const baseUrl = "woohooproduct/create-order";
       const check = await apiHelper(baseUrl, {}, "POST", {
         address: {
-          firstname: "Akash Singh",
+          firstname: userDetail?.firstName + "" + userDetail?.lastName,
           country: "IN",
           postcode: 110046,
-          email: "akas21901@gmail.com",
+          email: userDetail?.email_id,
           telephone: "+918130184926",
           billToThis: true,
         },
@@ -254,33 +309,33 @@ const PaymentStatus = ({ paymentOrder, error }) => {
         payments: [
           {
             code: "svc",
-            amount: 100,
+            amount: giftCardDetail?.denomination * giftCardDetail?.quantity,
             poNumber: "akas21901",
           },
         ],
         products: [
           {
             sku: "GBV2PLEGC001",
-            price: 100,
-            qty: 1,
+            price: giftCardDetail?.denomination,
+            qty: giftCardDetail?.quantity,
             currency: "356",
-            payout: {
-              id: "a1",
-              type: "BANK_ACCOUNT",
-              ifscCode: "SBIN0030262",
-              name: "Akash Singh",
-              accountNumber: "1234567890123456",
-              telephone: "+918130184926",
-              transactionType: "IMPS",
-              email: "akas21901@gmail.com",
-            },
+            // payout: {
+            //   id: "a1",
+            //   type: "BANK_ACCOUNT",
+            //   ifscCode: "SBIN0030262",
+            //   name: giftCardDetail?.reciver_name,
+            //   accountNumber: "1234567890123456",
+            //   telephone: giftCardDetail?.reciver_phone_number || "+918130184926",
+            //   transactionType: "IMPS",
+            //   email: giftCardDetail?.reciver_email || "akas21901@gmail.com",
+            // },
           },
         ],
         refno: `refno${randomNumber}`,
         deliveryMode: "API",
-        userName: "jassi",
+        userEmail: userDetail?.email_id,
       });
-      check && console.log(check, "check");
+      // check && console.log(check, "check");
     } catch (error) {
       console.error("Error creating Woohoo order:", error);
     }
@@ -288,7 +343,7 @@ const PaymentStatus = ({ paymentOrder, error }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
-    }, 800);
+    }, 8000);
 
     return () => {
       clearInterval(timer);
@@ -306,7 +361,7 @@ const PaymentStatus = ({ paymentOrder, error }) => {
         <span>Redirecting to order page</span>
         <CircularProgressWithLabel value={progress} />
       </div>
-      <Header usedFor={"payment_status"} />
+      {/* <Header usedFor={"payment_status"} /> */}
       <PaymentStatusCard paymentResponseData={paymentResponseData} />
     </div>
   );
@@ -333,26 +388,6 @@ function GiftIcon(props) {
       <line x1="12" x2="12" y1="22" y2="7" />
       <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
       <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
-    </svg>
-  );
-}
-
-function HomeIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   );
 }

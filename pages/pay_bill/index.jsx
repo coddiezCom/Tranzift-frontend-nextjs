@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "@/styles/pay_bill.module.scss";
-import Banner from "@/components/Banner";
+import styles from "../../styles/pay_bill.module.scss";
+import Banner from "../../components/Banner";
 import Image from "next/image";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import AdminInput from "@/components/inputs/adminInput";
-import SingularSelect from "@/components/selects/SingularSelect";
-import Faq from "@/components/Faq";
+import AdminInput from "../../components/inputs/adminInput";
+import SingularSelect from "../../components/selects/SingularSelect";
+import Faq from "../../components/Faq";
 export const PayBillContainer = () => {
   const initialvalues = {
     paytype: "",
@@ -193,8 +193,8 @@ export const PayBillContainer = () => {
             {data.ourServices.map((item, index) => {
               return (
                 <div key={index} className={styles.__card}>
-                  <span className={styles.__imgContainer}>
-                    <Image src={item.img.url} alt={item.img.alt} width={500} height={500} />
+                  <span className={`${styles.__imgContainer} rounded-md`}>
+                    <span className={styles.ImgContainer} style={{ backgroundImage: `url(${item.img.url})` }}></span>
                   </span>
                   <span className={styles.__contentContainer}>
                     <h2>{item.heading.mainHeading}</h2>
@@ -205,90 +205,93 @@ export const PayBillContainer = () => {
             })}
           </div>
           <div className={styles.__rightContainer}>
-            <Formik
-              enableReinitialize
-              initialValues={{ paytype, fName, lName, phone, email, OurTerms }}
-              validationSchema={validate}
-              onSubmit={() => {
-                submitHandler();
-              }}
-            >
-              {(formik) => (
-                <Form>
-                  <div className={""}>
-                    <label className={styles.header}>Payment Type</label>
-                    <SingularSelect
-                      styleType={"style2"}
-                      name="paytype"
-                      value={paytype}
-                      data={categories}
-                      placeholder="Select Payment Type"
-                      handleChange={(e) => setParent(e.target.value)}
-                    />
-                  </div>
-                  <div className="">
-                    <AdminInput
-                      styleType={"style2"}
-                      type="text"
-                      label="Your First Name"
-                      name="fName"
-                      value={fName}
-                      placeholder="Enter your first Name"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="">
-                    <AdminInput
-                      styleType={"style2"}
-                      type="text"
-                      label="Your Last Name"
-                      name="lName"
-                      value={lName}
-                      placeholder="Enter your last Name"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="">
-                    <AdminInput
-                      styleType={"style2"}
-                      type="number"
-                      label="Mobile Number"
-                      name="phone"
-                      value={phone}
-                      placeholder="Enter phone Number"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="">
-                    <AdminInput
-                      styleType={"style2"}
-                      type="text"
-                      label="Your Email"
-                      name="email"
-                      value={email}
-                      placeholder="Enter your Email"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="">
-                    <AdminInput
-                      styleType={"style2"}
-                      type="checkbox"
-                      label="I agree to the Tranzift Terms and Conditions"
-                      name="OurTerms"
-                      value={OurTerms}
-                      placeholder="I agree to the Tranzift Terms and Conditions"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className={styles.btnWrap}>
-                    <button type="submit" className={`${styles.btn} `}>
-                      Get Started
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
+            <div className="shadow-lg rounded-lg bg-gray-300 w-3/4">
+              <h3>Pay Bill</h3>
+              <Formik
+                enableReinitialize
+                initialValues={{ paytype, fName, lName, phone, email, OurTerms }}
+                validationSchema={validate}
+                onSubmit={() => {
+                  submitHandler();
+                }}
+              >
+                {(formik) => (
+                  <Form>
+                    <div className={styles.__paytype}>
+                      <label className={styles.header}>Payment Type</label>
+                      <SingularSelect
+                        styleType={"style2"}
+                        name="paytype"
+                        value={paytype}
+                        data={categories}
+                        placeholder="Select Payment Type"
+                        handleChange={(e) => setParent(e.target.value)}
+                      />
+                    </div>
+                    <div className={styles.__Fname}>
+                      <AdminInput
+                        styleType={"style2"}
+                        type="text"
+                        label="Your First Name"
+                        name="fName"
+                        value={fName}
+                        placeholder="Enter your first Name"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className={styles.__Lname}>
+                      <AdminInput
+                        styleType={"style2"}
+                        type="text"
+                        label="Your Last Name"
+                        name="lName"
+                        value={lName}
+                        placeholder="Enter your last Name"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className={styles.__phone}>
+                      <AdminInput
+                        styleType={"style2"}
+                        type="number"
+                        label="Mobile Number"
+                        name="phone"
+                        value={phone}
+                        placeholder="Enter phone Number"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className={styles.__email}>
+                      <AdminInput
+                        styleType={"style2"}
+                        type="text"
+                        label="Your Email"
+                        name="email"
+                        value={email}
+                        placeholder="Enter your Email"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className={styles.__OurTerms}>
+                      <AdminInput
+                        styleType={"style2"}
+                        type="checkbox"
+                        label="I agree to the Tranzift Terms and Conditions"
+                        name="OurTerms"
+                        value={OurTerms}
+                        placeholder="I agree to the Tranzift Terms and Conditions"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className={styles.btnWrap}>
+                      <button type="submit" className={`${styles.btn} `}>
+                        Get Started
+                      </button>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
           </div>
         </div>
       </div>
@@ -375,7 +378,58 @@ export const BusinessPayment = () => {
     </div>
   );
 };
-
+export const Invoice = () => {
+  const data = {
+    companyDetail: {
+      logo: {
+        url: "/logo.png",
+        alt: "company logo",
+      },
+      contactDetail: {
+        address: {
+          line1: "One97 Communications Limited",
+          line2: " B-121 Sector 5 Noida 201301 Uttar Pradesh",
+        },
+        PAN: "AAACO4007A",
+        GSTIN: "09AAACO4007A123",
+        CIN: "L72200DL2000PLC108985",
+      },
+    },
+    userDetail: {
+      name: "Jaspreet singh",
+      contactDetail: {
+        email: "Jaspreetsingh09912@gmail.com",
+        phone: "1234567890",
+      },
+    },
+    heading: "INVOICE",
+    OrderId: "22869315180",
+    InvoiceNumber: "RU23000446588461",
+    InvoiceDate: "21 Jan, 2024, 11:03 AM",
+    PlaceOfSupply: "Delhi",
+    TRN_RefNo: "7058152052636102905958",
+    HSIN_Code: "998599/Other Support Services",
+    availService: {
+      name: "Gift-card",
+      amount: 100,
+      quentity: 1,
+      description: "Purchasing ",
+      GST: {
+        percent: 18,
+      },
+      SGST: {
+        percent: 9,
+      },
+      CGST: {
+        percent: 9,
+      },
+    },
+  };
+  return <div className={styles.__invoiceContainer}></div>;
+};
+export const Receipt = () => {
+  return <div></div>;
+};
 const index = () => {
   const bannerImages = [
     {
@@ -471,12 +525,16 @@ const index = () => {
     },
   };
   return (
-    <div className={styles.__container}>
-      <Banner type="home" ImgData={bannerImages} />
-      <PayBillContainer />
-      <PayBillMiddleBanner />
-      <BusinessPayment />
-      <Faq hasBanner={true} header={"Frequently Asked Questions"} FaqData={FaqData} bannerData={FaqBannerData} />
+    // <div className={styles.__container}>
+    //   <Banner type="home" ImgData={bannerImages} />
+    //   <PayBillContainer />
+    //   <PayBillMiddleBanner />
+    //   <BusinessPayment />
+    //   <Faq hasBanner={true} header={"Frequently Asked Questions"} FaqData={FaqData} bannerData={FaqBannerData} />
+    // </div>
+    <div className="">
+      <Invoice />
+      <Receipt />
     </div>
   );
 };

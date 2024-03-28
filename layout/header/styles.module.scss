@@ -16,12 +16,24 @@ $company-name-font-family: "Josefin Sans", sans-serif;
 }
 .__preHeader,
 .__postHeader {
-  padding: 0.5em calc((100% - 85%) / 2 + 1em) !important;
   margin: auto;
   transition: opacity 0.5s ease;
-  @media screen and (max-width: 1200px) {
-    padding: 0.5em calc((100% - 100%) / 2 + 1em) !important;
-  }
+
+  padding: 0.5em calc((100% - 100%) / 2 + 1em) !important;
+}
+.__preHeaderContainer {
+  transition: ease-in-out 2s;
+  background: linear-gradient(-248deg, hsl(200 104% 59% / 1) 0%, hsl(242 76% 61% / 1) 100%);
+}
+.__postHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.__postHeader {
+  max-width: 1250px;
+  width: 90%;
 }
 // PreHeader
 .__preHeader {
@@ -30,8 +42,8 @@ $company-name-font-family: "Josefin Sans", sans-serif;
   align-items: center;
   justify-content: space-between;
   padding: 0.5em 0em;
-  transition: ease-in-out 2s;
-  background: linear-gradient(-248deg, hsl(200 104% 59% / 1) 0%, hsl(242 76% 61% / 1) 100%);
+  max-width: 1250px;
+  width: 90%;
   color: white;
   .__contact {
     width: fit-content;
@@ -91,13 +103,15 @@ $company-name-font-family: "Josefin Sans", sans-serif;
   @media screen and (max-width: 1200px) {
   }
   @media screen and (max-width: 1024px) {
+    width: 98%;
   }
   @media screen and (max-width: 968px) {
   }
   @media screen and (max-width: 768px) {
+    width: 100%;
   }
   @media screen and (max-width: 480px) {
-    padding: 1em;
+    display: none;
   }
   @media screen and (max-width: 320px) {
   }
@@ -124,9 +138,6 @@ $company-name-font-family: "Josefin Sans", sans-serif;
   position: relative;
   flex-direction: row;
   align-items: center;
-  @media screen and (max-width: 1024px) {
-    display: none;
-  }
   .__icon {
     width: fit-content;
     width: -moz-fit-content;
@@ -134,6 +145,11 @@ $company-name-font-family: "Josefin Sans", sans-serif;
     flex-direction: row;
     align-items: center;
     gap: 0.5em;
+    width: 10em !important;
+    img {
+      width: 100%;
+      height: 100%;
+    }
     .__image {
       width: 1.9em;
       padding: 0.8em 0;
@@ -141,19 +157,6 @@ $company-name-font-family: "Josefin Sans", sans-serif;
         object-fit: contain;
         width: 100%;
         height: 100%;
-      }
-    }
-    span {
-      font-size: 1.4em;
-      font-weight: 500;
-      > h3 {
-        font-family: $company-name-font-family;
-      }
-      > p {
-        font-family: "Playfair Display", serif;
-        font-size: 0.6em;
-        font-weight: 400;
-        color: #fe3a5a;
       }
     }
   }
@@ -238,13 +241,14 @@ $company-name-font-family: "Josefin Sans", sans-serif;
           justify-content: center;
           align-items: center;
           cursor: pointer;
-          background-size: 100%;
-          background-repeat: no-repeat;
+          background-size: 100% !important;
+          background-repeat: no-repeat !important;
           transition: all 0.3s ease-in-out;
-          background-position: center;
+          background-position: center !important;
           position: relative;
           &:hover {
-            background-size: 110% !important;
+            background-size: 105% !important;
+            // background-position: center !important;
             -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
             // transition: background-size 0.3s ease-in-out !important;
@@ -378,9 +382,25 @@ $company-name-font-family: "Josefin Sans", sans-serif;
       }
     }
   }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+  @media screen and (max-width: 968px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+  }
+  @media screen and (max-width: 320px) {
+  }
+  @media screen and (max-width: 280px) {
+  }
 }
 // HamburgerNavBar
 .__hamburgerNavBarContainer {
+  width: 100%;
   display: none;
   flex-direction: column;
   .__mobileNavBtn {
@@ -389,13 +409,10 @@ $company-name-font-family: "Josefin Sans", sans-serif;
     align-items: center;
     justify-content: space-between;
     padding: 1em 1.5em;
-    @media screen and (max-width: 768px) {
-      padding: 0.2em;
-    }
-    span {
+    a {
       &:first-of-type {
-        height: 3em;
         display: flex;
+        width: 8em;
         flex-direction: row;
         align-items: center;
         gap: 0.4em;
@@ -425,9 +442,16 @@ $company-name-font-family: "Josefin Sans", sans-serif;
   @media screen and (max-width: 968px) {
   }
   @media screen and (max-width: 768px) {
+    .__mobileNavBtn {
+      padding: 0.75em 1em;
+      a {
+        &:first-of-type {
+          width: 7.5em;
+        }
+      }
+    }
   }
   @media screen and (max-width: 480px) {
-    padding: 1em;
   }
   @media screen and (max-width: 320px) {
   }
@@ -436,10 +460,8 @@ $company-name-font-family: "Josefin Sans", sans-serif;
 }
 // MobileNav
 .__mobileNavContainer {
-  // width: 80%;
   width: fit-content;
   width: -moz-fit-content;
-  // max-width: 50%;
   .__list {
     .__LogoList {
       .__LogoListContainer {
@@ -502,95 +524,15 @@ $company-name-font-family: "Josefin Sans", sans-serif;
   background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
 
-//TOP---------------------------------------------------
-.top {
-  background: #f8f8f8;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  &__container {
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  &__list {
-    display: flex;
-    gap: 15px;
-    .li {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      color: #666;
-      cursor: pointer;
-      .flex {
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        svg {
-          transform: scale(1.2);
-          margin-right: 3px;
-        }
-      }
-      img {
-        width: 28px;
-        height: 28px;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-      svg {
-        width: 20px;
-        height: 20px;
-        fill: #ccc;
-      }
-      span {
-        font-size: 12px;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        right: -8px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1px;
-        height: 20px;
-        background: #ccc;
-      }
-      &:last-of-type {
-        &::after {
-          display: none;
-        }
-      }
-      &:hover {
-        span {
-          color: #222;
-        }
-        svg {
-          fill: #666;
-        }
-      }
-      @media (max-width: 670px) {
-        &:nth-of-type(2),
-        &:nth-of-type(3),
-        &:nth-of-type(4) {
-          display: none;
-        }
-      }
-    }
-  }
-}
 .menu {
-  width: 210px;
-  height: -moz-fit-content;
+  min-width: 210px;
   height: fit-content;
+  height: -moz-fit-content;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   position: absolute;
-  top: 80%;
+  top: 2.1em;
   right: 0;
-  transform: translate(0%, 7%);
+  /* transform: translate(0%, 13%); */
   background: #fff;
   z-index: 99;
   display: flex;
@@ -613,7 +555,7 @@ $company-name-font-family: "Josefin Sans", sans-serif;
     flex-direction: column;
     gap: 0.2em;
     li {
-      width: 100%;
+      width: calc(100% - 1em);
       border-bottom: 2px solid gray;
       margin: 0.1em 0.5em;
       padding: 0.4em;
@@ -657,85 +599,8 @@ $company-name-font-family: "Josefin Sans", sans-serif;
         font-size: 14px;
         color: $blue-1;
         text-decoration: underline;
+        cursor: pointer;
       }
     }
-  }
-}
-.main {
-  position: relative;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  &__container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    width: 100%;
-  }
-  .logo {
-    img {
-      width: 170px;
-      margin-top: 10px;
-    }
-  }
-  .search {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    background: #eeeeeebc;
-    height: 40px;
-    border-radius: 5px;
-    input {
-      border: none;
-      outline: none;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      padding-left: 1rem;
-    }
-    &__icon {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      background: $blue-color;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-      cursor: pointer;
-      svg {
-        width: 21px;
-        height: 21px;
-        fill: #fff;
-      }
-    }
-  }
-}
-.cart {
-  position: relative;
-  svg {
-    width: 35px;
-    height: 35px;
-    fill: #666;
-    cursor: pointer;
-    &:hover {
-      fill: $blue-color;
-    }
-  }
-  span {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background: $blue-color;
-    width: 23px;
-    height: 23px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-weight: 600;
-    color: #fff;
   }
 }

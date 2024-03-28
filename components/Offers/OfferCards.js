@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./offerCards.module.scss";
+import Image from "next/image";
 import Link from "next/link";
 const OfferCards = ({ data, key }) => {
   // console.log(data);
@@ -24,7 +25,7 @@ const OfferCards = ({ data, key }) => {
       >
         <span className={styles.offerContent}>
           <span className={styles.offerImgContainer}>
-            <img src={data.img} className={styles.offerImg} alt="RMU" />
+            <Image width={500} height={500} src={data.img} className={styles.offerImg} alt="RMU" />
           </span>
           <span className={styles.details}>
             <div className={styles.__content}>

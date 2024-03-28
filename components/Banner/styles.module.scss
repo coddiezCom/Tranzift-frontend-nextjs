@@ -8,7 +8,7 @@
     width: calc(100%);
 
     padding: 2em;
-    margin: auto;
+
     .content_container {
       width: 50%;
       display: flex;
@@ -29,22 +29,24 @@
         color: #001e38;
         text-align: center;
         font-family: "Lora";
-        line-height: 9px;
         font-size: 30px;
         font-weight: 600;
       }
       ul {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        align-items: flex-end;
+        /* justify-content: space-between; */
         width: 100%;
+        gap: 3em;
+        justify-content: center !important;
 
         li {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          gap: 0.5em;
           span {
             &:first-of-type {
               display: flex;
@@ -52,6 +54,7 @@
               align-items: center;
               justify-content: center;
               width: 2em;
+              height: 2em;
             }
             img {
               width: 100%;
@@ -60,7 +63,7 @@
             }
           }
           a {
-            width: 15em;
+            width: 13em;
             @media screen and (max-width: 1200px) {
               width: 12em;
             }
@@ -85,6 +88,177 @@
         object-fit: contain;
       }
     }
+  }
+  @media screen and (max-width: 1200px) {
+    .__container {
+      .content_container {
+        gap: 1.6em;
+        padding: 1em;
+        h1 {
+        }
+        h2 {
+        }
+        ul {
+          li {
+            gap: 0.5em;
+            span {
+              &:first-of-type {
+                width: 2em;
+                height: 2em;
+              }
+              &:last-of-type {
+                font-size: 0.9em;
+              }
+            }
+            a {
+              width: 10em;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+          }
+          &:last-child {
+            justify-content: space-around;
+          }
+        }
+      }
+      .image_container {
+        padding: 1.5em;
+        width: 50%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .__container {
+      display: flex;
+      flex-direction: column-reverse;
+      .content_container {
+        width: 100%;
+        gap: 1.6em;
+        padding: 1em;
+        h1 {
+        }
+        h2 {
+        }
+        ul {
+          li {
+            gap: 0.5em;
+            span {
+              &:first-of-type {
+                width: 2em;
+                width: 2em;
+              }
+              &:last-of-type {
+                font-size: 0.9em;
+              }
+            }
+            a {
+              width: 10em;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+          }
+          &:last-child {
+            gap: 10em;
+            justify-content: space-around;
+            a {
+              width: 13em;
+            }
+          }
+        }
+      }
+      .image_container {
+        padding: 1.5em;
+        width: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 968px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 600px) {
+    .__container {
+      display: flex;
+      flex-direction: column-reverse;
+      padding: 0.5em;
+
+      .content_container {
+        width: 100%;
+        gap: 0;
+        h1 {
+          font-size: 2em;
+          margin-bottom: 0.4em;
+        }
+        h2 {
+          font-size: 2em;
+        }
+        ul {
+          margin: 0.7em 0;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0;
+          row-gap: 1em;
+          li {
+            width: 50%;
+            gap: 0.5em;
+            span {
+              &:first-of-type {
+                width: 2em;
+                height: 2em;
+              }
+              &:last-of-type {
+                font-size: 0.9em;
+              }
+            }
+            a {
+              width: 8em;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+          }
+          &:last-child {
+            justify-content: center;
+            gap: 2em;
+            a {
+            }
+          }
+        }
+      }
+      .image_container {
+        padding: 1.5em;
+        width: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+  }
+  @media screen and (max-width: 320px) {
+  }
+  @media screen and (max-width: 280px) {
   }
 }
 // banner Without Swiper

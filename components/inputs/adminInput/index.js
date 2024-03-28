@@ -7,7 +7,6 @@ export default function AdminInput({ styleType, placeholder, handleChange, value
     <div className={`${styleType ? styles[styleType] : styles.style1}`}>
       <label className={`${styles.label} ${meta.touched && meta.error ? styles.inputError : ""}`}>
         <span>{label}</span>
-        {console.log(field)}
         <input type={field.type} name={field.name} placeholder={placeholder} {...field} {...props} />
       </label>
       {meta.touched && meta.error && (

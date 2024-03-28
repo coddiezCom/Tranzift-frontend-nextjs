@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/styles/pricing.module.scss";
+import styles from "../../styles/pricing.module.scss";
 import { FaCheckCircle } from "react-icons/fa";
 import Image from "next/image";
 export const Banner = () => {

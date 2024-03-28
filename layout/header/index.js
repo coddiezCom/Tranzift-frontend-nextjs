@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BsFacebook, BsTelephoneFill } from "react-icons/bs";
+import { useRouter } from "next/router";
 import styles from "./styles.module.scss";
 import { MdCardGiftcard, MdEmail } from "react-icons/md";
 import { useState, useEffect, useMemo } from "react";
@@ -19,7 +20,7 @@ const mobileLinks = [
     icon: <BiUserCircle />,
   },
   {
-    href: "/gift_card",
+    href: "/gift-cards",
     title: "Gift-Card",
     subtitle: "Give the gift of travel! View and modify your trip with our convenient Gift Cards.",
     icon: <FaSuitcase />,
@@ -69,7 +70,6 @@ const mobileLinks = [
 ];
 export default function Header({ country, searchHandler }) {
   const [showNavShadow, setShowNavShadow] = useState(false);
-
   useEffect(() => {
     if (typeof document != "undefined") {
       const handleScroll = () => {
@@ -90,6 +90,19 @@ export default function Header({ country, searchHandler }) {
       };
     }
   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await apiHelper("categories/get-all-category");
+        setGiftCardHeader(res?.data);
+        return res;
+      } catch (error) {
+        return "error";
+      }
+    };
+    fetchData();
+  }, []);
+
   const preHeaderData = {
     contact: [
       {
@@ -145,6 +158,17 @@ export default function Header({ country, searchHandler }) {
     ],
     heading: "",
   };
+  const navigationLinks = useMemo(
+    () => [
+      { text: "Home", link: "/" },
+      { text: "Gift Cards", link: "/gift-cards", sublinks: [] },
+      { text: "Recharge", link: "/recharge" },
+      { text: "Pay Bill", link: "/pay_bill" },
+      { text: "Offer", link: "/Offers" },
+      { text: "Contact", link: "/contactUs" },
+    ],
+    []
+  );
   return (
     <header
       className={styles.header}
@@ -153,7 +177,12 @@ export default function Header({ country, searchHandler }) {
       }}
     >
       <PreHeader hide={showNavShadow} preHeaderData={preHeaderData} />
-      <PostHeader showOnly={showNavShadow} searchHandler={searchHandler} mobileLinks={mobileLinks} />
+      <PostHeader
+        showOnly={showNavShadow}
+        navigationLinks={navigationLinks}
+        searchHandler={searchHandler}
+        mobileLinks={mobileLinks}
+      />
     </header>
   );
 }

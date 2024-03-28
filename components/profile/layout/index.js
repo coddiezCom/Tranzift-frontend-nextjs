@@ -1,22 +1,16 @@
-import styles from "./styles.module.scss";
+// import react liabrary
 import { useEffect, useState } from "react";
 import Head from "next/head";
-// import Header from "../../header";
+// import styles
+import styles from "./styles.module.scss";
+// import components
 import Sidebar from "../sidebar";
-import { sidebarData } from "@/data/profile";
+// import static data
+import { sidebarData } from "../../../data/profile";
+// import react-icons
 import { IoMenu } from "react-icons/io5";
-import { FaUserCircle } from "react-icons/fa";
-import { SiCircleci } from "react-icons/si";
 
-export default function Layout({ tab, children }) {
-  // console.log(session);
-  const session = {
-    name: "jaspreet singh",
-    email: "jaspreetsingh09912@gmail.com",
-    image: "https://res.cloudinary.com/dmhcnhtng/image/upload/v1664642478/992490_b0iqzq.png",
-    id: "6582ab3fa5db0cd756b93d1c",
-    role: "admin",
-  };
+export default function Layout({ tab, children, session }) {
   const [toggleSideBar, setToggleSideBar] = useState(false);
   const handleSideBar = (value) => {
     setToggleSideBar(value);
@@ -27,13 +21,12 @@ export default function Layout({ tab, children }) {
         setToggleSideBar(true);
       }
     }
-  });
+  }, []);
   return (
     <div className={styles.layout}>
       <Head>
-        <title>{session?.user?.name}</title>
+        <title>{session?.firstName + " " + session?.lastName}</title>
       </Head>
-      {/* <Header /> */}
       <div className={styles.layout__container}>
         {toggleSideBar ? (
           <Sidebar

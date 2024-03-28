@@ -1,36 +1,24 @@
-import React from "react";
 import styles from "./styles.module.scss";
-import Image from "next/image";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import apiHelper from "@/utils/apiHelper";
-import { useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import Avatar from "react-avatar";
+// image
+import Image from "next/image";
+// react-icon
 import { RiAccountPinCircleLine } from "react-icons/ri";
+// utils
+import apiHelper from "../../utils/apiHelper";
+// components
 import UserMenu from "./UserMenu";
 import HamburgerNavBar from "./HamburgerNavBar";
-import { useSelector } from "react-redux";
-import { HiUserCircle } from "react-icons/hi";
-
-const PostHeader = ({ showOnly, mobileLinks }) => {
+const PostHeader = ({ showOnly, mobileLinks, navigationLinks }) => {
   const router = useRouter();
   const { userDetail } = useSelector((state) => ({ ...state }));
-  // console.log(userDetail, "userData");
 
   const [visible, setVisible] = useState(false);
   const [giftCardHeader, setGiftCardHeader] = useState();
-
-  const navigationLinks = useMemo(
-    () => [
-      { text: "Home", link: "/" },
-      { text: "Gift Cards", link: "/gift-cards?selectedCategories=All", sublinks: [] },
-      { text: "Recharge", link: "/recharge" },
-      { text: "Pay Bill", link: "/pay_bill" },
-      { text: "Offer", link: "/Offers" },
-      { text: "Contact", link: "/contactUs" },
-    ],
-    []
-  );
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,8 +31,11 @@ const PostHeader = ({ showOnly, mobileLinks }) => {
     };
     fetchData();
   }, []);
+  const toggleUserMenu = (value) => {
+    setVisible(value);
+  };
   return (
-    <>
+    <div className={styles.__postHeaderContainer}>
       <div className={`${styles.__postHeader}  ${showOnly ? styles.showOnly : ""}   m-auto flex justify-between`}>
         <Link href="/" className={`${styles.__icon} w-64 `} style={{ width: "11.5em" }}>
           <Image src={"/T1/T4.png"} width={500} height={500} alt="tranzift" />
@@ -65,7 +56,7 @@ const PostHeader = ({ showOnly, mobileLinks }) => {
                 {item.sublinks && giftCardHeader?.length > 0 && (
                   <ul className={styles.__subList}>
                     {giftCardHeader?.map((item, index) => {
-                      const navigatePath = `/gift-cardS?selectedCategories=${item?._id}`;
+                      const navigatePath = `/gift-cards?selectedCategories=${item?._id}`;
                       return (
                         <li
                           key={index}
@@ -86,18 +77,22 @@ const PostHeader = ({ showOnly, mobileLinks }) => {
         <div className={styles.buttons}>
           <div
             className={styles.__accountBtn}
-            onMouseOver={() => setVisible(true)}
-            onMouseLeave={() => setVisible(false)}
+            onMouseOver={() => toggleUserMenu(true)}
+            onMouseLeave={() => toggleUserMenu(false)}
           >
             <div className={`${styles.flex} ${styles.__btn}`}>
-              {userDetail.token ? <HiUserCircle /> : <RiAccountPinCircleLine />}
+              {userDetail.token ? (
+                <Avatar name={userDetail?.firstName} size="40" round={true} />
+              ) : (
+                <RiAccountPinCircleLine />
+              )}
             </div>
-            {<UserMenu session={""} visible={visible} userDetail={userDetail} />}
+            {<UserMenu toggleUserMenu={toggleUserMenu} session={""} visible={visible} userDetail={userDetail} />}
           </div>
         </div>
       </div>
       <HamburgerNavBar mobileLinks={mobileLinks} />
-    </>
+    </div>
   );
 };
 export default PostHeader;

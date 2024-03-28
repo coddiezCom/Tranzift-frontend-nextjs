@@ -1,12 +1,15 @@
 .services_container {
   .services_card {
+    background-color: white;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     .ImageContainer {
-      width: 50%;
+      width: 45%;
       .__img {
+        transform: scaleX(-1);
         box-shadow: none !important;
       }
     }
@@ -15,17 +18,122 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      justify-content: space-between;
       padding: 1.5em 0.9em;
+      &__title,
+      &__description {
+        font-weight: 700;
+        font-size: 1.4em;
+        transition: color 0.5s ease; /* Smooth transition for color change */
+      }
+
+      &__description {
+        text-align: justify;
+        font-size: 0.9em;
+        text-align: start;
+        // font-size: 1em;
+      }
+
       &__title {
         font-weight: 700;
-        line-height: 1.3;
-        margin-bottom: 15px;
-        font-size: 1.3em;
+        font-size: 1.4em;
       }
       &__description {
         text-align: justify;
+        font-size: 0.9em;
+        text-align: start;
+        opacity: 0.5;
+        font-weight: 400;
         // font-size: 1em;
       }
+      &:hover {
+        .contentContainer__title {
+          animation: descriptiontextColorAnimation 2s linear;
+        }
+        .contentContainer__description {
+          animation: descriptiontextColorAnimation 2s linear; /* Start animation on hover */
+          opacity: 0.7;
+        }
+        .contentContainer__link {
+          color: #1973e8;
+          animation: textColorAnimation 2s linear; /* Start animation on hover */
+        }
+      }
+      &__link {
+        svg {
+          font-size: 1.5em;
+        }
+      }
+    }
+    @media (max-width: 1200px) {
+    }
+    @media (max-width: 1024px) {
+    }
+    @media (max-width: 962px) {
+    }
+    @media (max-width: 768px) {
+      min-height: 12em;
+      display: flex;
+      flex-direction: row-reverse;
+      .ImageContainer {
+        width: 57%;
+        // position: ;
+        .__img {
+          object-fit: cover;
+          height: 100%;
+          transform: scaleX(-1);
+          box-shadow: none !important;
+        }
+      }
+      .contentContainer {
+        width: 43%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 1.5em 0.8em;
+        &__title,
+        &__description {
+          font-weight: 700;
+          font-size: 1.4em;
+          text-align: start;
+          // transition: color 0.5s ease; /* Smooth transition for color change */
+        }
+
+        &__description {
+          text-align: justify;
+          font-size: 0.9em;
+          color: black;
+          width: 100%;
+          text-align: start;
+          // font-size: 1em;
+        }
+
+        &:hover {
+          .contentContainer__title {
+            animation: descriptiontextColorAnimation 2s linear;
+          }
+          .contentContainer__description {
+            animation: descriptiontextColorAnimation 2s linear; /* Start animation on hover */
+            opacity: 0.7;
+          }
+          .contentContainer__link {
+            color: #1973e8;
+            animation: textColorAnimation 2s linear; /* Start animation on hover */
+          }
+        }
+        &__link {
+          svg {
+            font-size: 1.5em;
+          }
+        }
+      }
+    }
+    @media (max-width: 568px) {
+    }
+    @media (max-width: 480px) {
+    }
+    @media (max-width: 320px) {
     }
   }
 }
@@ -34,13 +142,15 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  padding: 1em 0;
+  // gap: 1em;
+  // padding: 3em 0 0em 0;
   .detailedServiceCard {
     display: flex;
     flex-direction: row;
     padding: 1em 0.5em;
+    margin: 0 0 0.8em 0;
     width: 100%;
+    background-color: white;
     .cardDesc {
       .__card {
         display: flex;
@@ -62,15 +172,18 @@
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+      gap: 0.5em;
       &__title {
         font-size: 1.4em;
         font-weight: 700;
       }
       &__desc {
-        font-size: 1em;
+        font-size: 0.8em;
+        padding-left: 0.5em;
       }
       a {
         font-size: 1em;
+        padding-left: 0.5em;
         font-weight: 700;
       }
     }
@@ -89,6 +202,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        background-color: #ffffff;
         // box-shadow: none !important;
         .ImageContainer {
           width: 2.3em;
@@ -102,10 +216,196 @@
         }
         .contentContainer {
           &__title {
-            font-size: 0.8em;
+            font-size: 0.7em;
           }
         }
       }
     }
+    &:last-of-type,
+    &:first-of-type {
+      .__card__imgContainer {
+        padding: 0 0.4em;
+      }
+    }
+  }
+  @media (max-width: 1200px) {
+  }
+  @media (max-width: 1024px) {
+  }
+  @media (max-width: 962px) {
+    .detailedServiceCard {
+      display: flex;
+      flex-direction: column;
+      padding: 1em 0.5em;
+      margin: 0 0 0.8em 0;
+      width: 100%;
+
+      .cardDesc {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        position: relative;
+        gap: 1em;
+        margin-bottom: 1em;
+        .__card {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          &__imgContainer {
+            // display: none;
+            width: 2.5em;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          &__title {
+          }
+        }
+
+        gap: 0.5em;
+        &__title {
+          font-size: 1.4em;
+          font-weight: 700;
+        }
+        &__desc {
+          font-size: 1em;
+          padding-left: 0.5em;
+        }
+        a {
+          font-size: 1em;
+          padding-left: 0.5em;
+          font-weight: 700;
+          margin-left: auto;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+      .cardContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        .swipeCard {
+          height: auto !important;
+          background-color: transparent;
+          padding: 0.2em;
+        }
+        .card {
+          padding: 0.5em;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          // box-shadow: none !important;
+          .ImageContainer {
+            width: 2.3em;
+            height: 2.3em;
+            .__img {
+              box-shadow: none !important;
+              width: 100%;
+              height: 100%;
+              border-radius: 0.2em !important;
+            }
+          }
+          .contentContainer {
+            &__title {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+  }
+  @media (max-width: 568px) {
+    .detailedServiceCard {
+      .cardDesc {
+        .__card {
+          &__imgContainer {
+            img {
+            }
+          }
+          &__title {
+          }
+        }
+
+        &__title {
+        }
+        &__desc {
+        }
+        a {
+        }
+      }
+      .cardContainer {
+        .swipeCard {
+        }
+        .card {
+          .ImageContainer {
+            .__img {
+            }
+          }
+          .contentContainer {
+            &__title {
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    .detailedServiceCard {
+      .cardDesc {
+        padding: 1em 0 0 0;
+      }
+    }
+  }
+  @media (max-width: 320px) {
+  }
+}
+
+@keyframes textColorAnimation {
+  0% {
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    color: transparent;
+  }
+  100% {
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: #1973e8; /* Change to desired color */
+    color: #1973e8; /* Fallback for browsers that do not support text-fill-color */
+  }
+}
+@keyframes titletextColorAnimation {
+  0% {
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    color: transparent;
+  }
+  100% {
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: #1973e8; /* Change to desired color */
+    color: #1973e8; /* Fallback for browsers that do not support text-fill-color */
+  }
+}
+@keyframes descriptiontextColorAnimation {
+  0% {
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    color: transparent;
+  }
+  100% {
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: #000000; /* Change to desired color */
+    color: #000000; /* Fallback for browsers that do not support text-fill-color */
   }
 }

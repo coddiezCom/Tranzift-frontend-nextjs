@@ -1,34 +1,33 @@
-// import { LoginForm, SignUpForm } from "@/pages/signin";
 import React, { useState } from "react";
+import Link from "next/link";
+import styles from "../../styles/signin.module.scss";
+import Image from "next/image";
+// react-icons
 import { AiOutlineClose } from "react-icons/ai";
-import styles from "@/styles/signin.module.scss";
-import Router from "next/router";
+import { HiMiniLockClosed } from "react-icons/hi2";
+import { MdVisibilityOff, MdVisibility } from "react-icons/md";
+// Mui-Components
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import Link from "next/link";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { HiMiniLockClosed } from "react-icons/hi2";
-import { red } from "@mui/material/colors";
-import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
-import Image from "next/image";
+// Mui colors
+import { red, blue } from "@mui/material/colors";
 import * as Yup from "yup"; // Import Yup for validation
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import { MdVisibilityOff, MdVisibility } from "react-icons/md";
-import apiHelper from "@/utils/apiHelper";
+import apiHelper from "../../utils/apiHelper";
 import { setCookie } from "nookies"; // Import nookies package
 import { useDispatch, useSelector } from "react-redux";
-import { SetUserDetail, toggleSidebar } from "@/store/UserSlice";
+import { SetUserDetail } from "../../store/UserSlice";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useRouter } from "next/router";
-import { debounce } from "lodash"; // Import debounce function
-// Import debounce func
+import { SetToggleRegisterPopup } from "../../store/ToggleRegisterPopup";
+import { useMediaQuery } from "react-responsive";
 const validationSchema = Yup.object().shape({
   email: Yup.string().required("Email is required").email("Invalid email format"),
   password: Yup.string().required("Password is required"),
@@ -43,7 +42,7 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
   });
   const [errors, setErrors] = useState({});
   const handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -59,15 +58,17 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
         email: formData.email,
         password: formData.password,
       });
-      console.log(loginRes, "loginRes");
+
+      // console.log(loginRes, "loginRes");
       dispatch(
         SetUserDetail({
-          user_name: loginRes.user.userName,
+          user_id: loginRes.user._id,
           email_id: loginRes.user.email,
           token: loginRes.token,
           firstName: loginRes.user.firstName,
           lastName: loginRes.user.lastName,
           phone: loginRes.user.phone,
+          defaultAddress: loginRes.user.defaultAddress,
         })
       );
       // Set the token in a cookie
@@ -78,7 +79,7 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
       });
       handleModal(false);
     } catch (validationErrors) {
-      console.log(validationErrors, "validationErrors");
+      // console.log(validationErrors, "validationErrors");
       const newErrors = {};
       setErrors(newErrors);
     }
@@ -89,11 +90,18 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
+  const isTablet = useMediaQuery({ query: "(max-width:768px)" });
   return (
     <div className={styles.__container}>
       <div className={`${styles.formContainer}`}>
         <div className={`flex justify-center flex-col mx-auto ${styles.formHeader}`}>
+          {isTablet && (
+            <div className={`fw-bold   flex items-center justify-center ${styles.iconContainer}`}>
+              <Link href={"/"} className=" w-14  flex">
+                <Image src={"/logo.png"} alt="RMYLogo" width={100} height={100} />
+              </Link>
+            </div>
+          )}
           <h3 className="mt-1 text-center text-xl font-extrabold text-gray-700 font-serif">Sign In To Tranzift</h3>
         </div>
         <Box
@@ -114,6 +122,9 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
             id="email"
             label="Email Address"
             type="email"
+            sx={{
+              background: "white",
+            }}
             multiline
             maxRows={4}
             value={formData.email}
@@ -124,6 +135,10 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
           <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
+              sx={{
+                background: "white",
+                marginBottom: "1.5em",
+              }}
               id="password"
               type={showPassword ? "text" : "password"}
               onChange={handleChange}
@@ -144,19 +159,29 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
               label="Password"
             />
           </FormControl>
-          <div className="flex items-center justify-between">
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" />
+          <div className="flex items-center justify-between ">
+            {/* <FormControlLabel control={<Checkbox defaultChecked />} sx={{ fontSize: "0.8em" }} label="Remember me" /> */}
             <div className="text-sm">
-              <Link href={""} className="font-medium text-pink-600 hover:text-pink-500">
+              <Link href={""} className="font-medium text-[#1976d2] hover:text-[#1976d3] ">
                 Forgot your password?
               </Link>
             </div>
           </div>
-
-          <Button style={redShadeStyle} variant="contained" startIcon={<HiMiniLockClosed />} type="submit">
+          <Button style={blueShadeStyle} variant="contained" startIcon={<HiMiniLockClosed />} type="submit">
             Sign in
           </Button>
         </Box>
+        {isTablet && (
+          <div>
+            <hr />
+            <div className="m-auto flex flex-row items-center justify-center">
+              <p className={`font-sans text-base my-1 font-semibold `}>Don`t have an account?</p>
+              <button onClick={gotoSignUp} className="capitalize font-sans text-base my-1 font-semibold text-[#1976d2]">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <div className={`${styles.sideBarContainer}`}>
         <div className={` ${styles.sideBar}`}>
@@ -169,9 +194,9 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
               </Link>
             </div>
             <div className={styles.welcomeMessage}>
-              <h3 className={`font-semibold text-2xl font-serif text-zinc-400 my-2`}>Welcome to Tranzift</h3>
+              <h3 className={`font-semibold text-2xl font-serif text-zinc-800`}>Welcome to Tranzift</h3>
               <p className={`font-sans text-xl my-1 font-semibold`}>Don`t have an account?</p>
-              <Button variant="outlined" color="error" onClick={gotoSignUp}>
+              <Button sx={{ textTransform: "capitalize " }} variant="outlined" color="error" onClick={gotoSignUp}>
                 Sign Up
               </Button>
             </div>
@@ -181,8 +206,9 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
     </div>
   );
 };
-export const SignUpForm = ({ goToLogin }) => {
+export const SignUpForm = ({ goToLogin, toggleUserMenu }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
   const [formData1, setFormData1] = useState({
@@ -203,8 +229,12 @@ export const SignUpForm = ({ goToLogin }) => {
     event.preventDefault();
   };
   const validationSchema_ = Yup.object().shape({
-    fName: Yup.string().required("First Name is required"),
-    lName: Yup.string().required("Last Name is required"),
+    fName: Yup.string()
+      .required("First Name is required")
+      .matches(/^[A-Za-z ]+$/, " Name should contain only letters"),
+    lName: Yup.string()
+      .required("Last Name is required")
+      .matches(/^[A-Za-z ]+$/, " Name should contain only letters"),
     // userName: Yup.string().required("Username is required"),
     phone: Yup.string()
       .required("Phone Number is required")
@@ -267,8 +297,20 @@ export const SignUpForm = ({ goToLogin }) => {
         password: formData1?.password,
         confirmPassword: formData1?.cPassword,
       });
-      if (signup?.status === "success") {
-        router.push("/");
+      // console.log(signup, "signup");
+      if (signup.status == "success") {
+        // console.log("success");
+        dispatch(
+          SetUserDetail({
+            user_id: signup.user._id,
+            email_id: signup?.user?.email,
+            token: signup?.token,
+            firstName: signup?.user?.firstName,
+            lastName: signup?.user?.lastName,
+            phone: signup?.user?.phone,
+          })
+        );
+        toggleUserMenu(false);
       } else {
         alert("error");
       }
@@ -283,10 +325,18 @@ export const SignUpForm = ({ goToLogin }) => {
       }
     }
   };
+  const isTablet = useMediaQuery({ query: "(max-width:768px)" });
 
   return (
     <div className={`${styles.__container} ${styles.signUpContainer}`}>
       <div className={`${styles.formContainer}`}>
+        {isTablet && (
+          <div className={`fw-bold   flex items-center justify-center ${styles.iconContainer}`}>
+            <Link href={"/"} className=" w-14  flex">
+              <Image src={"/logo.png"} alt="RMYLogo" width={100} height={100} />
+            </Link>
+          </div>
+        )}
         <div className={`flex justify-center flex-col mx-auto ${styles.formHeader}`}>
           <h3 className="mt-1 text-center text-xl font-extrabold text-gray-700 font-serif">Sign Up To Tranzift</h3>
         </div>
@@ -305,6 +355,9 @@ export const SignUpForm = ({ goToLogin }) => {
           onSubmit={handleSubmit}
         >
           <TextField
+            sx={{
+              background: "white",
+            }}
             id="fName"
             label="First Name"
             multiline
@@ -315,6 +368,9 @@ export const SignUpForm = ({ goToLogin }) => {
             helperText={errors.fName}
           />
           <TextField
+            sx={{
+              background: "white",
+            }}
             id="lName"
             label="Last Name"
             multiline
@@ -326,6 +382,9 @@ export const SignUpForm = ({ goToLogin }) => {
           />
 
           <TextField
+            sx={{
+              background: "white",
+            }}
             id="phone"
             label="Phone Number"
             multiline
@@ -336,6 +395,9 @@ export const SignUpForm = ({ goToLogin }) => {
             helperText={errors.phone}
           />
           <TextField
+            sx={{
+              background: "white",
+            }}
             id="email"
             label="Email Address"
             multiline
@@ -349,6 +411,9 @@ export const SignUpForm = ({ goToLogin }) => {
           <FormControl variant="outlined">
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
+              sx={{
+                background: "white",
+              }}
               id="password"
               type={showPassword ? "text" : "password"}
               onChange={handleChange}
@@ -373,6 +438,9 @@ export const SignUpForm = ({ goToLogin }) => {
           <FormControl variant="outlined">
             <InputLabel htmlFor="cPassword">Confirm Password</InputLabel>
             <OutlinedInput
+              sx={{
+                background: "white",
+              }}
               id="cPassword"
               type={showCPassword ? "text" : "password"}
               onChange={handleChange}
@@ -394,22 +462,26 @@ export const SignUpForm = ({ goToLogin }) => {
               label="Password"
             />
           </FormControl>
-          <Button style={redShadeStyle} variant="contained" startIcon={<HiMiniLockClosed />} type="submit">
+          <Button style={blueShadeStyle} variant="contained" startIcon={<HiMiniLockClosed />} type="submit">
             Sign Up
           </Button>
           <div></div>
         </Box>
+        {isTablet && (
+          <div>
+            <hr />
+            <div className="m-auto flex flex-row items-center justify-center">
+              <p className={`font-sans text-base my-1 font-semibold `}>Don`t have an account?</p>
+              <button onClick={goToLogin} className="capitalize font-sans text-base my-1 font-semibold text-[#1976d2]">
+                log In
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <div className={`${styles.sideBarContainer}`}>
         <div className={` ${styles.sideBar}`}>
-          <div className={styles.bgImage}>
-            {/* <Image
-                src={"/Assets/images/Background/diagmonds-light.png"}
-                alt="RMYLoginSideImage"
-                width={800}
-                height={800}
-              /> */}
-          </div>
+          <div className={styles.bgImage}></div>
           <div className={`text w-100 ${styles.sideBarContent}`}>
             <div className={`fw-bold   flex items-center justify-center ${styles.iconContainer}`}>
               <Link href={"/"} className="brand flex">
@@ -418,9 +490,15 @@ export const SignUpForm = ({ goToLogin }) => {
               </Link>
             </div>
             <div className={styles.welcomeMessage}>
-              <h3 className={`font-semibold text-2xl font-serif text-zinc-400 my-2`}>Welcome to Tranzift</h3>
+              <h3 className={`font-semibold text-2xl font-serif text-zinc-800  `}>Welcome to Tranzift</h3>
               <p className={`font-sans text-xl my-1 font-semibold`}>If You have an account?</p>
-              <Button variant="outlined" color="error" onClick={goToLogin}>
+              <Button
+                className=" "
+                variant="outlined"
+                color="error"
+                sx={{ textTransform: "capitalize " }}
+                onClick={goToLogin}
+              >
                 log In
               </Button>
             </div>
@@ -437,12 +515,25 @@ const redShadeStyle = {
     backgroundColor: red[700], // Adjust the shade of red for the hover effect
   },
 };
-const Index = () => {
+const blueShadeStyle = {
+  textTransform: "capitalize",
+  // backgroundColor: blue[700],
+  // backgroundColor: "linear-gradient(to bottom right, #00c6ff, #0072ff)",
+  backgroundImage: "linear-gradient(to bottom right, #00c6ff, #0072ff)",
+  fontSize: "1em",
+  fontWeight: "700",
+  color: "white",
+  "&:hover": {
+    // backgroundColor: blue[700], // Adjust the shade of blue for the hover effect
+  },
+};
+const Index = ({ toggleUserMenu }) => {
   const [selectedOption, setSelectedOption] = useState("Login");
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleModal = (open) => {
-    setOpenModal(open);
+  const dispatch = useDispatch();
+  const { toggleRegisterPopup } = useSelector((state) => ({ ...state }));
+  const handleModal = (value) => {
+    toggleUserMenu(false);
+    dispatch(SetToggleRegisterPopup(value));
   };
   return (
     <>
@@ -450,7 +541,7 @@ const Index = () => {
         Register
       </div>
       <Modal
-        open={openModal}
+        open={toggleRegisterPopup}
         onClose={() => handleModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -461,9 +552,13 @@ const Index = () => {
               <AiOutlineClose />
             </span>
             {selectedOption == "Login" ? (
-              <LoginForm handleModal={handleModal} gotoSignUp={() => setSelectedOption("SignUP")} />
+              <LoginForm
+                toggleUserMenu={handleModal}
+                handleModal={handleModal}
+                gotoSignUp={() => setSelectedOption("SignUP")}
+              />
             ) : (
-              <SignUpForm goToLogin={() => setSelectedOption("Login")} />
+              <SignUpForm toggleUserMenu={handleModal} goToLogin={() => setSelectedOption("Login")} />
             )}
           </div>
           <div className={styles.__overlay} onClick={() => handleModal(false)}></div>

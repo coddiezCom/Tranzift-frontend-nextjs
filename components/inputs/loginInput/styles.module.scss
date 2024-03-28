@@ -7,7 +7,7 @@
     background-color: #f0f0f0;
     margin: 10px 0;
     height: 55px;
-    border-radius: 55px;
+    border-radius: 0.7rem;
     display: grid;
     grid-template-columns: 100%;
     align-items: center;
@@ -77,14 +77,15 @@
   .error__popup {
     position: absolute;
     top: -70px;
-    background: $error-color;
+    background: #fff;
     height: 60px;
+    box-shadow: 0px 0px 5px -1px $error-color;
     width: 100%;
     border-radius: 20px;
     display: grid;
     place-items: center;
-    color: #fff;
-    font-weight: 700;
+    color: $error-color;
+    font-weight: 500;
     font-size: 14px;
     padding: 10px;
     span {

@@ -30,7 +30,7 @@ export default function NewsLetter() {
         <span className={styles.__btn}>
           <button
             className={`${styles.btn_primary_}   transition-all duration-1000 hover:scale-105 hover:text-[#1973e8]`}
-            disbaled={loading === true}
+            disbaled={loading == true ? true : undefined}
             style={{ cursor: `${loading ? "not-allowed" : ""}` }}
             onClick={() => subscribe()}
           >

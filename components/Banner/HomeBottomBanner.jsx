@@ -55,7 +55,10 @@ const HomeBottomBanner = () => {
     <div className={`${styles.main__container} border-gray-200 shadow-sm rounded-md`}>
       <div className={`${styles.__container} border-gray-200 shadow-sm rounded-md`}>
         <div className={styles.content_container}>
-          <h1>{data?.heading}</h1>
+          {/* <h1>{data?.heading}</h1> */}
+          <span className="w-44 pb-3 md:w-60">
+            <Image src={"/T1/T4.png"} width={500} height={500} alt={"logo"} />
+          </span>
           <h2>{data?.subHeading}</h2>
           <ul>
             {data.services.map((items, index) => {

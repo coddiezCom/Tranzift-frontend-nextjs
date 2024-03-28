@@ -29,11 +29,17 @@ export default function MainSwiper({ ImgData }) {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mainSwiper"
+        className="mainSwiper bg-transparent "
       >
         {ImgData?.map((item, i) => (
           <SwiperSlide key={i}>
-            <Image src={item.url} alt={item.alt} width={5000} height={5000} />
+            <Image
+              src={item.url}
+              alt={item.alt}
+              fill={true}
+              // style={{ position: "relative !important" }}
+              className="rounded-xl relative overflow-hidden"
+            />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 const ourBrandingPartners = {
-  heading: "Our Preferred Branding Partners",
+  heading: "Our Branding Partners",
   cards: [
     {
       link: "",

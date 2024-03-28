@@ -1,0 +1,36 @@
+.__footerLinkLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin: 1em 0;
+  h2 {
+    font-weight: 600;
+    font-size: 1.4em;
+    color: #001e38;
+  }
+  p {
+    font-size: 1em;
+    font-weight: 400;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+
+    > li {
+      margin: 0.2em 0;
+      list-style: circle;
+      ul {
+        margin-left: 1em;
+        li {
+        }
+      }
+    }
+    ol {
+    }
+  }
+  a {
+    color: #4b51f3;
+    font-weight: 600;
+  }
+}

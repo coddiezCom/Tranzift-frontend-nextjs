@@ -4,9 +4,9 @@ import Box from "@mui/material/Box";
 import { getPostBySlug } from "../api/blogs";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-
+import Image from "next/image";
 const PostPage = ({ post, mdxSource, slug }) => {
-  console.log(post, mdxSource, slug);
+  // console.log(post, mdxSource, slug);
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ const PostPage = ({ post, mdxSource, slug }) => {
             <div className="blog-post-date">Posted on {post.date}</div>
             <div className="blog-post-author">By {post.author}</div>
           </div>
-          <img src={post.coverImage} alt={post.coverImageAlt} className="blog-cover-img" />
+          <Image width={500} height={500} src={post.coverImage} alt={post.coverImageAlt} className="blog-cover-img" />
           <div className="flex-div">
             <div className="blog-post-body">
               <MDXRemote {...mdxSource} />

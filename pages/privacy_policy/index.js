@@ -1,8 +1,9 @@
 import React from "react";
 // Styles
-import styles from "@/styles/privacyPolicy.module.scss";
+import styles from "../../styles/privacyPolicy.module.scss";
+import footerLinkStyles from "../../styles/footerLinks.module.scss";
 // Components
-import { BannerWithoutSwiper } from "@/components/Banner";
+import { BannerWithoutSwiper } from "../../components/Banner";
 import { BestGiftingOption, MoreAboutUs } from "../aboutUs";
 // MDX Utility
 import fs from "fs";
@@ -11,7 +12,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 // Layout
-import FooterLinkLayout from "@/Layout/FooterLinkLayout";
+import FooterLinkLayout from "../../Layout/FooterLinkLayout";
 
 export const MoreAboutOverPrivacyPolicy = () => {
   const data = [
@@ -298,7 +299,7 @@ const index = ({ frontMatter, mdxSource }) => {
   };
 
   return (
-    <div className={styles.__container}>
+    <div className={`${styles.__container} ${footerLinkStyles.__container}`}>
       <div className={styles.__banner}>
         <BannerWithoutSwiper data={data} />
       </div>

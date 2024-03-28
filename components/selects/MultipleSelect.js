@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -11,6 +10,8 @@ import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 import Chip from "@material-ui/core/Chip";
 import styles from "./styles.module.scss";
+import Image from "next/image";
+
 import { useField, Field, ErrorMessage } from "formik";
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -30,29 +31,17 @@ const useStyles = makeStyles((theme) => ({
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+      personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
   };
 }
 
-export default function MultipleSelect({
-  data,
-  handleChange,
-  value,
-  name,
-  header,
-  disabled,
-  ...rest
-}) {
+export default function MultipleSelect({ data, handleChange, value, name, header, disabled, ...rest }) {
   const [subs, setSubs] = useState(data || []);
   const [field, meta] = useField(rest);
   useEffect(() => {
     setSubs(data);
   }, [data]);
-  const result = data.length
-    ? data.reduce((obj, cur) => ({ ...obj, [cur._id]: cur.name }), {})
-    : {};
+  const result = data.length ? data.reduce((obj, cur) => ({ ...obj, [cur._id]: cur.name }), {}) : {};
 
   const classes = useStyles();
   const theme = useTheme();
@@ -78,13 +67,9 @@ export default function MultipleSelect({
 
   return (
     <div>
-      <div
-        className={`${styles.header} ${
-          meta.error[name] ? styles.header__error : ""
-        }`}
-      >
+      <div className={`${styles.header} ${meta.error[name] ? styles.header__error : ""}`}>
         <div className={styles.flex}>
-          {meta.error[name] && <img src="../../../images/warning.png" alt="" />}
+          {meta.error[name] && <Image width={500} height={500} src="../../../images/warning.png" alt="" />}
           {header}
         </div>
         <span>
@@ -111,11 +96,7 @@ export default function MultipleSelect({
           renderValue={(selected) => (
             <div className={classes.chips}>
               {selected.map((value) => (
-                <Chip
-                  key={value}
-                  label={result[value]}
-                  className={classes.chip}
-                />
+                <Chip key={value} label={result[value]} className={classes.chip} />
               ))}
             </div>
           )}

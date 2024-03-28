@@ -34,6 +34,7 @@
   z-index: 9999;
   width: 100%;
   height: 100%;
+  overflow: scroll;
   .__overlay {
     position: absolute;
     width: 100%;
@@ -63,16 +64,17 @@
       font-weight: 600;
     }
   }
+  // LoginForm
   .__container {
     display: flex;
     flex-direction: row;
     width: 100%;
     border-radius: 1em;
-    overflow: hidden;
+    // overflow: hidden;
     .formContainer {
       padding: 2em 0;
       width: 50%;
-      min-height: 80vh;
+      // min-height: 80vh;
       height: 100%;
       gap: 1.3em;
       background-color: white;
@@ -116,9 +118,13 @@
             }
           }
           .welcomeMessage {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
             > h3 {
             }
             > p {
+              padding-bottom: 0.5em;
             }
             > a {
             }
@@ -139,7 +145,7 @@
       width: 100%;
     }
     .signUpForm {
-      width: 68%;
+      width: 90%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -150,7 +156,7 @@
       }
       > div {
         &:nth-child(1) {
-          width: 49%;
+          width: 48%;
         }
         &:nth-child(2) {
           width: 49%;
@@ -169,4 +175,282 @@
   }
   .sideBarContainer {
   }
+}
+
+@media screen and (max-width: 1200px) {
+  .signUpContainer {
+    .formContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .formHeader {
+        width: 100%;
+      }
+      .signUpForm {
+        width: 93%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        > div,
+        button {
+          width: 100%;
+        }
+        > div {
+          &:nth-child(1) {
+            width: 48%;
+          }
+          &:nth-child(2) {
+            width: 49%;
+          }
+          &:nth-child(3) {
+            width: 100%;
+          }
+          &:nth-child(4) {
+            width: 100%;
+          }
+          &:nth-child(5) {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .sideBarContainer {
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .signUpContainer {
+    .formContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .formHeader {
+        width: 100%;
+      }
+      .signUpForm {
+        width: 93%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        > div,
+        button {
+          width: 100%;
+        }
+        > div {
+          &:nth-child(1) {
+            width: 48%;
+          }
+          &:nth-child(2) {
+            width: 49%;
+          }
+          &:nth-child(3) {
+            width: 100%;
+          }
+          &:nth-child(4) {
+            width: 100%;
+          }
+          &:nth-child(5) {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .sideBarContainer {
+    }
+  }
+}
+@media screen and (max-width: 968px) {
+}
+@media screen and (max-width: 768px) {
+  .signUpContainer {
+    .formContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .formHeader {
+        width: 100%;
+      }
+      .signUpForm {
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        > div,
+        button {
+          width: 100%;
+        }
+        > div {
+          &:nth-child(1) {
+            width: 48.5%;
+          }
+          &:nth-child(2) {
+            width: 48.5%;
+          }
+          &:nth-child(3) {
+            width: 100%;
+          }
+          &:nth-child(4) {
+            width: 100%;
+          }
+          &:nth-child(5) {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .sideBarContainer {
+    }
+  }
+  .container {
+    width: 80%;
+    .closeIcon {
+      position: absolute;
+    }
+    // LoginForm
+    // LoginForm
+    .__container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      border-radius: 1em;
+      overflow: hidden;
+      position: relative;
+      .formContainer {
+        position: relative;
+        z-index: 5;
+        padding: 2em 0;
+        width: 100%;
+        // min-height: 55vh;
+        height: 100%;
+        gap: 1.3em;
+        // background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &::after {
+          background: url("/images/background/BgTexture1.jpeg");
+          content: "";
+          position: absolute;
+          opacity: 0.3;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+        }
+        .formHeader {
+          h3 {
+          }
+        }
+      }
+      .sideBarContainer {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    .closeIcon {
+      position: absolute;
+    }
+    // LoginForm
+    // LoginForm
+    // .container {
+    //   width: 80%;
+    //   .closeIcon {
+    //     position: absolute;
+    //   }
+    //   // LoginForm
+    //   // LoginForm
+    //   .__container {
+    //     display: flex;
+    //     flex-direction: row;
+    //     width: 100%;
+    //     border-radius: 1em;
+    //     overflow: hidden;
+    //     position: relative;
+    //     .formContainer {
+    //       position: relative;
+    //       z-index: 5;
+    //       padding: 2em 0;
+    //       width: 100%;
+    //       min-height: 55vh;
+    //       height: 100%;
+    //       gap: 1.3em;
+    //       // background-color: white;
+    //       display: flex;
+    //       flex-direction: column;
+    //       justify-content: center;
+    //       &::after {
+    //         background: url("/images/background/BgTexture1.jpeg");
+    //         content: "";
+    //         position: absolute;
+    //         opacity: 0.3;
+    //         width: 100%;
+    //         height: 100%;
+    //         z-index: -1;
+    //       }
+    //       .formHeader {
+    //         h3 {
+    //         }
+    //       }
+    //     }
+    //     .sideBarContainer {
+    //       display: none;
+    //     }
+    //   }
+    // }
+  }
+  .signUpContainer {
+    .formContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .formHeader {
+        width: 100%;
+      }
+      .signUpForm {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        > div,
+        button {
+          width: 100%;
+        }
+        > div {
+          &:nth-child(1) {
+            width: 100%;
+          }
+          &:nth-child(2) {
+            width: 100%;
+          }
+          &:nth-child(3) {
+            width: 100%;
+          }
+          &:nth-child(4) {
+            width: 100%;
+          }
+          &:nth-child(5) {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .sideBarContainer {
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+}
+@media screen and (max-width: 320px) {
 }

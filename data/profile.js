@@ -13,6 +13,8 @@ import {
 } from "react-icons/fa";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { IoWallet } from "react-icons/io5";
+import { FaUserCheck } from "react-icons/fa6";
 
 export const sidebarData = [
   {
@@ -28,6 +30,11 @@ export const sidebarData = [
         name: "Update Profile ",
         link: "/profile/editProfile",
         icon: <FaEdit />,
+      },
+      {
+        name: "KYC",
+        link: "/profile/editKyc",
+        icon: <FaUserCheck />,
       },
       {
         name: "Manage Addresses",
@@ -51,43 +58,12 @@ export const sidebarData = [
         icon: <FaClipboardList />,
         filter: "",
       },
-      {
-        name: "Paid Orders",
-        link: "/profile/orders",
-        icon: <FaMoneyBillAlt />,
-        filter: "paid",
-      },
-      {
-        name: "Unpaid Orders",
-        link: "/profile/orders",
-        icon: <FaMoneyBillAlt />,
-        filter: "unpaid",
-      },
-      {
-        name: "Processing Orders",
-        link: "/profile/orders",
-        icon: <FaTruck />,
-        filter: "Processing",
-      },
-      {
-        name: "Dispatched Orders",
-        link: "/profile/orders",
-        icon: <FaTruck />,
-        filter: "Dispatched",
-      },
-      {
-        name: "Delivered Orders",
-        link: "/profile/orders",
-        icon: <FaTruck />,
-        filter: "Delivered",
-      },
-      {
-        name: "Cancelled Orders",
-        link: "/profile/orders",
-        icon: <FaTimesCircle />,
-        filter: "Cancelled",
-      },
     ],
+  },
+  {
+    heading: "My Wallet",
+    icon: <IoWallet />,
+    link: "/profile/wallet",
   },
   {
     heading: "Sign out",
@@ -101,40 +77,5 @@ export const ordersLinks = [
     name: "All Orders",
     filter: "",
     icon: <FaClipboardList />,
-  },
-  {
-    name: "Paid Orders",
-    filter: "paid",
-    icon: <FaMoneyBillAlt />,
-  },
-  {
-    name: "Unpaid Orders",
-    filter: "unpaid",
-    icon: <FaMoneyBillAlt />,
-  },
-  {
-    name: "Processing Orders",
-    filter: "Processing",
-    icon: <FaTruck />,
-  },
-  {
-    name: "Unprocessed Orders",
-    filter: "Not Processed",
-    icon: <FaBox />,
-  },
-  {
-    name: "Dispatched Orders",
-    filter: "Dispatched",
-    icon: <FaTruck />,
-  },
-  {
-    name: "Delivered Orders",
-    filter: "Delivered",
-    icon: <FaTruck />,
-  },
-  {
-    name: "Cancelled Orders",
-    filter: "Cancelled",
-    icon: <FaTimesCircle />,
   },
 ];

@@ -1,3 +1,4 @@
+import apiHelper from "../utils/apiHelper";
 import axios from "axios";
 
 export const saveCart = async (cart) => {
@@ -11,32 +12,74 @@ export const saveCart = async (cart) => {
     // console.log(error)
   }
 };
-export const saveAddress = async (address, userId) => {
+export const saveAddress = async (address, user) => {
   try {
-    const { data } = await axios.post("/api/user/saveAddress", {
-      address,
-      userId,
+    const baseUrl = "address/create-address";
+    const data = await apiHelper(baseUrl, {}, "POST", {
+      email: user?.email_id,
+      addressType: "billing",
+      addressLineOne: address?.address1,
+      addressLineTwo: address?.address2,
+      landmark: address?.landmark,
+      city: address?.city,
+      state: address?.state,
+      country: address?.country,
+      pincode: address?.zipCode,
     });
+    return data.address;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const getAddress = async (associatedUser) => {
+  try {
+    const baseUrl = "address/get-all-address";
+    const data = await apiHelper(
+      baseUrl,
+      {
+        associatedUser: associatedUser,
+      },
+      "GET"
+    );
     return data;
   } catch (error) {
     return error.response.data.message;
   }
 };
-export const changeActiveAddress = async (id) => {
+export const updateAddress = async (address, user) => {
   try {
-    const { data } = await axios.put("/api/user/manageAddress", {
-      id,
+    const baseUrl = `address/address/${user.defaultAddress}`;
+    const data = await apiHelper(baseUrl, {}, "PATCH", {
+      email: user?.email_id,
+      addressType: "billing",
+      addressLineOne: address?.address1,
+      addressLineTwo: address?.address2,
+      landmark: address?.landmark,
+      city: address?.city,
+      state: address?.state,
+      country: address?.country,
+      pincode: address?.zipCode,
+    });
+    return data.address;
+  } catch (error) {
+    return error;
+  }
+};
+export const changeActiveAddress = async (addressID, user) => {
+  try {
+    const baseUrl = `user/setdefaultaddress/${user.user_id}`;
+    const data = await apiHelper(baseUrl, {}, "PATCH", {
+      addressId: addressID,
     });
     return data;
   } catch (error) {
-    return error.response.data.message;
+    return error;
   }
 };
-export const deleteAddress = async (id) => {
+export const deleteAddress = async (addressId) => {
   try {
-    const { data } = await axios.delete("/api/user/manageAddress", {
-      data: { id },
-    });
+    const baseUrl = `address/address/${addressId}`;
+    const data = await apiHelper(baseUrl, {}, "DELETE");
     return data;
   } catch (error) {
     return error.response.data.message;

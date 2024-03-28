@@ -1,6 +1,6 @@
 import React from "react";
 // Styles
-import styles from "@/styles/shipping.module.scss";
+import styles from "../../styles/shipping.module.scss";
 // MDX Utility
 import fs from "fs";
 import path from "path";
@@ -8,10 +8,10 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 // Components
-import { BannerWithoutSwiper } from "@/components/Banner";
+import { BannerWithoutSwiper } from "../../components/Banner";
 import { BestGiftingOption, MoreAboutUs } from "../aboutUs";
 // Layout
-import FooterLinkLayout from "@/Layout/FooterLinkLayout";
+import FooterLinkLayout from "../../Layout/FooterLinkLayout";
 const index = ({ frontMatter, mdxSource }) => {
   const data = {
     title: {

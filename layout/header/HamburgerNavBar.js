@@ -32,8 +32,7 @@ const MobileNav = React.memo(({ mobileLinks, toggleNavigationBar }) => (
       <ListItem disablePadding className={styles.__LogoList}>
         <ListItemButton sx={{ "&:hover": { background: "none" } }} className={styles.__LogoListContainer}>
           <Link href={"/"} className={styles.__logoContainer}>
-            <Image src={"/logo.png"} width={400} height={400} alt="logo" />
-            <h3>TRANZIFT</h3>
+            <Image src={"/T1/T4.png"} width={400} height={400} alt="logo" />
           </Link>
           <button
             className={`${styles.closeMobileSideBar} text-3xl font-bold text-gray-500 `}
@@ -44,26 +43,30 @@ const MobileNav = React.memo(({ mobileLinks, toggleNavigationBar }) => (
         </ListItemButton>
       </ListItem>
 
-      {mobileLinks.map((content, index) => (
-        <React.Fragment key={index}>
-          <ListItem
-            className={styles.__navItems}
-            disablePadding
-            style={{ margin: content?.icon || content?.subtitle || content?.icon ? "" : " 0.1em 0" }}
-          >
-            <ListItemButton className={styles.__navItemContainer}>
-              {content?.icon && <ListItemIcon className={styles.__navItemIcon}>{content?.icon}</ListItemIcon>}
+      {mobileLinks.map((content, index) => {
+        return (
+          <React.Fragment key={index}>
+            <Link href={content?.href}>
+              <ListItem
+                className={styles.__navItems}
+                disablePadding
+                style={{ margin: content?.icon || content?.subtitle || content?.icon ? "" : " 0.1em 0" }}
+              >
+                <ListItemButton className={styles.__navItemContainer}>
+                  {content?.icon && <ListItemIcon className={styles.__navItemIcon}>{content?.icon}</ListItemIcon>}
 
-              <ListItemText
-                primary={content?.head || content?.title}
-                secondary={content?.head ? content?.title : content?.subtitle}
-                className={styles.__navItemText}
-              />
-            </ListItemButton>
-          </ListItem>
-          {content?.icon || content?.subtitle || content?.icon ? <Divider /> : null}
-        </React.Fragment>
-      ))}
+                  <ListItemText
+                    primary={content?.head || content?.title}
+                    secondary={content?.head ? content?.title : content?.subtitle}
+                    className={styles.__navItemText}
+                  />
+                </ListItemButton>
+              </ListItem>
+              {content?.icon || content?.subtitle || content?.icon ? <Divider /> : null}
+            </Link>
+          </React.Fragment>
+        );
+      })}
     </List>
   </Box>
 ));
@@ -81,10 +84,9 @@ const HamburgerNavBar = ({ mobileLinks }) => {
   return (
     <div className={styles.__hamburgerNavBarContainer}>
       <Box sx={{ display: "flex" }} className={styles.__mobileNavBtn}>
-        <span>
-          <Image src={"/logo.png"} width={500} height={500} alt="logo" />
-          <h3>TRANZIFT</h3>
-        </span>
+        <Link href={"/"}>
+          <Image src={"/T1/T4.png"} width={400} height={400} alt="logo" />
+        </Link>
         <span>
           <IconButton onClick={toggleNavigationBar(true)} aria-label="hamburger">
             <GiHamburgerMenu />

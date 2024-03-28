@@ -26,9 +26,8 @@ export default function Footer({ country }) {
   const legalInformation = [
     {
       name: "Privacy Center",
-      link: "../../pages/",
+      link: "/privacy_center",
     },
-
     {
       name: "Terms & Conditions",
       link: "/terms_and_conditions",
@@ -38,8 +37,9 @@ export default function Footer({ country }) {
       link: "/terms_of_use",
     },
     {
-      name: "Copyright Notice",
-      link: "",
+      name: "Disclaimer",
+      icon: <VscChevronRight />,
+      link: "/disclaimer",
     },
   ];
   const links = [
@@ -56,16 +56,7 @@ export default function Footer({ country }) {
           icon: <VscChevronRight />,
           link: "/contactUs",
         },
-        {
-          name: "Disclaimer",
-          icon: <VscChevronRight />,
-          link: "/disclaimer",
-        },
-      ],
-    },
-    {
-      heading: "Pricing & Shipping",
-      links: [
+
         {
           name: "Pricing",
           icon: <VscChevronRight />,
@@ -78,6 +69,7 @@ export default function Footer({ country }) {
         },
       ],
     },
+
     {
       heading: "Customer Support",
       links: [
@@ -124,7 +116,7 @@ export default function Footer({ country }) {
         {
           name: "Cookies Policy",
           icon: <VscChevronRight />,
-          link: "/refund_policy",
+          link: "/cookies",
         },
       ],
     },
@@ -168,14 +160,14 @@ export default function Footer({ country }) {
     //   link: "/",
     // },
     {
-      head: "Gift-Card",
-      icon: <FaGift />,
-      link: "/",
-    },
-    {
       head: "Home",
       icon: <FaHome />,
       link: "/",
+    },
+    {
+      head: "Gift-Card",
+      icon: <FaGift />,
+      link: "/gift-cards",
     },
     {
       head: "Cashback",
@@ -206,9 +198,11 @@ export default function Footer({ country }) {
             <Socials socials={socials} />
           </div>
           {/* <Divider /> */}
-          <div className={`flex justify-between bg-blue-500 py-4 ${styles.footer__copyright_legalInformation}`}>
-            <Copyright country={country} />
-            <LegalInformation legalInformation={legalInformation} />
+          <div className={`flex justify-between bg-blue-500  ${styles.footer__copyright_legalInformation}`}>
+            <div className={`flex justify-between bg-blue-500 py-4 `}>
+              <Copyright country={country} />
+              <LegalInformation legalInformation={legalInformation} />
+            </div>
           </div>
         </footer>
         <MobileFooter mobileLinks={mobileLinks} />

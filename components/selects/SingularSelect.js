@@ -1,28 +1,16 @@
 import { MenuItem, TextField } from "@mui/material";
 import { ErrorMessage, useField } from "formik";
 import styles from "./styles.module.scss";
+import Image from "next/image";
 
-export default function SingularSelect({
-  data,
-  handleChange,
-  placeholder,
-  header,
-  disabled,
-  ...rest
-}) {
+export default function SingularSelect({ data, handleChange, placeholder, header, disabled, ...rest }) {
   const [field, meta] = useField(rest);
   return (
-    <div style={{ marginBottom: "1rem" }}>
+    <div>
       {header && (
-        <div
-          className={`${styles.header} ${
-            meta.error ? styles.header__error : ""
-          }`}
-        >
+        <div className={`${styles.header} ${meta.error ? styles.header__error : ""}`}>
           <div className={styles.flex}>
-            {meta.error && (
-              <img src="../../../images/warning.png" alt="warning" />
-            )}
+            {meta.error && <Image width={500} height={500} src="../../../images/warning.png" alt="warning" />}
             {header}
           </div>
         </div>
@@ -35,9 +23,7 @@ export default function SingularSelect({
         disabled={disabled}
         value={field.value}
         onChange={handleChange}
-        className={`${styles.select} ${
-          meta.touched && meta.error && styles.error__select
-        }`}
+        className={`${styles.select} ${meta.touched && meta.error && styles.error__select}`}
       >
         <MenuItem key={""} value={""}>
           No Selected / Or Empty

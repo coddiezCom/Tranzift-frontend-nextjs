@@ -79,9 +79,9 @@ export const BannerWithoutSwiper = ({ data }) => {
 };
 const index = ({ ImgData }) => {
   return (
-    <div>
+    <>
       <MainSwiper ImgData={ImgData} />
-    </div>
+    </>
   );
 };
 

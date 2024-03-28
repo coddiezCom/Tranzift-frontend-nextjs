@@ -1,0 +1,52 @@
+.__faqContainer {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  align-items: center;
+  &__heading {
+    h2 {
+      color: #001e38;
+      clear: both;
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      line-height: 1.3;
+      font-size: 2em;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .__Accordion {
+    width: 48%;
+  }
+  .__bannerImg {
+    width: 45%;
+  }
+}
+.__Accordion {
+  transition: ease-in-out 1s;
+  > div {
+    > div {
+      background-color: hsl(0deg 0% 98% / 68%);
+    }
+    &:first-of-type {
+      border-radius: 1em 1em 0 0;
+      overflow: hidden;
+    }
+    &:last-of-type {
+      border-radius: 0 0 1em 1em;
+      overflow: hidden;
+    }
+  }
+}
+.__bannerImg {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

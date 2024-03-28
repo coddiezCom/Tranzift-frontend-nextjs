@@ -70,7 +70,7 @@ $blue-1: #1973e8;
 //-------------Swipers------
 .swiper {
   width: 100%;
-  height: 100%;
+  // height: 100%;
 }
 
 .swiper-slide {
@@ -96,7 +96,7 @@ $blue-1: #1973e8;
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 100%;
+  // height: 100%;
   object-fit: cover;
 }
 
@@ -121,9 +121,9 @@ $blue-1: #1973e8;
   }
 
   .swiper-slide img {
-    height: 400px !important;
-    border-radius: 10px !important;
-    box-shadow: $shadow-1 !important;
+    // height: 400px !important;
+    // border-radius: 10px !important;
+    // box-shadow: $shadow-1 !important;
   }
   .swiper-pagination-bullet {
     width: 9px !important;
@@ -152,23 +152,26 @@ $blue-1: #1973e8;
     right: -13px;
   }
 }
-.mainSwiper {
-  @media screen and (max-width: 1024px) {
-    max-width: 100vw;
-    max-height: 40vh;
-    height: unset !important;
-  }
+.mainSwiper,
+.home_banner {
+  // @media screen and (max-width: 1024px) {
+  //   max-width: 100vw;
+  //   max-height: 40vh;
+  //   height: unset !important;
+  // }
   .swiper-slide {
     img {
       width: 100%;
       height: 100%;
+      position: relative !important;
       // object-fit: contain;
       // object-fit: contain;
     }
   }
 }
 .ourServices,
-.mainSwiper {
+.mainSwiper,
+.home_banner {
   .swiper-button-prev,
   .swiper-button-next {
     display: none !important;
@@ -191,6 +194,39 @@ $blue-1: #1973e8;
     &::after {
       font-size: 1.8em;
     }
+  }
+}
+.home_banner {
+  .swiper-slide img {
+    position: relative !important;
+    // max-height: 45em !important;
+    width: 100%;
+    border-radius: 0px !important;
+    object-fit: contain;
+    box-shadow: $shadow-1 !important;
+  }
+  @media (min-width: 320px) {
+    /* smartphones, iPhone, portrait 480x320 phones */
+  }
+  @media (min-width: 481px) {
+    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  }
+  @media (min-width: 641px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  }
+  @media (min-width: 961px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .swiper-slide img {
+      // max-height: 45em !important;
+      width: 100%;
+      border-radius: 0px !important;
+    }
+  }
+  @media (min-width: 1025px) {
+    /* big landscape tablets, laptops, and desktops */
+  }
+  @media (min-width: 1281px) {
+    /* hi-res laptops and desktops */
   }
 }
 .offers_swiper {

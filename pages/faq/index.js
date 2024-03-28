@@ -1,7 +1,7 @@
 import React from "react";
 // import styles from "../../styles/policies.module.scss";
-import styles from "@/styles/faq.module.scss";
-import { BannerWithoutSwiper } from "@/components/Banner";
+import styles from "../../styles/faq.module.scss";
+import { BannerWithoutSwiper } from "../../components/Banner";
 import { BestGiftingOption, MoreAboutUs } from "../aboutUs";
 const index = () => {
   const data = {

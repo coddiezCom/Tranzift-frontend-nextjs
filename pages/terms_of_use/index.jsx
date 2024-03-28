@@ -2,15 +2,17 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 // Style
-import styles from "@/styles/term_of_use.module.scss";
+import styles from "../../styles/term_of_use.module.scss";
+import footerLinkStyles from "../../styles/footerLinks.module.scss";
+
 // MDX Utility
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 // Components
-import { BannerWithoutSwiper } from "@/components/Banner";
+import { BannerWithoutSwiper } from "../../components/Banner";
 // Layout
-import FooterLinkLayout from "@/Layout/FooterLinkLayout";
+import FooterLinkLayout from "../../Layout/FooterLinkLayout";
 
 const index = ({ frontMatter, mdxSource }) => {
   const data = {
@@ -50,7 +52,7 @@ const index = ({ frontMatter, mdxSource }) => {
     },
   };
   return (
-    <div className={styles.__container}>
+    <div className={`${styles.__container} ${footerLinkStyles.__container}`}>
       <div className={styles.__banner}>
         <BannerWithoutSwiper data={data} />
       </div>

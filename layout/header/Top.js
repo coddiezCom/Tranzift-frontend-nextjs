@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useState } from "react";
 import UserMenu from "./UserMenu";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+
 export default function Top({ country }) {
   const { data: session } = useSession();
   const [visible, setVisible] = useState(false);
@@ -15,7 +17,7 @@ export default function Top({ country }) {
         <div></div>
         <ul className={styles.top__list}>
           <li className={styles.li}>
-            <img src={country?.flag} alt="" />
+            <Image width={500} height={500} src={country?.flag} alt="" />
             <span>{country?.name} / INR</span>
           </li>
           <li className={styles.li}>
@@ -28,21 +30,19 @@ export default function Top({ country }) {
           <li className={styles.li}>
             <span>Help</span>
           </li>
-          {session && <li className={styles.li}>
-            <BsSuitHeart />
-            <Link href="/profile/wishlist">
-              <span>Wishlist</span>
-            </Link>
-          </li>}
-          <li
-            className={styles.li}
-            onMouseOver={() => setVisible(true)}
-            onMouseLeave={() => setVisible(false)}
-          >
+          {session && (
+            <li className={styles.li}>
+              <BsSuitHeart />
+              <Link href="/profile/wishlist">
+                <span>Wishlist</span>
+              </Link>
+            </li>
+          )}
+          <li className={styles.li} onMouseOver={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
             {session ? (
               <li className={styles.li}>
                 <div className={styles.flex}>
-                  <img src={session?.user?.image} alt="" />
+                  <Image width={500} height={500} src={session?.user?.image} alt="" />
                   <span>{session?.user?.name}</span>
                   <RiArrowDropDownFill />
                 </div>

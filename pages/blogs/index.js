@@ -1,17 +1,17 @@
 import React from "react";
-import style from "@/styles/blogs.module.scss";
+import style from "../../styles/blogs.module.scss";
 import Image from "next/image";
 import { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import matter from "gray-matter";
 // import BlogPost from "../../components/blogPost/BlogPost";
-import BlogsPost from "@/components/blog/BlogsPost";
+import BlogsPost from "../../components/blog/BlogsPost";
 // import config from "../blog.config";
 import config from "../../blog.config";
 import { getAllPosts } from "../api/blogs";
 const Index = ({ posts, prevPosts, nextPosts }) => {
-  console.log(posts, prevPosts, nextPosts);
+  // console.log(posts, prevPosts, nextPosts);
   const router = useRouter();
   return (
     <div className={style.main}>
@@ -29,7 +29,7 @@ const Index = ({ posts, prevPosts, nextPosts }) => {
         <link rel="icon" href="images/favicon.png" />
       </Head>
       <div className={style.mainHeading}>
-        <img src="/images/blog-images/mainBlogImg.webp" alt="Girl in a jacket" />
+        <Image width={500} height={500} src="/images/blog-images/mainBlogImg.webp" alt="Girl in a jacket" />
       </div>
       <div className={style.blogItem}>
         {posts.map((post, index) => (

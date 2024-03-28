@@ -1,4 +1,5 @@
-import "@/styles/globals.scss";
+// import "@/styles/globals.scss";
+import "../styles/global.scss";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -8,9 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "react-top-loading-bar";
 import { useState, useEffect } from "react";
 import Router, { useRouter } from "next/router";
-import store from "@/store";
-import Header from "@/layout/header";
-import Footer from "@/layout/footer";
+import store from "../store";
+import Header from "../layout/header";
+import Footer from "../layout/footer";
 let persistor = persistStore(store);
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
   const [progress, setProgress] = useState(0);
@@ -50,17 +51,15 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   const is404Page = router.pathname === "/404";
 
   useEffect(() => {
-    if (!isPaymentPage && !isBrowsePage && !isAdmin && !isProfilePage) {
+    if (!isPaymentPage && !isBrowsePage && !isAdmin) {
       setIsFooterIsVisible(true);
-    } else {
-      setIsFooterIsVisible(false);
-    }
-    if (!isPaymentPage && !isBrowsePage && !isAdmin && !isCartPage && !isProfilePage) {
       setIsHeaderIsVisible(true);
     } else {
+      setIsFooterIsVisible(false);
       setIsHeaderIsVisible(false);
     }
-  });
+  }, [isAdmin, isBrowsePage, isPaymentPage, isProfilePage]);
+
   return (
     <>
       <LoadingBar

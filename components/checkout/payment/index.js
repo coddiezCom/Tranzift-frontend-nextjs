@@ -1,6 +1,6 @@
 import { paymentMethods } from "../../../data/paymentMethods";
 import styles from "./styles.module.scss";
-
+import Image from "next/image";
 export default function Payment({ paymentMethod, setPaymentMethod, profile }) {
   return (
     <div className={styles.payment}>
@@ -17,19 +17,14 @@ export default function Payment({ paymentMethod, setPaymentMethod, profile }) {
           onClick={() => setPaymentMethod(pm.id)}
           style={{ background: `${paymentMethod == pm.id ? "#f5f5f5" : ""}` }}
         >
-          <input
-            type="radio"
-            name="payment"
-            id={pm.id}
-            checked={paymentMethod == pm.id}
-          />
-          <img src={`../../../images/checkout/${pm.id}.webp`} alt={pm.name} />
+          <input type="radio" name="payment" id={pm.id} checked={paymentMethod == pm.id} />
+          <Image width={500} height={500} src={`../../../images/checkout/${pm.id}.webp`} alt={pm.name} />
           <div className={styles.payment__item_col}>
             <span>Pay with {pm.name}</span>
             <p>
               {pm.images.length > 0
-                ? pm.images.map((img , index) => (
-                    <img src={`../../../images/payment/${img}.webp`} key={index} alt="" />
+                ? pm.images.map((img, index) => (
+                    <Image width={500} height={500} src={`../../../images/payment/${img}.webp`} key={index} alt="" />
                   ))
                 : pm.description}
             </p>

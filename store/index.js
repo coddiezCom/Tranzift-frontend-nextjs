@@ -9,7 +9,10 @@ import { applyMiddleware } from "@reduxjs/toolkit";
 // import expandSidebar from "./ExpandSlice";
 // import dialog from "./DialogSlice";
 import userDetail from "./UserSlice";
-const reducers = combineReducers({ userDetail });
+import giftCardDetail from "./GiftCardSlice";
+import toggleRegisterPopup from "./ToggleRegisterPopup";
+import giftCardCoupon from "./GiftCardCoupon";
+const reducers = combineReducers({ userDetail, giftCardDetail, giftCardCoupon, toggleRegisterPopup });
 
 const config = {
   key: "root",
@@ -25,11 +28,3 @@ const store = configureStore({
 });
 
 export default store;
-
-// import { configureStore } from "@reduxjs/toolkit";
-// import { UserDetail } from "./UserSlice";
-// export const store = configureStore({
-//   reducer: {
-//     UserDetail: UserDetail,
-//   },
-// });

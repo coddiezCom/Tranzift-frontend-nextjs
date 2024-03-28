@@ -1,0 +1,81 @@
+// Banner
+// PayBillContainer
+.__payBill {
+  &__Container {
+    .__heading {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        font-size: 1.5em;
+        font-weight: 700;
+      }
+      h3 {
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+    }
+    .__payBillCardContainer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      .__leftContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 50%;
+        .__card {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5em;
+          .__imgContainer {
+            background-color: rgb(233, 233, 233);
+            display: flex;
+            padding: 0.5em;
+            > span {
+              width: 4em;
+              height: 4em;
+              background-size: cover; /* Ensure the background image covers the entire container */
+              background-position: center; /* Center the background image */
+            }
+          }
+          .__contentContainer {
+            h2 {
+              font-size: 1.6em;
+              font-weight: 700;
+            }
+            p {
+              font-size: 1.1em;
+            }
+          }
+        }
+      }
+      .__rightContainer {
+        h3 {
+          font-size: 1.1em;
+          font-weight: 600;
+        }
+        width: 50%;
+        .__paytype {
+        }
+        .__Fname {
+        }
+        .__Lname {
+        }
+        .__phone {
+        }
+        .__email {
+        }
+        .__OurTerms {
+        }
+        .btnWrap {
+          .btn {
+          }
+        }
+      }
+    }
+  }
+}
+// PayBillMiddleBanner
+// BusinessPayment
+// Faq

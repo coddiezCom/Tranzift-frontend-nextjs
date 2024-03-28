@@ -1,45 +1,52 @@
-import Layout from "@/components/profile/layout";
-// import User from "../../models/User";
-import Shipping from "@/components/checkout/shipping";
-import styles from "@/styles/profile.module.scss";
-import { useState } from "react";
+// import components
+import Layout from "../../components/profile/layout";
+import Shipping from "../../components/checkout/shipping";
+import styles from "../../styles/profile.module.scss";
+// import react liabary
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getAddress } from "../../requests/user";
 export default function Index({ tab }) {
-  const user = {
-    user: {
-      name: "jaspreet singh",
-      email: "jaspreetsingh09915@gmail.com",
-      image: "https://res.cloudinary.com/dmhcnhtng/image/upload/v1664642478/992490_b0iqzq.png",
-      id: "65562c67af87a191ad9f55ae",
-      role: "user",
-    },
-    address: {
-      _id: "65562c67af87a191ad9f55ae",
-      address: [],
-    },
-  };
-  const [addresses, setAddresses] = useState(user.address.address);
+  const { userDetail } = useSelector((state) => ({ ...state }));
+  const [addresses, setAddresses] = useState([]);
+  useEffect(() => {
+    const fetchAddresses = async (userId) => {
+      try {
+        // Assuming getAddresses is an async function to fetch addresses
+        const addresses = await getAddress(userId);
+        return addresses.addresses;
+      } catch (error) {
+        console.log("[ADDRESS_PAGE]", error);
+        setAddresses([]);
+        return [];
+      }
+    };
+
+    const loadAddresses = async () => {
+      try {
+        const addresses = await fetchAddresses(userDetail?.user_id);
+        setAddresses(addresses);
+      } catch (error) {
+        console.error("Error fetching addresses:", error);
+        setAddresses([]);
+      }
+    };
+
+    loadAddresses();
+  }, [userDetail?.user_id]);
+
   return (
-    <Layout session={user.user} tab={tab}>
-      <div className={styles.header}>
-        <h1>MY ADDRESSES</h1>
-      </div>
-      <Shipping user={user} addresses={addresses} setAddresses={setAddresses} profile />
+    <Layout session={userDetail} tab={tab}>
+      <Shipping user={userDetail} addresses={addresses} setAddresses={setAddresses} profile />
     </Layout>
   );
 }
 
 export async function getServerSideProps(ctx) {
   const { query, req } = ctx;
-  // const session = await getSession({ req });
   const tab = query.tab || 0;
-  //--------------
-  // const address = await User.findById(session.user.id).select("address").lean();
   return {
     props: {
-      // user: {
-      //   user: session.user,
-      //   address: JSON.parse(JSON.stringify(address)),
-      // },
       tab,
     },
   };

@@ -1,12 +1,16 @@
-import Layout from "@/components/profile/layout";
-import styles from "@/styles/profile.module.scss";
+// import components
+import Layout from "../../components/profile/layout";
+// import react liabary
 import { useState } from "react";
-import { FaEdit } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
+import styles from "../../styles/profile.module.scss";
+// import react-icons
+import { FaEdit } from "react-icons/fa";
 
 export function UserProfile({ user }) {
+  // console.log(user, "user");
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -22,19 +26,15 @@ export function UserProfile({ user }) {
   const userProfileStaticData = [
     {
       name: "Name",
-      value: "Jaspreet singh",
+      value: user?.firstName + " " + user?.lastName || "---",
     },
     {
       name: "Email",
-      value: "jaspreetsingh.coddiez@gmail.com",
+      value: user?.email_id || "---",
     },
     {
       name: "Mobile No.",
-      value: "8586832717",
-    },
-    {
-      name: "Pincode",
-      value: "-",
+      value: user?.phone || "---",
     },
   ];
   return (
@@ -43,6 +43,54 @@ export function UserProfile({ user }) {
         <span>Your Profile :</span>
         <Link href="/profile/editProfile?tab=0&q=edit-profile">
           <h3>EDIT PROFILE</h3>
+          <FaEdit />
+        </Link>
+      </div>
+      <div className={styles.__ourProfile__container__list}>
+        <ul>
+          {userProfileStaticData.map((data, index) => {
+            return (
+              <li key={index}>
+                <span>{data.name}</span>
+                <span>{data.value}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}
+export function UserKyc({ user }) {
+  // console.log(user, "user");
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    zipCode: "",
+  };
+  const [shipping, setShipping] = useState(initialValues);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setShipping({ ...shipping, [name]: value });
+  };
+  const userProfileStaticData = [
+    {
+      name: "Aadhaar No.",
+      value: user?.aadhaar_number || "---",
+    },
+    {
+      name: "PAN No.",
+      value: user?.pan_number || "---",
+    },
+  ];
+  return (
+    <div className={styles.__ourProfile__container}>
+      <div className={styles.header}>
+        <span>Your Kyc :</span>
+        <Link href="/profile/editProfile?tab=0&q=edit-profile">
+          <h3>EDIT Kyc</h3>
           <FaEdit />
         </Link>
       </div>
@@ -86,23 +134,13 @@ export function Banner({}) {
 }
 export default function Index({}) {
   const userData = useSelector((state) => state.userDetail);
-  console.log(userData, "userData");
-  const user = {
-    user: {
-      name: "jaspreet singh",
-      email: "jaspreetsingh09912@gmail.com",
-      image: "https://res.cloudinary.com/dmhcnhtng/image/upload/v1664642478/992490_b0iqzq.png",
-      id: "6582ab3fa5db0cd756b93d1c",
-      role: "admin",
-    },
-    expires: "2024-03-22T06:29:09.453Z",
-  };
   const tab = 0;
   return (
-    <Layout session={user.user} tab={tab}>
+    <Layout session={userData} tab={tab}>
       <div className={styles.__profile}>
         <Banner />
-        <UserProfile user={user.user} />
+        <UserProfile user={userData} />
+        <UserKyc user={userData} />
       </div>
     </Layout>
   );

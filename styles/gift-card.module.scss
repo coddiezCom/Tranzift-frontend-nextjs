@@ -3,15 +3,34 @@
   flex-direction: column;
   border-top: 2px solid gray;
   background-color: white;
-
+  > div {
+    margin: auto;
+    max-width: 1250px;
+    width: 90%;
+    @media screen and (max-width: 1200px) {
+    }
+    @media screen and (max-width: 1024px) {
+      max-width: 1250px;
+      width: 98%;
+    }
+    @media screen and (max-width: 968px) {
+      max-width: 1250px;
+      width: 99%;
+    }
+    @media screen and (max-width: 768px) {
+      max-width: 1250px;
+      width: 97%;
+    }
+  }
   .__GiftCardSearch {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: calc(85% - 1em);
+
     margin: auto;
     // padding: 1em 0;
-    padding: 1.2em;
+    padding: 0.8em;
+    align-items: center;
     .___CategoriesSelection {
       // background-color: red;
       > div {
@@ -27,10 +46,6 @@
     }
   }
   .__giftCardsContainer {
-    width: calc(85% - 1em);
-    @media screen and (max-width: 1200px) {
-      width: calc(100%);
-    }
   }
   .__giftCards {
     margin: auto;
@@ -68,11 +83,11 @@
       .gift_card {
         width: 100%;
         // margin-right: 48%;
-        box-shadow: none;
-        &:hover {
-          box-shadow: 1px 1px 17px -2px hsla(0, 0%, 65.51%, 0.47);
-          border: 2px solid #0000001a;
-        }
+        // box-shadow: none;
+        // &:hover {
+        //   box-shadow: 1px 1px 17px -2px hsla(0, 0%, 65.51%, 0.47);
+        //   border: 2px solid #0000001a;
+        // }
         &__imageContainer {
           height: 80%;
           position: relative;
@@ -147,18 +162,6 @@
     width: 94%;
     margin: 0.9em auto;
   }
-  @media screen and (max-width: 1200px) {
-  }
-  @media screen and (max-width: 1024px) {
-  }
-  @media screen and (max-width: 968px) {
-  }
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-  }
-  @media screen and (max-width: 320px) {
-  }
 }
 // GiftCardBanner
 .giftCardBanner {
@@ -207,28 +210,342 @@
         }
       }
     }
+    @media screen and (max-width: 1200px) {
+      position: absolute;
+      top: 30%;
+      transform: translate(30%, 0%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8em;
+      color: white;
+      > span {
+        text-align: center;
+        border-radius: 0.5em;
+        background: #423a3a96;
+        padding: 0.4em 0.45em;
+        line-height: 1.2;
+        font-weight: 600;
+      }
+      &__heading {
+        font-size: 2.2em;
+      }
+      &__subHeading {
+        font-size: 1.7em;
+        display: flex;
+        flex-direction: row;
+        gap: 0.2em;
+        > span {
+          &:first-of-type {
+            a {
+              transition: ease-in-out 1s;
+              &:hover {
+                color: #ff8eb5;
+                transition: ease-in-out 1s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    position: relative;
+    &__img {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &__content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(15%, 44%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8em;
+      color: white;
+      > span {
+        text-align: center;
+        border-radius: 0.5em;
+        background: #423a3a96;
+        padding: 0.25em 0.3em;
+        line-height: 1.2;
+        font-weight: 600;
+        h3 {
+          font-size: 1em;
+        }
+      }
+      &__heading {
+        font-size: 2.2em;
+      }
+      &__subHeading {
+        font-size: 1.7em;
+
+        > span {
+          font-size: 1em;
+          &:first-of-type {
+            a {
+              transition: ease-in-out 1s;
+              font-size: 1em;
+              &:hover {
+                color: #ff8eb5;
+                transition: ease-in-out 1s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    position: relative;
+    &__img {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &__content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(10%, 44%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8em;
+      color: white;
+      > span {
+        text-align: center;
+        border-radius: 0.5em;
+        background: #423a3a96;
+        padding: 0.25em 0.3em;
+        line-height: 1.2;
+        font-weight: 600;
+        h3 {
+          font-size: 1em;
+        }
+      }
+      &__heading {
+        font-size: 2.2em;
+      }
+      &__subHeading {
+        font-size: 1.7em;
+
+        > span {
+          font-size: 1em;
+          &:first-of-type {
+            a {
+              transition: ease-in-out 1s;
+              font-size: 1em;
+              &:hover {
+                color: #ff8eb5;
+                transition: ease-in-out 1s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 968px) {
+    position: relative;
+    &__img {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &__content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(5%, 44%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      color: white;
+      > span {
+        text-align: center;
+        border-radius: 0.5em;
+        background: rgba(66, 58, 58, 0.5882352941);
+        padding: 0.3em 0.5em;
+        line-height: 1.2;
+        width: fit-content;
+        width: -moz-fit-content;
+        font-weight: 600;
+        h3 {
+          font-size: 1em;
+        }
+      }
+      &__heading {
+        font-size: 2.2em;
+      }
+      &__subHeading {
+        font-size: 1.7em;
+
+        > span {
+          font-size: 1em;
+          &:first-of-type {
+            a {
+              transition: ease-in-out 1s;
+              font-size: 1em;
+              &:hover {
+                color: #ff8eb5;
+                transition: ease-in-out 1s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    position: relative;
+    &__img {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &__content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(5%, 35%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      color: white;
+      > span {
+        text-align: center;
+        border-radius: 0.5em;
+        background: rgba(66, 58, 58, 0.5882352941);
+        padding: 0.3em 0.5em;
+        line-height: 1.2;
+        width: fit-content;
+        width: -moz-fit-content;
+        font-weight: 600;
+        h3 {
+          font-size: 0.7em;
+        }
+      }
+      &__heading {
+        font-size: 2.2em;
+      }
+      &__subHeading {
+        > span {
+          font-size: 18px;
+          &:first-of-type {
+            font-size: 12px;
+
+            a {
+              font-size: 18px;
+
+              transition: ease-in-out 1s;
+              // font-size: inherit;
+
+              &:hover {
+                color: #ff8eb5;
+                transition: ease-in-out 1s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+    position: relative;
+    &__img {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &__content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(5%, 35%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2em;
+      color: white;
+      > span {
+        text-align: center;
+        border-radius: 0.5em;
+        background: rgba(66, 58, 58, 0.5882352941);
+        padding: 0.3em 0.5em;
+        line-height: 1.2;
+        width: fit-content;
+        width: -moz-fit-content;
+        font-weight: 600;
+        h3 {
+          font-size: 0.7em;
+        }
+      }
+      &__heading {
+        font-size: 20px;
+      }
+      &__subHeading {
+        > span {
+          font-size: 10px;
+          &:first-of-type {
+            font-size: 10px;
+
+            a {
+              font-size: 10px;
+
+              transition: ease-in-out 1s;
+              // font-size: inherit;
+
+              &:hover {
+                color: #ff8eb5;
+                transition: ease-in-out 1s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 320px) {
   }
 }
+
 .GiftCardDetailed {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 1em;
   .__cardDetail {
-    width: 33%;
+    width: 31%;
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; */
     gap: 0.1em;
     .__name {
-      font-size: 2em;
+      font-size: 1.2em;
+      font-weight: 600;
       margin: 0;
     }
     .__valid {
       font-size: 1em;
     }
     .__imageContainer {
-      padding: 0.5em;
+      padding: 0.5em 0.5em 0 0;
       position: relative;
       .__discount {
         position: absolute;
@@ -252,10 +569,11 @@
     .__validity {
       font-size: 1em;
       color: #f1822d;
+      padding: 0 0.5em;
     }
   }
   .__cardForm {
-    width: 33%;
+    width: 31%;
     display: flex;
     flex-direction: column;
     // gap: 0.9em;
@@ -307,7 +625,7 @@
     }
   }
   .__offerContainer {
-    width: 33%;
+    width: 31%;
     display: flex;
     flex-direction: column;
     ul {
@@ -349,6 +667,10 @@
       }
     }
   }
+  > div,
+  form {
+    padding: 0.5em;
+  }
   @media screen and (max-width: 1024px) {
     flex-wrap: wrap;
     > div,
@@ -378,12 +700,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(85% - 1em);
+  // width: calc(85% - 1em);
   gap: 1em;
   margin: 0.75em auto;
   background-color: #f8f8f824;
   .__header {
-    width: 100%;
+    // width: 100%;
     display: flex;
     justify-content: center;
     background-color: rgb(255, 255, 255);
@@ -398,7 +720,7 @@
   }
   .__card {
     // width: 90%;
-    width: 100%;
+    // width: 100%;
     padding: 0.5em 0;
     .__moreAboutGiftCard {
       .__moreInfo {
@@ -411,16 +733,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0.5em;
     > div {
       width: 100%;
     }
   }
+  > div {
+    margin: auto;
+    max-width: 1250px;
+    width: 90%;
+    @media screen and (max-width: 1200px) {
+    }
+    @media screen and (max-width: 1024px) {
+      max-width: 1250px;
+      width: 98%;
+    }
+    @media screen and (max-width: 968px) {
+      max-width: 1250px;
+      width: 99%;
+    }
+    @media screen and (max-width: 768px) {
+      max-width: 1250px;
+      width: 97%;
+    }
+  }
   @media screen and (max-width: 1200px) {
-    width: 100%;
+    // width: 100%;
     .__header > div,
     .__card,
     .__cardDesc > div {
-      width: 95%;
+      // width: 95%;
     }
   }
 }
@@ -496,6 +838,7 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      gap: 0.8em;
       width: 100%;
       justify-content: space-between;
       > div {
@@ -528,6 +871,10 @@
       .__reciver_message {
       }
     }
+  }
+  > div,
+  form {
+    padding: 0.5em;
   }
   @media screen and (max-width: 768px) {
     .__giftingDetails {
@@ -563,13 +910,13 @@
           &:last-of-type {
             width: 100%;
             position: fixed;
-            bottom: 4.29em;
+            bottom: 3.55em;
             left: 0;
             z-index: 999;
             background: white;
             > button {
               width: 100%;
-              padding: 0.3em 0.7em;
+              padding: 0.4em 0.7em;
               border-radius: 0.4em;
               font-weight: 700;
               font-size: 1.1em;
@@ -608,8 +955,379 @@
           line-height: 2;
           word-spacing: 1.8px;
           font-size: 0.85em;
+          ol {
+            list-style: circle;
+            list-style-position: inside;
+            margin-left: 0.5em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            ul {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5em;
+            }
+            > ul {
+              list-style: circle;
+              list-style-position: inside;
+              // margin-left: 2.5em;
+              font-size: 1em;
+              > ul {
+                list-style: disc;
+                list-style-position: inside;
+                // margin-left: 1em;
+                > ul {
+                  list-style: disc;
+                  list-style-position: inside;
+                  // margin-left: 1em;
+                }
+              }
+            }
+          }
         }
       }
     }
   }
+}
+@media screen and (max-width: 1200px) {
+}
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 968px) {
+}
+@media screen and (max-width: 768px) {
+  .GiftCardDetailed {
+    .__cardDetail {
+      .__name {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin: 0;
+      }
+      .__valid {
+        font-size: 1em;
+      }
+      .__imageContainer {
+        padding: 0.5em 0.5em 0 0;
+        position: relative;
+        width: 70%;
+        margin: auto;
+        .__discount {
+          position: absolute;
+          color: #2e2e2e;
+          top: 0;
+          right: 0;
+          /* border: 1px solid #2e2e2e; */
+          padding: 0.1em 0.5em;
+          /* border: 2px solid #2e2e2e; */
+          box-shadow: 1px 1px 0px gray;
+          background: #fdfc26;
+          border-radius: 15px 0px 15px 0px;
+          color: #f31c09;
+        }
+        .__img {
+          width: 100%;
+          height: 100%;
+          border-radius: 0.4em;
+        }
+      }
+      .__validity {
+        font-size: 1em;
+        color: #f1822d;
+        padding: 0.5em 0.5em;
+      }
+    }
+    .__cardForm {
+      width: 31%;
+      display: flex;
+      flex-direction: column;
+      // gap: 0.9em;
+      justify-content: space-evenly;
+      .__denominationFixed {
+        display: flex;
+        // flex-wrap: wrap;
+        gap: 0.1em;
+        align-items: baseline;
+        font-size: 1em;
+        font-weight: 400;
+        .__denominationBtn {
+          margin: 0 0.5em 0.2em 0em;
+        }
+      }
+      .__denominationVary {
+        width: 100%;
+        .__denominationInput {
+          width: 100%;
+        }
+      }
+      .__quentity {
+        .__quentityInput {
+          width: 100%;
+          select {
+            min-width: 3.3em;
+          }
+        }
+      }
+      .__deliveryOptions {
+        label {
+          font-size: 1em;
+          color: #2e2e2e;
+        }
+        > div {
+          label {
+            > span {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+      .OurTermNdConditions {
+        margin: 0;
+        display: none;
+        > div {
+          margin: 0;
+        }
+      }
+    }
+    .__offerContainer {
+      width: 31%;
+      display: flex;
+      flex-direction: column;
+      ul {
+        padding: 0.9em 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        li {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5em;
+          > span {
+            &:first-of-type {
+              > span {
+                &:first-of-type {
+                  display: flex;
+                  width: 1.5em;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+                > p {
+                  &:last-of-type {
+                    font-size: 0.8em;
+                    color: #f1822d;
+                  }
+                  font-size: 0.6em;
+                  width: max-content;
+                  font-weight: 600;
+                }
+              }
+            }
+            p {
+              font-size: 0.9em;
+            }
+          }
+        }
+      }
+    }
+    > div,
+    form {
+      padding: 0.5em;
+    }
+    @media screen and (max-width: 1024px) {
+      flex-wrap: wrap;
+      > div,
+      > form {
+        width: 49% !important;
+      }
+      > div {
+        &:last-of-type {
+          width: 100% !important;
+        }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      > div,
+      > form {
+        width: 100% !important;
+      }
+      > div {
+        &:last-of-type {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .GiftCardDetailed {
+    .__cardDetail {
+      .__name {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin: 0;
+      }
+      .__valid {
+        font-size: 1em;
+      }
+      .__imageContainer {
+        padding: 0.5em 0.5em 0 0;
+        position: relative;
+        width: 100%;
+        margin: auto;
+        .__discount {
+          position: absolute;
+          color: #2e2e2e;
+          top: 0;
+          right: 0;
+          /* border: 1px solid #2e2e2e; */
+          padding: 0.1em 0.5em;
+          /* border: 2px solid #2e2e2e; */
+          box-shadow: 1px 1px 0px gray;
+          background: #fdfc26;
+          border-radius: 15px 0px 15px 0px;
+          color: #f31c09;
+        }
+        .__img {
+          width: 100%;
+          height: 100%;
+          border-radius: 0.4em;
+        }
+      }
+      .__validity {
+        font-size: 1em;
+        color: #f1822d;
+        padding: 0.5em 0.5em;
+      }
+    }
+    .__cardForm {
+      width: 31%;
+      display: flex;
+      flex-direction: column;
+      // gap: 0.9em;
+      justify-content: space-evenly;
+      .__denominationFixed {
+        display: flex;
+        // flex-wrap: wrap;
+        gap: 0.1em;
+        align-items: baseline;
+        font-size: 1em;
+        font-weight: 400;
+        .__denominationBtn {
+          margin: 0 0.5em 0.2em 0em;
+        }
+      }
+      .__denominationVary {
+        width: 100%;
+        .__denominationInput {
+          width: 100%;
+        }
+      }
+      .__quentity {
+        .__quentityInput {
+          width: 100%;
+          select {
+            min-width: 3.3em;
+          }
+        }
+      }
+      .__deliveryOptions {
+        label {
+          font-size: 1em;
+          color: #2e2e2e;
+        }
+        > div {
+          label {
+            > span {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+      .OurTermNdConditions {
+        margin: 0;
+        display: none;
+        > div {
+          margin: 0;
+        }
+      }
+    }
+    .__offerContainer {
+      width: 31%;
+      display: flex;
+      flex-direction: column;
+      ul {
+        padding: 0.9em 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        li {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5em;
+          > span {
+            &:first-of-type {
+              > span {
+                &:first-of-type {
+                  display: flex;
+                  width: 1.5em;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+                > p {
+                  &:last-of-type {
+                    font-size: 0.8em;
+                    color: #f1822d;
+                  }
+                  font-size: 0.6em;
+                  width: max-content;
+                  font-weight: 600;
+                }
+              }
+            }
+            p {
+              font-size: 0.9em;
+            }
+          }
+        }
+      }
+    }
+    > div,
+    form {
+      padding: 0.5em;
+    }
+    @media screen and (max-width: 1024px) {
+      flex-wrap: wrap;
+      > div,
+      > form {
+        width: 49% !important;
+      }
+      > div {
+        &:last-of-type {
+          width: 100% !important;
+        }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      > div,
+      > form {
+        width: 100% !important;
+      }
+      > div {
+        &:last-of-type {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+}
+@media screen and (max-width: 320px) {
 }

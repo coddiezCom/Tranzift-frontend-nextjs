@@ -1,6 +1,7 @@
 import React from "react";
 // Styles
-import styles from "@/styles/privacy_center.module.scss";
+import styles from "../../styles/privacy_center.module.scss";
+import footerLinkStyles from "../../styles/footerLinks.module.scss";
 // MDX Utility
 import fs from "fs";
 import path from "path";
@@ -8,10 +9,10 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 // Components
-import { BannerWithoutSwiper } from "@/components/Banner";
+import { BannerWithoutSwiper } from "../../components/Banner";
 // Layout
-import FooterLinkLayout from "@/Layout/FooterLinkLayout";
-const Index = ({ frontMatter, mdxSource }) => {
+import FooterLinkLayout from "../../Layout/FooterLinkLayout";
+const index = ({ frontMatter, mdxSource }) => {
   const data = {
     title: {
       enableTypewriter: true,
@@ -40,7 +41,7 @@ const Index = ({ frontMatter, mdxSource }) => {
     },
   };
   return (
-    <div className={styles.__container}>
+    <div className={`${styles.__container} ${footerLinkStyles.__container}`}>
       <div className={styles.__banner}>
         <BannerWithoutSwiper data={data} />
       </div>
@@ -66,4 +67,4 @@ export async function getServerSideProps() {
     },
   };
 }
-export default Index;
+export default index;

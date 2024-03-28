@@ -1,23 +1,49 @@
+// import React Liabary
 import { useState } from "react";
-import styles from "./styles.module.scss";
-// import { signOut } from "next-auth/react";
 import Link from "next/link";
-// import { HiMinusSm, HiPlusSm } from "react-icons/hi";
-import slugify from "slugify";
 import { useRouter } from "next/router";
-// import { TbArrowBadgeLeftFilled } from "react-icons/tb";
+// import styles
+import styles from "./styles.module.scss";
+// import slugify liabary
+import slugify from "slugify";
+// import react icons
 import { LiaAngleLeftSolid, LiaAngleRightSolid } from "react-icons/lia";
-
+// import redux liabary
+import { useDispatch } from "react-redux";
+import { SetUserDetail } from "../../../store/UserSlice";
+import { setCookie, destroyCookie } from "nookies";
 export default function Item({ item, visible, index }) {
   const [show, setShow] = useState(visible);
+  const dispatch = useDispatch();
   const router = useRouter();
   const signOut = () => {
-    console.log("signout");
+    dispatch(
+      SetUserDetail({
+        user_id: "",
+        email_id: "",
+        token: "",
+        firstName: "",
+        lastName: "",
+        phone: "",
+        defaultAddress: "",
+      })
+    );
+    destroyCookie(null, "token", {
+      path: "/",
+    });
+    router.push("/");
   };
   return (
     <li>
       {item.heading == "Sign out" ? (
         <b onClick={() => signOut()}>
+          <span className="flex items-center">
+            <span>{item?.icon}</span>
+            <span>{item.heading}</span>
+          </span>
+        </b>
+      ) : item.heading == "My Wallet" ? (
+        <b onClick={() => router.push(item.link)}>
           <span className="flex items-center">
             <span>{item?.icon}</span>
             <span>{item.heading}</span>
@@ -35,7 +61,6 @@ export default function Item({ item, visible, index }) {
       {show && (
         <ul>
           {item.links.map((link, i) => {
-            console.log(slugify(link.name, { lower: true }), router.query.q?.split("__")[0] || "", "test");
             return (
               <>
                 {link.link.startsWith("/profile/orders") ? (

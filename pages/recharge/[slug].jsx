@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
-// import DetailContent from "@/Components/Offers/DetailContent";
-import Banner from "@/components/Banner";
+import Banner from "../../components/Banner";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import PropTypes from "prop-types";
-// import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -15,12 +13,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-// import PersonIcon from "@mui/icons-material/Person";
-// import AddIcon from "@mui/icons-material/Add";
-// import Typography from "@mui/material/Typography";
 import { blue } from "@mui/material/colors";
 import Link from "next/link";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -821,7 +815,6 @@ const Slug = () => {
     }
   }, [router, whitelist]);
   const pageName = router.query.slug;
-  console.log(requestedBanner(pageName));
 
   return (
     <div className={styles.__mainContainer}>
