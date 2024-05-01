@@ -16,7 +16,7 @@ const Index = ({ posts, prevPosts, nextPosts }) => {
   return (
     <div className={style.main}>
       <Head>
-        <title>Blog | Coddiez - Best IT Solution</title>
+        <title>Blog | Tranzift</title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <meta name="robots" content="index, follow" />

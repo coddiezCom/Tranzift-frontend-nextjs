@@ -7,18 +7,10 @@ import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 // import styles
 import styles from "../../styles/gift-card.module.scss";
+// react-responsive
+import { useMediaQuery } from "react-responsive";
 const Index = ({ card, CardImg }) => {
-  const [card_img, setCard_img] = useState("");
-  useEffect(() => {
-    if (typeof window != "undefined") {
-      const windowWidth = window.innerWidth;
-      if (windowWidth < 768) {
-        setCard_img(CardImg.Mob);
-      } else {
-        setCard_img(CardImg.Web);
-      }
-    }
-  }, [CardImg.Mob, CardImg.Web]);
+  const isTablet = useMediaQuery({ query: "(max-width:768px)" });
   const discounts = [
     {
       startDate: "2023-08-13T18:30:00+0000",
@@ -63,7 +55,9 @@ const Index = ({ card, CardImg }) => {
           component="img"
           className={styles.__img}
           alt={"card.productName"}
-          image={card_img ? card_img : "/images/gift_card/Fastrack_E-Gift_Card_dtp.jpg"}
+          image={
+            CardImg?.Mob ? (isTablet ? CardImg?.Mob : CardImg.Web) : "/images/gift_card/Fastrack_E-Gift_Card_dtp.jpg"
+          }
         />
       </div>
     </CardContent>

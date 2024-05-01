@@ -378,58 +378,6 @@ export const BusinessPayment = () => {
     </div>
   );
 };
-export const Invoice = () => {
-  const data = {
-    companyDetail: {
-      logo: {
-        url: "/logo.png",
-        alt: "company logo",
-      },
-      contactDetail: {
-        address: {
-          line1: "One97 Communications Limited",
-          line2: " B-121 Sector 5 Noida 201301 Uttar Pradesh",
-        },
-        PAN: "AAACO4007A",
-        GSTIN: "09AAACO4007A123",
-        CIN: "L72200DL2000PLC108985",
-      },
-    },
-    userDetail: {
-      name: "Jaspreet singh",
-      contactDetail: {
-        email: "Jaspreetsingh09912@gmail.com",
-        phone: "1234567890",
-      },
-    },
-    heading: "INVOICE",
-    OrderId: "22869315180",
-    InvoiceNumber: "RU23000446588461",
-    InvoiceDate: "21 Jan, 2024, 11:03 AM",
-    PlaceOfSupply: "Delhi",
-    TRN_RefNo: "7058152052636102905958",
-    HSIN_Code: "998599/Other Support Services",
-    availService: {
-      name: "Gift-card",
-      amount: 100,
-      quentity: 1,
-      description: "Purchasing ",
-      GST: {
-        percent: 18,
-      },
-      SGST: {
-        percent: 9,
-      },
-      CGST: {
-        percent: 9,
-      },
-    },
-  };
-  return <div className={styles.__invoiceContainer}></div>;
-};
-export const Receipt = () => {
-  return <div></div>;
-};
 const index = () => {
   const bannerImages = [
     {
@@ -525,16 +473,12 @@ const index = () => {
     },
   };
   return (
-    // <div className={styles.__container}>
-    //   <Banner type="home" ImgData={bannerImages} />
-    //   <PayBillContainer />
-    //   <PayBillMiddleBanner />
-    //   <BusinessPayment />
-    //   <Faq hasBanner={true} header={"Frequently Asked Questions"} FaqData={FaqData} bannerData={FaqBannerData} />
-    // </div>
-    <div className="">
-      <Invoice />
-      <Receipt />
+    <div className={styles.__container}>
+      <Banner type="home" ImgData={bannerImages} />
+      <PayBillContainer />
+      <PayBillMiddleBanner />
+      <BusinessPayment />
+      <Faq hasBanner={true} header={"Frequently Asked Questions"} FaqData={FaqData} bannerData={FaqBannerData} />
     </div>
   );
 };

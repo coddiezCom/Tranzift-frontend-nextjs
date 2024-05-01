@@ -61,13 +61,6 @@ const Index = ({ categories }) => {
 
   return (
     <span className={`flex flex-row justify-end `}>
-      {/* <Select
-        options={options}
-        placeholder={"Select Category"}
-        value={value}
-        className={`w-56 ${styles.___CategoriesSelection} `}
-        onChange={changeHandler}
-      /> */}
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel id="demo-select-small-label">Select Category</InputLabel>
         <Select

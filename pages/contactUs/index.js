@@ -44,32 +44,6 @@ export const ContactUsForm = ({ heading }) => {
       .min(5, "Message must be at least 5 characters long.")
       .max(100, "Message must be less than 100 characters long."),
   });
-  // const signUpHandler = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const { data } = await axios.post("/api/auth/signup", {
-  //       name,
-  //       email,
-  //       phoneNumber,
-  //       message,
-  //     });
-  //     setUser({ ...user, error: "", success: data.message });
-  //     setLoading(false);
-  //     setTimeout(async () => {
-  //       let options = {
-  //         redirect: false,
-  //         email: email,
-  //         password: password,
-  //       };
-  //       const res = await signIn("credentials", options);
-  //       Router.push("/");
-  //     }, 2000);
-  //   } catch (error) {
-  //     setLoading(false);
-  //     setUser({ ...user, success: "", error: error.response.data.message });
-  //   }
-  // };
-
   return (
     <Card className={styles.__form}>
       <div className={styles.__form__header}>
@@ -144,23 +118,7 @@ export const ContactUsForm = ({ heading }) => {
   );
 };
 
-export const SideBar = () => {
-  const data = {
-    heading: "CONTACT US",
-    content: [
-      { h3: "Customer Delight" },
-      { p: "Call us at +917669665515 (10 am-7 pm, 7 days a week)" },
-      { p: "or" },
-      { p: "Write to us at support@tranzift.com" },
-      { h3: "Corporate Sales" },
-      {
-        p: "For all corporate sales related queries please write to us at sales@tranzift.com For bulk enquiries or sales associations please contact sales@tranzift.com",
-      },
-      { h3: "Office Address" },
-      { p: "Plot No. 600, G/F, Metro Pillar No. 531" },
-      { p: "Near Union Bank, Mundka, New Delhi - 110041" },
-    ],
-  };
+export const SideBar = ({ data }) => {
   return (
     <Card className={styles.__sideBar}>
       <div className={styles.__sideBar__heading}>
@@ -232,12 +190,27 @@ const index = () => {
     },
     alignItem: "center",
   };
-
+  const sideBarContent = {
+    heading: "CONTACT US",
+    content: [
+      { h3: "Customer Delight" },
+      { p: "Call us at +917669665515 (10 am-7 pm, 7 days a week)" },
+      { p: "or" },
+      { p: "Write to us at support@tranzift.com" },
+      { h3: "Corporate Sales" },
+      {
+        p: "For all corporate sales related queries please write to us at sales@tranzift.com For bulk enquiries or sales associations please contact sales@tranzift.com",
+      },
+      { h3: "Office Address" },
+      { p: "Plot No. 600, G/F, Metro Pillar No. 531" },
+      { p: "Near Union Bank, Mundka, New Delhi - 110041" },
+    ],
+  };
   return (
     <div className={styles.contactUs__container}>
       <BannerWithoutSwiper data={data} />
       <div className={styles.__card}>
-        <SideBar />
+        <SideBar data={sideBarContent} />
         <ContactUsForm heading={"HAVE A QUESTION?"} />
       </div>
     </div>

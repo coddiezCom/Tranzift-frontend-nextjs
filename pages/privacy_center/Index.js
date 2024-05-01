@@ -45,8 +45,6 @@ const index = ({ frontMatter, mdxSource }) => {
       <div className={styles.__banner}>
         <BannerWithoutSwiper data={data} />
       </div>
-      {/* <BestGiftingOption data={bestGiftingOption} /> */}
-      {/* <MoreAboutUs data={moreAboutUs} /> */}
       <FooterLinkLayout>
         <MDXRemote {...mdxSource} />
       </FooterLinkLayout>

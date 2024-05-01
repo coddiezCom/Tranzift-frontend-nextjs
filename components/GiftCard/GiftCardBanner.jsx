@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 // import styles
 import styles from "../../styles/gift-card.module.scss";
 
-const Index = () => {
+const Index = ({ banner }) => {
   const isMedium = useMediaQuery({ query: "(max-width:850px)" });
   const isMobile = useMediaQuery({ query: "(max-width:600px)" });
   const isTablet = useMediaQuery({ query: "(max-width:768px)" });
@@ -17,7 +17,7 @@ const Index = () => {
         <Image
           width={1200}
           height={1200}
-          src={!isTablet ? "/images/banner/gift_card_banner.jpg" : "/images/banner/gift_card_banner_Tablet.jpg"}
+          src={isTablet ? banner?.tablet_img : banner?.laptop_img}
           alt="Gift Card Banner"
         />
       </span>

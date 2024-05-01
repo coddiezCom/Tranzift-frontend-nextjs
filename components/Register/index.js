@@ -58,8 +58,6 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
         email: formData.email,
         password: formData.password,
       });
-
-      // console.log(loginRes, "loginRes");
       dispatch(
         SetUserDetail({
           user_id: loginRes.user._id,
@@ -67,7 +65,7 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
           token: loginRes.token,
           firstName: loginRes.user.firstName,
           lastName: loginRes.user.lastName,
-          phone: loginRes.user.phone,
+          phone: loginRes.user.phoneNo,
           defaultAddress: loginRes.user.defaultAddress,
         })
       );
@@ -102,7 +100,7 @@ export const LoginForm = ({ gotoSignUp, handleModal }) => {
               </Link>
             </div>
           )}
-          <h3 className="mt-1 text-center text-xl font-extrabold text-gray-700 font-serif">Sign In To Tranzift</h3>
+          <h3 className="mt-1 text-center text-xl font-extrabold text-gray-700 font-serif ">Sign In To Tranzift</h3>
         </div>
         <Box
           className={styles.LoginForm}
@@ -292,6 +290,7 @@ export const SignUpForm = ({ goToLogin, toggleUserMenu }) => {
       const signup = await apiHelper(baseUrl, {}, "POST", {
         firstName: formData1?.fName,
         lastName: formData1?.lName,
+        phoneNo: formData1?.phone,
         // userName: formData1?.userName,
         email: formData1?.email,
         password: formData1?.password,
@@ -300,6 +299,7 @@ export const SignUpForm = ({ goToLogin, toggleUserMenu }) => {
       // console.log(signup, "signup");
       if (signup.status == "success") {
         // console.log("success");
+        console.log(signup, "signup");
         dispatch(
           SetUserDetail({
             user_id: signup.user._id,
@@ -307,9 +307,15 @@ export const SignUpForm = ({ goToLogin, toggleUserMenu }) => {
             token: signup?.token,
             firstName: signup?.user?.firstName,
             lastName: signup?.user?.lastName,
-            phone: signup?.user?.phone,
+            phone: signup?.user?.phoneNo,
           })
         );
+        // Set the token in a cookie
+        setCookie(null, "token", signup.token, {
+          path: "/", // Set the cookie path
+          maxAge: 24 * 60 * 60, // Cookie expiration time in seconds (e.g., 30 days)
+          // Other options can be set as well, such as 'secure', 'httpOnly', 'sameSite', etc.
+        });
         toggleUserMenu(false);
       } else {
         alert("error");
@@ -538,7 +544,7 @@ const Index = ({ toggleUserMenu }) => {
   return (
     <>
       <div onClick={() => handleModal(true)} className={styles.registerBtn}>
-        Register
+        Login/Signup
       </div>
       <Modal
         open={toggleRegisterPopup}

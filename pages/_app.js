@@ -38,10 +38,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setReload(false);
   }, []);
 
-  const country = {
-    name: "Morocco",
-    flag: "https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",
-  };
   // Check if the current route is '/browse'
   const isBrowsePage = router.pathname === "/browse";
   const isCartPage = router.pathname === "/cart";
@@ -88,9 +84,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             pauseOnHover
             theme="colored"
           />
-          {isHeaderIsVisible && <Header country={country} />}
+          {isHeaderIsVisible && <Header />}
           <Component {...pageProps} />
-          {isFooterIsVisible && <Footer country={country} />}
+          {isFooterIsVisible && <Footer />}
         </PersistGate>
       </Provider>
     </>

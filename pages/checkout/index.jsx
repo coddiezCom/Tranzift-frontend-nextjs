@@ -347,6 +347,7 @@ export const TermAndConditionModal = ({ data }) => {
   );
 };
 export const OrderSummary = ({ doPayment, giftCardState, handleDiscount, discount, gift_card, gift_card_coupon }) => {
+  console.log(discount);
   const [showMoreCoupon, setShowMoreCoupon] = useState(null);
   const [couponData, setCouponData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -434,8 +435,7 @@ export const OrderSummary = ({ doPayment, giftCardState, handleDiscount, discoun
           <div className=" w-full mx-3">
             <div className="relative border-2 border-gray-400 rounded-md mt-3">
               <label for="Search" className="sr-only">
-                {" "}
-                Search{" "}
+                Search
               </label>
               <input
                 type="text"
@@ -467,7 +467,7 @@ export const OrderSummary = ({ doPayment, giftCardState, handleDiscount, discoun
             <span className="appliedCouponDesc flex flex-row justify-center ">
               {discount.type && (
                 <span className="text-xs text-green-700 my-1">
-                  {discount?.type.toUpperCase()} of ₹{discount?.discountAmount} will be credited on sucessful payment
+                  {discount?.type.toUpperCase()} ₹{discount?.discountAmount} will be credited on sucessful payment
                 </span>
               )}
               {/* <span className="text-xs text-red-700 my-1">cashback of ₹10 will be credited on sucessful payment</span> */}
@@ -547,16 +547,16 @@ const Index = ({ gift_card, gift_card_coupon, sku, error }) => {
   });
   const handleDiscount = async (coupon, type) => {
     if (type === "Write_Code") {
-      toast.success(`coply to clipboard: Write_Code`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      // toast.success(`coply to clipboard: Write_Code`, {
+      //   position: "top-right",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      // });
     } else if (type === "Remove_Code") {
       setDiscount({
         value: "",
@@ -621,7 +621,6 @@ const Index = ({ gift_card, gift_card_coupon, sku, error }) => {
   initializeSDK();
   const UserDetail = useSelector((state) => state.userDetail);
   const doPayment = async () => {
-    console.log(discount);
     try {
       const sampleData = {
         amount: discount?.netAmount,
@@ -629,9 +628,11 @@ const Index = ({ gift_card, gift_card_coupon, sku, error }) => {
         username: UserDetail?.firstName + UserDetail?.lastName,
         name: UserDetail?.firstName,
         email: UserDetail?.email_id,
-        mobile: "8130184926",
+        mobile: `${UserDetail?.phone}`,
       };
-      const orderResponse = await axios.post("http://127.0.0.1:8000/api/v1/payment/createorder", sampleData);
+      // INTEGRATE THROUGH "apiHelper" function
+      const orderResponse = await axios.post("http://localhost:8000/api/v1/payment/createorder", sampleData);
+
       let checkoutOptions = {
         paymentSessionId: orderResponse.data.data.payment_session_id,
         redirectTarget: "_self",

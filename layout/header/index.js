@@ -68,7 +68,7 @@ const mobileLinks = [
     icon: "",
   },
 ];
-export default function Header({ country, searchHandler }) {
+export default function Header({ searchHandler }) {
   const [showNavShadow, setShowNavShadow] = useState(false);
   useEffect(() => {
     if (typeof document != "undefined") {

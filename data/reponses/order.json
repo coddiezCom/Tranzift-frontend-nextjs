@@ -3,8 +3,8 @@
     "firstname": "Akash Singh",
     "country": "IN",
     "postcode": 110046,
-    "email": "akas21901@gmail.com",
-    "telephone": "+918130184926"
+    "email": "jassi09912@gmail.com",
+    "telephone": "+918586832717"
   },
   "billing": {
     "firstname": "Akash Singh",
@@ -13,14 +13,14 @@
     "region": "Delhi",
     "country": "IN",
     "postcode": 110046,
-    "email": "akas21901@gmail.com",
-    "telephone": "+918130184926"
+    "email": "jassi09912@gmail.com",
+    "telephone": "+918586832717"
   },
   "payments": [
     {
       "code": "svc",
       "amount": 100,
-      "poNumber": "akas21901"
+      "poNumber": "jassi09912"
     }
   ],
   "products": [
@@ -35,9 +35,9 @@
         "ifscCode": "SBIN0030262",
         "name": "Akash Singh",
         "accountNumber": "1234567890123456",
-        "telephone": "+918130184926",
+        "telephone": "+918586832717",
         "transactionType": "IMPS",
-        "email": "akas21901@gmail.com"
+        "email": "jassi09912@gmail.com"
       }
     }
   ],

@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 import Image from "next/image";
-export default function Copyright({ country }) {
+export default function Copyright({}) {
   const date = dayjs();
   const companyName = "Tranzift";
   const companyLogo = "/logo.png";

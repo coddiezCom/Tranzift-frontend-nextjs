@@ -153,7 +153,7 @@ const Index = ({ formik, handleformChange }) => {
                 <button
                   type="button"
                   onClick={() => showRegistration(true)}
-                  className={`${styles.__submit} transition hover:scale-105 ease-in-out duration-700 `}
+                  className={`${styles.__submit} transition hover:scale-105 ease-in-out duration-700  `}
                 >
                   Proceed to checkout (SignIn required)
                 </button>

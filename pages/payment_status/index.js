@@ -27,6 +27,7 @@ import PropTypes from "prop-types";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { UserDetail } from "../../store/UserSlice";
 const formatTransactionId = (txnId) => {
   const formattedTxnId = txnId.replace(/^(\w{3})(\d{4})(\d{4})(\d{4})(\d{4})$/, "$1-$2-$3-$4-$5");
   return formattedTxnId;
@@ -51,37 +52,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-function CircularProgressWithLabel(props) {
-  return (
-    <Box sx={{ position: "relative", display: "inline-flex", zIndex: 100 }}>
-      <CircularProgress color="success" variant="determinate" {...props} />
-      <Box
-        sx={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: "absolute",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Typography variant="caption" component="div" sx={{ fontWeight: "bold" }} color="#2681fc">
-          {`${Math.round(props.value)}`}
-        </Typography>
-      </Box>
-    </Box>
-  );
-}
-CircularProgressWithLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
-   * @default 0
-   */
-  value: PropTypes.number.isRequired,
-};
 
 export function PaymentStatusCard({ paymentResponseData }) {
   const { order_id, order_amount, order_status, order_date, order_details } = paymentResponseData;
@@ -191,10 +161,8 @@ export function PaymentStatusCard({ paymentResponseData }) {
     </>
   );
 }
+
 const PaymentStatus = ({ paymentOrder, error }) => {
-  const [progress, setProgress] = useState(1);
-  const [transactionData, setTransactionData] = useState("");
-  const [userAddress, setUserAddress] = useState("");
   const router = useRouter();
   const paymentResponseData = {
     order_id: paymentOrder?.orderDetails?.order_id,
@@ -207,84 +175,14 @@ const PaymentStatus = ({ paymentOrder, error }) => {
   const userDetail = useSelector((state) => state.userDetail);
   const giftCardDetail = useSelector((state) => state.giftCardDetail);
   const paymentOrderStatus = paymentOrder?.orderDetails?.order_status;
-  useEffect(() => {
-    const fetchAddressDetail = async () => {
-      try {
-        const baseUrl = `address/get-all-address?associatedUser=${userDetail?.user_id}`;
-        const response = await apiHelper(
-          baseUrl,
-          {
-            associatedUser: userDetail?.user_id,
-          },
-          "GET"
-        );
-      } catch (error) {
-        console.log("Error fetching address:", error);
-      }
-    };
-    fetchAddressDetail();
-  }, [userDetail?.user_id]);
-  useEffect(() => {
-    const fetchTransaction = async () => {
-      try {
-        // console.log(paymentOrder);
-        // {
-        //   orderDetails: {
-        //     cart_details: null,
-        //     cf_order_id: '2171450296',
-        //     created_at: '2024-03-12T16:09:45+05:30',
-        //     customer_details: {
-        //       customer_id: '65e968b4de651fb93ff77dde',
-        //       customer_name: 'Jaspreet',
-        //       customer_email: 'jassi09912@gmail.com',
-        //       customer_phone: '8130184926',
-        //       customer_uid: null
-        //     },
-        //     entity: 'order',
-        //     order_amount: 100,
-        //     order_currency: 'INR',
-        //     order_expiry_time: '2024-04-11T16:09:45+05:30',
-        //     order_id: 'TXN5258331712032024',
-        //     order_meta: {
-        //       return_url:
-        //         'http://127.0.0.1:3000/payment_status?order_id=TXN5258331712032024',
-        //       notify_url: null,
-        //       payment_methods: null
-        //     },
-        //     order_note: null,
-        //     order_splits: [],
-        //     order_status: 'PAID',
-        //     order_tags: null,
-        //     payment_session_id:
-        //       'session_y2U2pAaTqV1HhKoa7fVcGs5Yt2PNlPA7TD43fGY3d1aiVw_h-P1kEEdx5w7UMbex-3hTTNO0KL-tLPbYvkMM7giMfI5MJn77qo9QJjsAt97K',
-        //     terminal_data: null
-        //   }
-        // }
-        const baseUrl = "transaction/create-transaction";
-        const trn = await apiHelper(baseUrl, {}, "POST", {
-          userEmail: userDetail.email_id,
-          cashFreeOrderId: paymentOrder?.orderDetails.cf_order_id,
-          TXNID: paymentOrder?.orderDetails?.order_id,
-          TXNAmount: paymentOrder?.orderDetails?.order_amount,
-          Status: paymentOrder?.orderDetails?.order_status,
-        });
-
-        setTransactionData(trn);
-      } catch (error) {
-        console.error("Error fetching transaction:", error);
-      }
-    };
-    fetchTransaction();
-  }, [paymentOrder, userDetail]);
 
   useEffect(() => {
-    if (paymentOrderStatus === "PAID") {
-      createWoohooOrder();
+    if (paymentOrderStatus === "PAID" || paymentOrderStatus === "ACTIVE") {
+      createWoohooOrder(paymentOrderStatus);
     }
-  }, [paymentOrderStatus]);
+  }, []);
 
-  const createWoohooOrder = async () => {
-    const randomNumber = Math.floor(Math.random() * 1000000);
+  const createWoohooOrder = async (payStatus) => {
     try {
       const baseUrl = "woohooproduct/create-order";
       const check = await apiHelper(baseUrl, {}, "POST", {
@@ -293,75 +191,54 @@ const PaymentStatus = ({ paymentOrder, error }) => {
           country: "IN",
           postcode: 110046,
           email: userDetail?.email_id,
-          telephone: "+918130184926",
+          telephone: userDetail.phoneNo ? userDetail.phoneNo : "+918586832717",
           billToThis: true,
         },
-        // billing: {
-        //   firstname: "Akash Singh",
-        //   line1: "Falt No-1",
-        //   city: "New Delhi",
-        //   region: "Delhi",
-        //   country: "IN",
-        //   postcode: 110046,
-        //   email: "akas21901@gmail.com",
-        //   telephone: "+918130184926",
-        // },
         payments: [
           {
             code: "svc",
             amount: giftCardDetail?.denomination * giftCardDetail?.quantity,
-            poNumber: "akas21901",
+            poNumber: "jassi09912",
           },
         ],
         products: [
           {
-            sku: "GBV2PLEGC001",
+            sku: giftCardDetail?.sku,
             price: giftCardDetail?.denomination,
             qty: giftCardDetail?.quantity,
             currency: "356",
-            // payout: {
-            //   id: "a1",
-            //   type: "BANK_ACCOUNT",
-            //   ifscCode: "SBIN0030262",
-            //   name: giftCardDetail?.reciver_name,
-            //   accountNumber: "1234567890123456",
-            //   telephone: giftCardDetail?.reciver_phone_number || "+918130184926",
-            //   transactionType: "IMPS",
-            //   email: giftCardDetail?.reciver_email || "akas21901@gmail.com",
-            // },
           },
         ],
-        refno: `refno${randomNumber}`,
         deliveryMode: "API",
         userEmail: userDetail?.email_id,
+        paymentStatus: payStatus,
       });
-      // check && console.log(check, "check");
+
+      if (check.status === "success") {
+        setTimeout(() => {
+          router.push("/");
+        }, 3000);
+
+        const baseUrl = "transaction/create-transaction";
+        const trn = await apiHelper(baseUrl, {}, "POST", {
+          userEmail: userDetail.email_id,
+          orderId: check.localOrder._id,
+          cashFreeOrderId: paymentOrder?.orderDetails.cf_order_id,
+          TXNID: paymentOrder?.orderDetails?.order_id,
+          TXNAmount: paymentOrder?.orderDetails?.order_amount,
+          Status: paymentOrder?.orderDetails?.order_status,
+        });
+      }
     } catch (error) {
       console.error("Error creating Woohoo order:", error);
     }
   };
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
-    }, 8000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-  if (progress == 99) {
-    router.push("/");
-  }
   return (
     <div className={styles.__container}>
       <Head>
         <title>Tranzift - Payment Status</title>
       </Head>
-      <div className={styles.__progress}>
-        <span>Redirecting to order page</span>
-        <CircularProgressWithLabel value={progress} />
-      </div>
-      {/* <Header usedFor={"payment_status"} /> */}
       <PaymentStatusCard paymentResponseData={paymentResponseData} />
     </div>
   );

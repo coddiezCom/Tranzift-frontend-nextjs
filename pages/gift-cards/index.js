@@ -1,19 +1,12 @@
-// import react liabary
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import styles from "../../styles/gift-card.module.scss";
-// import Infinite Scroll
 import InfiniteScroll from "react-infinite-scroll-component";
-// import api helper
 import apiHelper from "../../utils/apiHelper";
-// import loader
 import PulseLoader from "react-spinners/PulseLoader";
-// import components
 import GiftCard from "../../components/GiftCard/GiftCard";
 import GiftCardBanner from "../../components/GiftCard/GiftCardBanner";
 import CategorySelection from "../../components/GiftCard/CategorySelection";
-// import Sorting from "@/components/GiftCard/Sorting";
-import SearchBar from "../../components/GiftCard/SearchBar";
+
+import styles from "../../styles/gift-card.module.scss";
 
 const SkeletonLoader = () => {
   return (
@@ -22,6 +15,7 @@ const SkeletonLoader = () => {
     </div>
   );
 };
+
 const GiftCardList = ({ cards }) => {
   return (
     <div className={styles.__giftCards}>
@@ -35,38 +29,38 @@ const GiftCardList = ({ cards }) => {
     </div>
   );
 };
-const Index = ({ woohooGiftsCard, woohooGiftsCardCategories, error, skuData }) => {
-  const router = useRouter();
+
+const Index = ({ woohooGiftsCardCategories, error, skuData }) => {
   const [displayedCards, setDisplayedCards] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const pageSize = 20; // Number of cards to load per page
-  console.log(skuData, "sku");
+
   useEffect(() => {
-    // Update displayedCards when woohooGiftsCard prop changes
     setDisplayedCards(skuData.slice(0, pageSize));
     setHasMore(skuData.length > pageSize);
   }, [skuData]);
 
   const fetchMoreData = () => {
     setTimeout(() => {
-      // Simulate fetching more data. In a real application, you would fetch data from an API.
       const nextBatch = skuData.slice(displayedCards.length, displayedCards.length + pageSize);
 
-      // If there are no more cards to load, set hasMore to false
       if (nextBatch.length === 0) {
         setHasMore(false);
       }
       setDisplayedCards([...displayedCards, ...nextBatch]);
     }, 1500);
   };
+  const banner = {
+    laptop_img: "/images/banner/gift_card_banner.jpg",
+    tablet_img: "/images/banner/gift_card_banner_Tablet.jpg",
+  };
+
   return (
     <>
       <div className={`${styles.__giftCardContainer} `}>
-        <GiftCardBanner />
+        <GiftCardBanner banner={banner} />
         <div className={styles.__GiftCardSearch}>
           <CategorySelection categories={woohooGiftsCardCategories} />
-          {/* <Sorting /> */}
-          {/* <SearchBar cards={woohooGiftsCard} /> */}
         </div>
         <div className={`${styles.__giftCards} ${styles.__giftCardsContainer}`}>
           <InfiniteScroll
@@ -83,6 +77,7 @@ const Index = ({ woohooGiftsCard, woohooGiftsCardCategories, error, skuData }) =
   );
 };
 export default Index;
+
 export async function getServerSideProps(context) {
   try {
     const { query } = context;
@@ -109,7 +104,6 @@ export async function getServerSideProps(context) {
     return {
       props: {
         error: null,
-        woohooGiftsCard: woohooGiftsCards,
         woohooGiftsCardCategories: getWoohooGiftCardsCategory.data,
         skuData: woohooGiftsCards,
       },
@@ -120,55 +114,47 @@ export async function getServerSideProps(context) {
         error: {
           message: error.message || "An error occurred",
         },
-        woohooGiftsCard: null,
         woohooGiftsCardCategories: null,
         skuData: null,
       },
     };
   }
 }
+
 const getWoohooGiftCards = async (isActive, sort, minPrice, fields, page, limit) => {
   const baseUrl = "giftcards/allCards";
+  const data = {
+    isActive: isActive,
+    sort: sort,
+    fields: fields,
+    page: page,
+    limit: limit,
+  };
+
   try {
-    // const searchResult = await axios.get(baseUrl);
-    const searchResult = await apiHelper(
-      baseUrl,
-      {
-        isActive: isActive,
-        sort: sort,
-        // minPrice: minPrice,
-        fields: fields,
-        page: page,
-        limit: limit,
-      },
-      "GET",
-      null
-    );
+    const searchResult = await apiHelper(baseUrl, data, "GET", null);
     return searchResult;
   } catch (error) {
-    console.error("Error fetching gift cards:", error);
     return "error";
   }
 };
+
 const getWoohooGiftCardsCategories = async () => {
   const baseUrl = "categories/get-all-category";
   try {
-    // const searchResult = await axios.get(baseUrl);
     const searchResult = await apiHelper(baseUrl);
     return searchResult;
   } catch (error) {
-    console.error("Error fetching gift cards:", error);
     return "error";
   }
 };
+
 const getGiftCardDetailsByCategoryId = async (id) => {
   const baseUrl = `categories/get-category/${id}`;
   try {
-    // const searchResult = await axios.get(baseUrl);
     const searchResult = await apiHelper(baseUrl);
     return searchResult.includedProducts;
   } catch (error) {
-    console.error("Error fetching gift cards:", error);
     return "error";
   }
 };

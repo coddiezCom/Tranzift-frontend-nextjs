@@ -3,7 +3,6 @@ import React from "react";
 import styles from "../../styles/aboutUs.module.scss";
 // Components
 import { BannerWithoutSwiper } from "../../components/Banner";
-import { MdOutlineLocalOffer } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 export const Card = ({ data }) => {
@@ -38,75 +37,6 @@ export const BestGiftingOption = ({ data }) => {
   );
 };
 export const MoreAboutUs = ({ data }) => {
-  // const data = [
-  //   {
-  //     heading: "Selecting Recipient",
-  //     content: {
-  //       p: [
-  //         "After you've chosen the perfect e-gift card and completed the purchase, you'll be prompted to provide the recipient's email address. Please double-check for accuracy to ensure smooth delivery.",
-  //       ],
-  //     },
-  //   },
-  //   {
-  //     heading: "Personalize Your Message",
-  //     content: {
-  //       p: [
-  //         "Make the gift extra special by adding a personal message. Your words will be included in the email sent to the recipient.",
-  //       ],
-  //     },
-  //   },
-  //   {
-  //     heading: "Delivery Time",
-  //     content: {
-  //       p: [
-  //         "Most e-gift cards are sent instantly. However, you can also schedule delivery for a specific date and time, making it perfect for special occasions.",
-  //       ],
-  //     },
-  //   },
-  //   {
-  //     heading: "Confirmation Email",
-  //     content: {
-  //       p: [
-  //         "After successful delivery, you'll receive a confirmation email. If you don't see it in your inbox, please check your spam folder.",
-  //       ],
-  //     },
-  //   },
-  //   {
-  //     heading: "Support",
-  //     content: {
-  //       p: [
-  //         "If you encounter any issues with e-gift card delivery, don't hesitate to contact our customer support team. We're here to assist you.",
-  //       ],
-  //     },
-  //   },
-  //   {
-  //     heading: "FAQs",
-  //     content: {
-  //       QuesNdAns: [
-  //         {
-  //           heading: "How do I know if the e-gift card has been delivered?",
-  //           desc: "You'll receive a confirmation email once the e-gift card has been successfully sent to the recipient's email address.",
-  //         },
-  //         {
-  //           heading: "Can I resend the e-gift card if the recipient didn't receive it?",
-  //           desc: "Yes, please contact our support team, and we'll assist you in resolving any delivery issues.",
-  //         },
-  //         {
-  //           heading: "Can I change the delivery date for a scheduled e-gift card?",
-  //           desc: "Yes, you can change the delivery date as long as it hasn't been delivered yet. Contact our support for assistance.",
-  //         },
-  //       ],
-  //     },
-  //   },
-  //   {
-  //     heading: "",
-  //     content: {
-  //       p: [
-  //         "Thank you for choosing Tranzift for your e-gift card needs. We aim to make gifting as easy and delightful as possible.",
-  //       ],
-  //     },
-  //   },
-  // ];
   return (
     <div className={styles.__moreAboutUs}>
       {data.map((item, index) => {

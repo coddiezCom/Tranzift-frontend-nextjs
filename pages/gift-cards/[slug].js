@@ -1,38 +1,36 @@
 // import react liabary
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import axios from "axios";
 import Head from "next/head";
-import styles from "../../styles/gift-card.module.scss";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+
+import * as yup from "yup";
+import axios from "axios";
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+
 // import MUI Components
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import PropTypes from "prop-types";
 import { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { setGiftCardDetail } from "../../store/GiftCardSlice";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-// import form validation
-import * as yup from "yup";
-import { useFormik } from "formik";
-// import toast
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-// import utility
+
 import apiHelper from "../../utils/apiHelper";
-// import react-icons
-import { TfiGift } from "react-icons/tfi";
-// import components
+import { setGiftCardDetail } from "../../store/GiftCardSlice";
 import GiftCardDetails from "../../components/GiftCard/GiftCardDetails";
 import DeliveryMode from "../../components/GiftCard/DeliveryMode";
 import BuyForSelf from "../../components/GiftCard/BuyForSelf";
+import { SetToggleRegisterPopup } from "../../store/ToggleRegisterPopup";
+import { TfiGift } from "react-icons/tfi";
+import "react-toastify/dist/ReactToastify.css";
+import styles from "../../styles/gift-card.module.scss";
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -82,23 +80,28 @@ MyFormControlLabel.propTypes = {
    */
   value: PropTypes.any,
 };
-const Index = ({ gift_card, error, sku, gift_cardDetail }) => {
+const Index = ({ gift_card, gift_cardDetail, error, sku }) => {
   const router = useRouter();
+  const { userDetail } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   const giftCardInitialState = useSelector((state) => state.giftCardDetail);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState("send_as_Gift");
+  console.log(gift_card, "gift_card");
+
   const minDenomination = gift_card?.price?.min ? gift_card?.price?.min : 1;
   const maxDenomination = gift_card?.price?.max ? gift_card?.price?.max : 100;
   // formik Validations
   const validationSchema = yup.object().shape({
     quantity: yup
       .number()
+      .required("qua")
       .positive("Quantity should be a positive number")
       .typeError("Quantity should be a number")
       .min(1, "Quantity should be at least 1")
       .max(10, "Quantity can't be more than 10"),
     denomination: yup
       .number()
+      .required("denomination is required ")
       .positive("Denomination should be a positive number")
       .typeError("Denomination should be a number")
       .min(minDenomination, `Denomination should be at least ${minDenomination}`)
@@ -127,7 +130,6 @@ const Index = ({ gift_card, error, sku, gift_cardDetail }) => {
     reciver_message: yup.string().max(200, "Message should be at most 200 characters"),
   });
   // formik
-  console.log(gift_card);
   const formik = useFormik({
     initialValues: {
       sku: giftCardInitialState?.sku,
@@ -175,7 +177,7 @@ const Index = ({ gift_card, error, sku, gift_cardDetail }) => {
       {
         url: "/images/icons/addWallet.jpg",
         alt: "addWallet",
-        content: "The e-gift card that you order from this page, will be added to your Woohoo account automatically.",
+        content: "The e-gift card that you order from this page, will be added to your Tranzift account automatically.",
       },
       {
         url: "/images/icons/secure.jpg",
@@ -184,18 +186,35 @@ const Index = ({ gift_card, error, sku, gift_cardDetail }) => {
       },
     ],
   };
+  const showRegistration = (value) => {
+    dispatch(SetToggleRegisterPopup(value));
+  };
+  const buyForSelfCheckOut = () => {
+    console.log(formik?.errors, "formik?.errors");
+    if (!formik?.errors) {
+      dispatch(
+        setGiftCardDetail({
+          deliveryOption: "buy For Self",
+          denomination: giftCardInitialState?.denomination,
+          quantity: giftCardInitialState?.quantity || 1,
+          reciver_message: giftCardInitialState?.reciver_message,
+          reciver_email: userDetail?.email_id,
+          reciver_name: `${userDetail?.firstName} ${userDetail?.lastName}`,
+          reciver_phone_number: "",
+          sku: giftCardInitialState?.sku,
+          gift_card_name: gift_card?.name,
+          sku: gift_card?.sku,
+        })
+      );
+      router.push(`/checkout?gift_card=${gift_card?.sku}`);
+    }
+  };
   return (
     <>
       <Head>
-        <title>E-Gift Card</title>
-        <meta
-          name="description"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        />
-        <meta
-          name="Keyword"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        />
+        <title>{gift_card?.metaInformation?.meta?.title || "E-Gift Card"}</title>
+        <meta name="description" content={gift_card?.metaInformation?.meta?.description || "Description"} />
+        <meta name="Keyword" content={gift_card?.metaInformation?.meta?.keywords || "keywords"} />
       </Head>
       <ToastContainer
         position="top-right"
@@ -232,7 +251,28 @@ const Index = ({ gift_card, error, sku, gift_cardDetail }) => {
           {selectedDeliveryOption === "send_as_Gift" ? (
             <DeliveryMode formik={formik} handleformChange={handleformChange} />
           ) : (
-            <BuyForSelf data={buyForSeftData} />
+            <>
+              <div className={styles.__submitContainer}>
+                {userDetail?.token ? (
+                  <button
+                    type="submit"
+                    onClick={() => buyForSelfCheckOut()}
+                    className={`${styles.__submit} transition hover:scale-105 ease-in-out duration-700 `}
+                  >
+                    Proceed to checkout
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => showRegistration(true)}
+                    className={`${styles.__submit} transition hover:scale-105 ease-in-out duration-700 border-2  `}
+                  >
+                    Proceed to checkout (SignIn required)
+                  </button>
+                )}
+              </div>
+              <BuyForSelf data={buyForSeftData} />
+            </>
           )}
         </div>
         <div className={styles.__cardDesc}>
@@ -250,13 +290,6 @@ const Index = ({ gift_card, error, sku, gift_cardDetail }) => {
             <CustomTabPanel value={value} index={1} className={styles.__tabPanel}>
               <p dangerouslySetInnerHTML={{ __html: gift_card?.tnc?.content }} />
             </CustomTabPanel>
-            {/* <CustomTabPanel value={value} index={2} className={styles.__tabPanel}>
-              <ul>
-                {howToRedeem.map((item, index) => {
-                  return <li key={index}>{item}</li>;
-                })}
-              </ul>
-            </CustomTabPanel> */}
           </Box>
         </div>
       </div>

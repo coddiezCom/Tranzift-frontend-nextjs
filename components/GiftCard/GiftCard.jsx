@@ -1,13 +1,9 @@
-// import react liabrary
-import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-// import image
 import Image from "next/image";
-// import MUI Components
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-// import styles
+
 import styles from "../../styles/gift-card.module.scss";
 
 const Index = ({ card }) => {

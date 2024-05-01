@@ -9,7 +9,6 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 // Components
-import { BestGiftingOption, MoreAboutUs } from "../aboutUs";
 import { BannerWithoutSwiper } from "../../components/Banner";
 // Layout
 import FooterLinkLayout from "../../layout/FooterLinkLayout";

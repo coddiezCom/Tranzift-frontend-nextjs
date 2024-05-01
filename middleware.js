@@ -9,7 +9,7 @@ export async function middleware(req) {
     if (!hasSession) return NextResponse.redirect(`${origin}`);
   }
 
-  if (pathname.startsWith("/payment_status")) {
-    if (!hasSession) return NextResponse.redirect(`${origin}`);
-  }
+  // if (pathname.startsWith("/payment_status")) {
+  //   if (!hasSession) return NextResponse.redirect(`${origin}`);
+  // }
 }

@@ -16,32 +16,7 @@ export const Banner = () => {
     </div>
   );
 };
-export const BillPayContainer = () => {
-  const data = {
-    bannerImg: {
-      url: "/images/priceImg.png",
-      alt: "priceImg",
-    },
-    content: {
-      heading: "Tranzift Bill Pay",
-      subHeading: "Recharges & Bill Payments",
-      desc: "Lightning fast payments, exciting rewards and seamless transactions on every recharge & bill payment.",
-      service: [
-        {
-          content: "Grab exciting offers",
-          icon: <FaCheckCircle />,
-        },
-        {
-          content: "Win scratchcards",
-          icon: <FaCheckCircle />,
-        },
-        {
-          content: "No hidden charges",
-          icon: <FaCheckCircle />,
-        },
-      ],
-    },
-  };
+export const BillPayContainer = ({ data }) => {
   return (
     <div className={styles.__billPayContainer}>
       <div className={styles.__imgContainer}>
@@ -72,10 +47,35 @@ export const BillPayContainer = () => {
   );
 };
 const index = () => {
+  const BillPayData = {
+    bannerImg: {
+      url: "/images/priceImg.png",
+      alt: "priceImg",
+    },
+    content: {
+      heading: "Tranzift Bill Pay",
+      subHeading: "Recharges & Bill Payments",
+      desc: "Lightning fast payments, exciting rewards and seamless transactions on every recharge & bill payment.",
+      service: [
+        {
+          content: "Grab exciting offers",
+          icon: <FaCheckCircle />,
+        },
+        {
+          content: "Win scratchcards",
+          icon: <FaCheckCircle />,
+        },
+        {
+          content: "No hidden charges",
+          icon: <FaCheckCircle />,
+        },
+      ],
+    },
+  };
   return (
     <div className={styles.price__container}>
       <Banner />
-      <BillPayContainer />
+      <BillPayContainer data={BillPayData} />
     </div>
   );
 };

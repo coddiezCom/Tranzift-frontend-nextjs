@@ -22,7 +22,7 @@ export const Divider = () => {
     </div>
   );
 };
-export default function Footer({ country }) {
+export default function Footer({}) {
   const legalInformation = [
     {
       name: "Privacy Center",
@@ -200,7 +200,7 @@ export default function Footer({ country }) {
           {/* <Divider /> */}
           <div className={`flex justify-between bg-blue-500  ${styles.footer__copyright_legalInformation}`}>
             <div className={`flex justify-between bg-blue-500 py-4 `}>
-              <Copyright country={country} />
+              <Copyright />
               <LegalInformation legalInformation={legalInformation} />
             </div>
           </div>
