@@ -12,7 +12,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 // Layout
-import FooterLinkLayout from "@/layout/FooterLinkLayout";
+import FooterLinkLayout from "../../layout/FooterLinkLayout";
 
 export const MoreAboutOverPrivacyPolicy = () => {
   const data = [
