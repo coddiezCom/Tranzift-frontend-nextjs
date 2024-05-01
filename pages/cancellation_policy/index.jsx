@@ -11,7 +11,9 @@ import { MDXRemote } from "next-mdx-remote";
 // Components
 import { BannerWithoutSwiper } from "../../components/Banner";
 // Layout
-import FooterLinkLayout from "../../Layout/FooterLinkLayout";
+// import FooterLinkLayout from "@/Layout/FooterLinkLayout";
+import FooterLinkLayout from "@/Layout/FooterLinkLayout";
+
 const index = ({ frontMatter, mdxSource }) => {
   const data = {
     title: {
